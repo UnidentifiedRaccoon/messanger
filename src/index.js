@@ -1,4 +1,8 @@
-import {sum} from './modules/sum';
+import template from './index.hbs';
+import './components';
 
-const root = document.querySelector('#root');
-root.textContent = sum(6, -1).toString();
+window.addEventListener('DOMContentLoaded', () => {
+  const app = document.querySelector('#app');
+
+  app.innerHTML = template({ code: 404, message: 'Мы уже фиксим' });
+});
