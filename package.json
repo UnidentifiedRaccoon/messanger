@@ -12,10 +12,12 @@
   },
   "scripts": {
     "dev": "parcel",
-    "build": "parcel build",
+    "build": "parcel build --no-source-maps",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",
-    "eslint": "eslint ./src/**/*{.js,.ts}"
+    "eslint": "eslint ./src/**/*{.js,.ts}",
+    "eslint:fix": "eslint ./src/**/*{.js,.ts} --fix",
+    "deploy": "rm -rf dist | npm run build |  "
   },
   "author": "UnidentifiedRaccoon",
   "license": "ISC",
@@ -25,6 +27,7 @@
     "eslint": "8.22.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.26.0",
+    "gh-pages": "4.0.0",
     "husky": "8.0.1",
     "parcel": "2.7.0",
     "postcss": "8.4.16",
