@@ -1,0 +1,17 @@
+:root {
+  font-family: var(--primary-fs);
+  font-size: var(--fs-base);
+  font-weight: 500;
+  color: var(--color-text-major);
+}
+
+body {
+  margin: 0;
+}
+
+.title {
+  font-size: var(--fs-title);
+  font-weight: 500;
+  line-height: var(--lh-large);
+  text-align: center;
+}

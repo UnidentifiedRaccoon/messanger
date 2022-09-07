@@ -1,0 +1,17 @@
+{
+  "email": "Почта",
+  "login": "Логин",
+  "name": "Имя",
+  "surname": "Фамилия",
+  "nickname": "Имя в чате",
+  "phone": "Телефон",
+  "password": "Пароль",
+  "passwordRepeat": "Пароль (ещё раз)",
+  "dataChange": "Изменить данные",
+  "passwordChange": "Изменить пароль",
+  "exit": "Выйти",
+  "submitBtn": "Сохранить",
+  "oldPassword": "Старый пароль",
+  "newPassword": "Новый пароль",
+  "newPasswordRepeat": "Повторите новый пароль"
+}

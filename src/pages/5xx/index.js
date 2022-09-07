@@ -1,4 +1,5 @@
-import staticData from './ru.json';
-import template from './5xx.hbs';
+import criticalSiteError from '../../widgets/CriticalSiteError';
 
-export default template({ staticData });
+import staticData from './ru.json';
+
+export default criticalSiteError({ staticData });

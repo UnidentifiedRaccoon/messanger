@@ -1,1 +1,7 @@
-@use "./components";
+@use "./fonts";
+@use "./variables";
+@use "./common";
+
+.header-nav {
+  position: absolute;
+}

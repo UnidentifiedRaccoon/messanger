@@ -1,5 +1,5 @@
 import staticData from './ru.json';
-import template from './sign_in.hbs';
+import template from './profile.hbs';
 import styles from './index.module.scss';
 import '../../components';
 import '../../widgets';

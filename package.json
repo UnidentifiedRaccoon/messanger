@@ -17,7 +17,10 @@
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",
     "eslint": "eslint ./src/**/*{.js,.ts}",
     "eslint:fix": "eslint ./src/**/*{.js,.ts} --fix",
-    "deploy": "rm -rf dist | npm run build |  "
+    "publish:gh": "gh-pages --dist dist",
+    "publish:netlify": "gh-pages --dist . --branch deploy",
+    "deploy:gh": "rm -rf dist && npm run eslint:fix && npm run lint:fix && npm run build && npm run publish:gh",
+    "deploy:netlify": "rm -rf dist && npm run eslint:fix && npm run lint:fix && npm run build && npm run publish:netlify"
   },
   "author": "UnidentifiedRaccoon",
   "license": "ISC",
@@ -41,7 +44,8 @@
   },
   "dependencies": {
     "express": "4.18.1",
-    "handlebars": "4.7.7"
+    "handlebars": "4.7.7",
+    "normalize.css": "^8.0.1"
   },
   "eslintConfig": {
     "extends": [
