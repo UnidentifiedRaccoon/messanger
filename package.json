@@ -11,7 +11,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev": "parcel",
+    "start": "parcel",
     "build": "parcel build --no-source-maps",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",

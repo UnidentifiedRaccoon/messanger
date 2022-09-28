@@ -1,11 +1,8 @@
-<div class={{styles.profile}}>
-    <div class={{styles.icon_wrapper}}>
+<div class="{{styles.profile}} {{styles.change-info}}">
+    <div class={{styles.icon}}>
         {{> Icon type="profile" }}
     </div>
-    <h2 class="title {{styles.title}}">
-        {{staticData.title}}
-    </h2>
-    <div class={{styles.form_wrapper}}>
+    <div class={{styles.form-wrapper}}>
         {{#> Form outerStyles=styles.form}}
             <div>
                 {{> Input styleMode='profile' outerStyles=styles.field tooltip=staticData.email }}
@@ -15,9 +12,7 @@
                 {{> Input styleMode='profile' outerStyles=styles.field tooltip=staticData.nickname }}
                 {{> Input styleMode='profile' outerStyles=styles.field tooltip=staticData.phone }}
             </div>
+            {{> Button label=staticData.submitBtn outerStyles=styles.submit-btn}}
         {{/Form}}
-        {{> Link path="./change_info" text=staticData.infoChange outerStyles=styles.link}}
-        {{> Link path="./change_password" text=staticData.passwordChange outerStyles=styles.link}}
-        {{> Link path="./login" text=staticData.exit outerStyles=styles.link}}
     </div>
 </div>

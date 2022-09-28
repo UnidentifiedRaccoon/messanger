@@ -1,16 +1,14 @@
 <div class="{{styles.login}}">
-    {{#> overlay}}
+    {{#> Overlay}}
         <h2 class="title {{styles.title}}">
             {{staticData.title}}
         </h2>
 
-        {{#> form outerStyles=styles.form}}
-            {{> input tooltip=staticData.login outerStyles=styles.field}}
-            {{> input tooltip=staticData.password outerStyles=styles.field}}
+        {{#> Form outerStyles=styles.form}}
+            {{> Input tooltip=staticData.login outerStyles=styles.field}}
+            {{> Input tooltip=staticData.password outerStyles=styles.field}}
             {{> Button label=staticData.submitBtn outerStyles=styles.submit-btn}}
-            {{> Link path="./sign_in" text=staticData.signInLink outerStyles=styles.link}}
-        {{/form}}
-    {{/overlay}}
-
-
+        {{/Form}}
+        {{> Link path="./sign_in" text=staticData.signInLink outerStyles=styles.link}}
+    {{/Overlay}}
 </div>

@@ -1,0 +1,55 @@
+.profile {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  margin: 0 auto;
+}
+
+.form {
+  margin-bottom: 40px;
+}
+
+.change-password,
+.change-info {
+  & .icon {
+    margin-bottom: 65px;
+  }
+
+  & .form {
+    min-height: 300px;
+  }
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 510px;
+}
+
+.field {
+  padding: 0.4em 0;
+  border-bottom: 1px solid var(--color-border-light);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.link {
+  padding: 0.65em 0;
+  font-size: var(--fs-meaningful);
+  border-bottom: 1px solid var(--color-border-light);
+
+  &:last-child {
+    color: var(--color-danger);
+    border-bottom: none;
+  }
+}
+
+.submit-btn {
+  align-self: center;
+  width: 300px;
+  margin-top: auto;
+}

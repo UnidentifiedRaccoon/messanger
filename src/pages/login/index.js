@@ -1,6 +1,6 @@
-import staticData from './ru.json';
+import staticData from './login.ru.json';
 import template from './login.hbs';
-import styles from './index.module.scss';
+import styles from './login.module.scss';
 import '../../components';
 import '../../widgets';
 
