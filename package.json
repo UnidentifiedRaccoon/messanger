@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --no-source-maps",
+    "build": "rm -rf dist && parcel build --no-source-maps",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",
     "eslint": "eslint ./src/**/*{.js,.ts}",
@@ -26,6 +26,7 @@
   "license": "ISC",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
+    "@parcel/transformer-inline-string": "^2.7.0",
     "@parcel/transformer-sass": "^2.7.0",
     "eslint": "8.22.0",
     "eslint-config-airbnb-base": "15.0.0",
@@ -33,6 +34,7 @@
     "gh-pages": "4.0.0",
     "husky": "8.0.1",
     "parcel": "2.7.0",
+    "parcel-reporter-static-files-copy": "1.4.0",
     "postcss": "8.4.16",
     "postcss-sass": "0.5.0",
     "postcss-scss": "4.0.4",
@@ -104,5 +106,8 @@
   "eslintIgnore": [
     "/dist",
     "node_modules"
-  ]
+  ],
+  "staticFiles": {
+    "staticPath": "./src/assets/static"
+  }
 }

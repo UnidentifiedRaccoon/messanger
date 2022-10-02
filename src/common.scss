@@ -15,3 +15,7 @@ body {
   line-height: var(--lh-large);
   text-align: center;
 }
+
+[type="search"] {
+  appearance: textfield;
+}

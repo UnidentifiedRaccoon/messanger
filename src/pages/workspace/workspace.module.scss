@@ -1,0 +1,25 @@
+.workspace {
+  --max-workspace-width: 1480px;
+  --max-chat-list-width: 310px;
+  --max-chat-width: calc(var(--max-workspace-width) - var(--max-chat-list-width));
+
+  display: flex;
+  //grid-template-columns: minmax(250px, 1fr ) 3fr;
+  max-width: var(--max-workspace-width);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.chat-list {
+  width: 25%;
+  min-width: 220px;
+  max-width: var(--max-chat-list-width);
+  background-color: var(--color-chat-list-bg);
+}
+
+.chat {
+  flex-grow: 1;
+  min-width: 280px;
+  max-width: var(--max-chat-width);
+  //background-color: #c0d1ff;
+}

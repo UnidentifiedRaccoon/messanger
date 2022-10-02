@@ -5,6 +5,7 @@ import login from './pages/login';
 import profile from './pages/profile';
 import changeInfo from './pages/profile/change_info';
 import changePassword from './pages/profile/change_password';
+import workspace from './pages/workspace';
 import './components';
 import './widgets';
 
@@ -16,6 +17,7 @@ const PAGES_PATHNAME = {
   PROFILE: '/profile',
   CHANGE_INFO: '/change_info',
   CHANGE_PASSWORD: '/change_password',
+  WORKSPACE: '/workspace',
 };
 
 const app = document.querySelector('#app');
@@ -48,6 +50,9 @@ const loadPage = () => {
     break;
   case PAGES_PATHNAME.CHANGE_PASSWORD:
     app.innerHTML = changePassword;
+    break;
+  case PAGES_PATHNAME.WORKSPACE:
+    app.innerHTML = workspace;
     break;
   default: break;
   }

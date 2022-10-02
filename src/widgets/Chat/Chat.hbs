@@ -1,0 +1,9 @@
+<section class={{styles.chat}}>
+    <header class= {{ styles.header }}>
+        {{> IconProfile outerStyles=styles.profile-icon}}
+        <h3 class={{styles.title}}>{{data.title}}</h3>
+        {{> Cross typeMode="delete" outerStyles=styles.delete-btn}}
+    </header>
+    {{> ChatContent }}
+    {{> ChatMessageBar placeholder=data.messageField}}
+</section>

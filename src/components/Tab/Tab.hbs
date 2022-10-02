@@ -1,0 +1,20 @@
+<a href="{{path}}" class={{styles.tab-link}}>
+    <div class={{styles.tab}}>
+        {{> IconProfile outerStyles=styles.icon}}
+        <div class={{styles.caption}} >
+            <h3 class={{styles.title}}>{{data.title}}</h3>
+            <span class={{styles.last-message}}>{{data.lastMessage.text}}</span>
+        </div>
+        <div class={{ styles.meta }}>
+<!--            ToDo add message status (sending|delivered|was read|error)-->
+            <span class={{styles.time}}>{{data.lastMessage.time}}</span>
+            {{#if data.unread}}
+                <span class={{styles.unread}}>
+                <span>
+                    {{data.unread}}
+                </span>
+            </span>
+            {{/if}}
+        </div>
+    </div>
+</a>

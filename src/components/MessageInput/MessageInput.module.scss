@@ -1,0 +1,15 @@
+.label {
+  flex-grow: 1;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.8em 1.5em;
+  font-family: inherit;
+  font-size: var(--fs-text);
+  font-weight: inherit;
+  background-color: var(--color-focus-input-bg-light);
+  border: none;
+  border-radius: 20px;
+}

@@ -1,0 +1,11 @@
+{
+  "chatList": {
+    "addChatBtn": "Добавить чат",
+    "profileLink": "Профиль",
+    "searchPlaceholder": "Поиск"
+  },
+  "chat": {
+    "messagePlaceholder": "Сообщение",
+    "submitBtn": "Отправить"
+  }
+}
