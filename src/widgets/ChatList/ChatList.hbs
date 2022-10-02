@@ -9,11 +9,5 @@
         </div>
         {{> Search placeholder=staticData.searchPlaceholder}}
     </header>
-    <ul class={{styles.tabs}}>
-        {{#each data}}
-            <li class={{styles.tab}} id="{{this.id}}">
-                {{> Tab data=this }}
-            </li>
-        {{/each}}
-    </ul>
+    {{> ChatTabs data=data }}
 </section>

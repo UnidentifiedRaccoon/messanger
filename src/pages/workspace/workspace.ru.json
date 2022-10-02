@@ -2,10 +2,12 @@
   "chatList": {
     "addChatBtn": "Добавить чат",
     "profileLink": "Профиль",
-    "searchPlaceholder": "Поиск"
+    "searchPlaceholder": "Поиск",
+    "emptyChatTabs": "Список чатов пуст"
   },
   "chat": {
     "messagePlaceholder": "Сообщение",
-    "submitBtn": "Отправить"
+    "submitBtn": "Отправить",
+    "emptyChat": "Выберите чат чтобы отправить сообщение"
   }
 }

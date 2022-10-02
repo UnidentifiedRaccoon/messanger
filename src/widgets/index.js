@@ -2,5 +2,8 @@ import './Modal';
 import './CriticalSiteError';
 import './ChatContent';
 import './ChatMessageBar';
+import './ChatTabs/ChatTabsEmpty';
+import './ChatTabs';
 import './ChatList';
+import './Chat/ChatEmpty';
 import './Chat';
