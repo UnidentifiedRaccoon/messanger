@@ -5,7 +5,7 @@
             <h3 class={{styles.title}}>{{data.title}}</h3>
             {{> Cross typeMode="delete" outerStyles=styles.delete-btn}}
         </header>
-        {{> ChatContent }}
+        {{> ChatContent data=data}}
         {{> ChatMessageBar placeholder=data.messageField}}
     {{else}}
         {{> ChatEmpty text=staticData.emptyChat }}

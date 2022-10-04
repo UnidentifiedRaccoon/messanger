@@ -1,4 +1,15 @@
 .content {
+  --radius: 5px;
+
   flex-grow: 1;
   width: 100%;
+  overflow-y: scroll;
+}
+
+[id^="day-bubble-wrapper"] {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0.5em;
+  color: var(--color-text-minor);
 }

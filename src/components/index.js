@@ -8,3 +8,5 @@ import './IconInline/IconInline';
 import './Search/Search';
 import './Tab/Tab';
 import './MessageInput/MessageInput';
+import './Message/Message';
+import './Bubble/Bubble';

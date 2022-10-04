@@ -1,4 +1,5 @@
 import uppercaseFirst from './text';
+import i18y from './i18y.json';
 
 export const secInDay = 1000 * 60 * 60 * 24;
 
@@ -8,7 +9,8 @@ export const timeFormat = (date, short = true, locale = 'ru') => {
   const sameYear = date.getFullYear() === new Date().getFullYear();
 
   if (today) {
-    return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(date);
+    if (short) return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(date);
+    return uppercaseFirst(i18y[locale].today);
   } if (sameWeek) {
     if (short) return uppercaseFirst(new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(date));
     return new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(date);
