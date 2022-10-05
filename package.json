@@ -11,7 +11,8 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "parcel",
+    "start": "npm run build && node index.js",
+    "dev": "parcel",
     "build": "rm -rf dist && parcel build --no-source-maps",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",
@@ -47,8 +48,8 @@
   "dependencies": {
     "express": "4.18.1",
     "handlebars": "4.7.7",
-    "normalize.css": "^8.0.1",
-    "nanoid": "4.0.0"
+    "nanoid": "4.0.0",
+    "normalize.css": "^8.0.1"
   },
   "eslintConfig": {
     "extends": [
