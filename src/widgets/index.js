@@ -1,9 +1,9 @@
 import './Modal';
-import './CriticalSiteError';
-import './ChatContent';
-import './ChatMessageBar';
-import './ChatTabs/ChatTabsEmpty';
-import './ChatTabs';
-import './ChatList';
-import './Chat/ChatEmpty';
-import './Chat';
+import './CriticalSiteError/CriticalSiteError';
+import './ChatContent/ChatContent';
+import './ChatMessageBar/ChatMessageBar';
+import './ChatTabs/ChatTabsEmpty/ChatTabsEmpty';
+import './ChatTabs/ChatTabs';
+import './ChatList/ChatList';
+import './Chat/ChatEmpty/ChatEmpty';
+import './Chat/Chat';

@@ -11,16 +11,18 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "parcel",
+    "start": "npm run build && node index.js",
+    "dev": "parcel",
     "build": "rm -rf dist && parcel build --no-source-maps",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",
     "eslint": "eslint ./src/**/*{.js,.ts}",
     "eslint:fix": "eslint ./src/**/*{.js,.ts} --fix",
+    "fix": "npm run eslint:fix && npm run lint:fix",
     "publish:gh": "gh-pages --dist dist",
     "publish:netlify": "gh-pages --dist . --branch deploy",
-    "deploy:gh": "rm -rf dist && npm run eslint:fix && npm run lint:fix && npm run build && npm run publish:gh",
-    "deploy:netlify": "rm -rf dist && npm run eslint:fix && npm run lint:fix && npm run build && npm run publish:netlify"
+    "deploy:gh": "npm run fix && npm run build && npm run publish:gh",
+    "deploy:netlify": "npm run fix && npm run build && npm run publish:netlify"
   },
   "author": "UnidentifiedRaccoon",
   "license": "ISC",
@@ -47,8 +49,8 @@
   "dependencies": {
     "express": "4.18.1",
     "handlebars": "4.7.7",
-    "normalize.css": "^8.0.1",
-    "nanoid": "4.0.0"
+    "nanoid": "4.0.0",
+    "normalize.css": "^8.0.1"
   },
   "eslintConfig": {
     "extends": [

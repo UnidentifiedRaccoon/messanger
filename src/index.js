@@ -1,3 +1,5 @@
+import './components';
+import './widgets';
 import notFound from './pages/4xx';
 import serverError from './pages/5xx';
 import signIn from './pages/sign_in';
@@ -6,8 +8,6 @@ import profile from './pages/profile';
 import changeInfo from './pages/profile/change_info';
 import changePassword from './pages/profile/change_password';
 import workspace from './pages/workspace';
-import './components';
-import './widgets';
 
 const PAGES_PATHNAME = {
   NOT_FOUND: '/4xx',
