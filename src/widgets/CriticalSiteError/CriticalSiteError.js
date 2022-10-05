@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
 import template from './CriticalSiteError.hbs';
-import styles from './CriticalSiteError.module.scss';
+import * as styles from './CriticalSiteError.module.scss';
 import '../../components';
 
 Handlebars.registerPartial(

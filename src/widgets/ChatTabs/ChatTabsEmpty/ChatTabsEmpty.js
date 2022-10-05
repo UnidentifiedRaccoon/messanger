@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
 import template from './ChatTabsEmpty.hbs';
-import styles from './ChatTabsEmpty.module.scss';
+import * as styles from './ChatTabsEmpty.module.scss';
 
 Handlebars.registerPartial(
   'ChatTabsEmpty',

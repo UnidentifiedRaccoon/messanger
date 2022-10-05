@@ -9,23 +9,21 @@
 
 .icon path {
   fill: white;
+
+  &:first-child {
+    fill: var(--color-action);
+  }
 }
 
 .arrow:hover {
   border: 2px solid var(--color-action);
 
-  & path {
+  .icon path {
     fill: var(--color-action);
-  }
-}
 
-.icon g:first-child path {
-  fill: var(--color-action);
-}
-
-.arrow:hover .icon {
-  & g:first-child path {
-    fill: transparent;
+    &:first-child {
+      fill: transparent;
+    }
   }
 }
 

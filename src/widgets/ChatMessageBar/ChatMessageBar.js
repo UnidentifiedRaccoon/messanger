@@ -3,7 +3,7 @@ import Handlebars from 'handlebars/dist/handlebars.runtime';
 import attachment from 'bundle-text:./attachment.svg';
 
 import template from './ChatMessageBar.hbs';
-import styles from './ChatMessageBar.module.scss';
+import * as styles from './ChatMessageBar.module.scss';
 
 Handlebars.registerPartial(
   'ChatMessageBar',

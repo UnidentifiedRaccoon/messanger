@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import styles from './IconProfile.module.scss';
+import * as styles from './IconProfile.module.scss';
 import template from './IconProfile.hbs';
 import profileIcon from './profile-icon.svg';
 

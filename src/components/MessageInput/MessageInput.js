@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import styles from './MessageInput.module.scss';
+import * as styles from './MessageInput.module.scss';
 import template from './MessageInput.hbs';
 
 Handlebars.registerPartial(

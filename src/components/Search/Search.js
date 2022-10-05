@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import styles from './Search.module.scss';
+import * as styles from './Search.module.scss';
 import template from './Search.hbs';
 
 Handlebars.registerPartial(

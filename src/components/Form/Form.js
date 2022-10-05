@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import styles from './Form.module.scss';
+import * as styles from './Form.module.scss';
 import template from './Form.hbs';
 
 Handlebars.registerPartial(

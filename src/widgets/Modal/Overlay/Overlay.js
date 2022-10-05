@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
 import template from './Overlay.hbs';
-import styles from './Overlay.module.scss';
+import * as styles from './Overlay.module.scss';
 import '../../../components';
 
 Handlebars.registerPartial(

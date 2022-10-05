@@ -2,7 +2,7 @@ import Handlebars from 'handlebars/dist/handlebars.runtime';
 // eslint-disable-next-line import/no-unresolved
 import arrow from 'bundle-text:./arrow.svg';
 
-import styles from './Arrow.module.scss';
+import * as styles from './Arrow.module.scss';
 import template from './Arrow.hbs';
 
 Handlebars.registerPartial('Arrow', (...props) => {

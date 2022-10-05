@@ -2,7 +2,7 @@ import Handlebars from 'handlebars/dist/handlebars.runtime';
 // eslint-disable-next-line import/no-unresolved
 import cross from 'bundle-text:./cross.svg';
 
-import styles from './Cross.module.scss';
+import * as styles from './Cross.module.scss';
 import template from './Cross.hbs';
 
 Handlebars.registerPartial('Cross', (...props) => {

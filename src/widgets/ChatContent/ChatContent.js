@@ -3,7 +3,7 @@ import Handlebars from 'handlebars/dist/handlebars.runtime';
 import { timeFormat } from '../../utils/time';
 
 import template from './ChatContent.hbs';
-import styles from './ChatContent.module.scss';
+import * as styles from './ChatContent.module.scss';
 
 const separate = (separateIn, message) => {
   if (message.unread) separateIn.unread.push(message);
