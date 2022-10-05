@@ -3,7 +3,7 @@ import Handlebars from 'handlebars/dist/handlebars.runtime';
 import next from 'bundle-text:./next.svg';
 
 import template from './ChatList.hbs';
-import styles from './ChatList.module.scss';
+import * as styles from './ChatList.module.scss';
 
 Handlebars.registerPartial(
   'ChatList',

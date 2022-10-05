@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import defaultStyles from './Input.module.scss';
-import profileStyles from './Input--profile.module.scss';
+import * as defaultStyles from './Input.module.scss';
+import * as profileStyles from './Input--profile.module.scss';
 import template from './Input.hbs';
 
 Handlebars.registerPartial(

@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "npm run build && node index.js",
-    "dev": "parcel",
+    "dev": "rm -rf dist && parcel",
     "build": "rm -rf dist && parcel build --no-source-maps",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",

@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
 import template from './Chat.hbs';
-import styles from './Chat.module.scss';
+import * as styles from './Chat.module.scss';
 
 Handlebars.registerPartial(
   'Chat',

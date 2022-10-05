@@ -8,7 +8,7 @@ import { chatsTimeSort } from '../../utils/sort';
 
 import template from './workspace.hbs';
 import staticData from './workspace.ru.json';
-import styles from './workspace.module.scss';
+import * as styles from './workspace.module.scss';
 
 const amount = randomN(4);
 // Static data don't work properly, so use random (parameter true)
