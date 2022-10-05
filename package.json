@@ -20,7 +20,7 @@
     "eslint:fix": "eslint ./src/**/*{.js,.ts} --fix",
     "fix": "npm run eslint:fix && npm run lint:fix",
     "publish:gh": "gh-pages --dist dist",
-    "publish:netlify": "gh-pages --dist . --branch deploy",
+    "publish:netlify": "git push origin deploy",
     "deploy:gh": "npm run fix && npm run build && npm run publish:gh",
     "deploy:netlify": "npm run fix && npm run build && npm run publish:netlify"
   },
