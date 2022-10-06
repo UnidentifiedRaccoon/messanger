@@ -11,6 +11,12 @@ In the project directory, you can run:
 Runs the app in the production mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+### `npm run start_local`
+- Used to run app local with variables from .env. 
+- Leave `npm start` command for running in cloud or container where we have no .env file.
+- Open [http://localhost:process.env.PORT]() to view it in your browser.
+
+
 ### `npm run build`
 Builds the app for production to the `dist` folder.\
 

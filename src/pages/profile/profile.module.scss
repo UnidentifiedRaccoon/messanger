@@ -26,7 +26,7 @@
     fill: var(--color-action);
   }
 
-  & g:first-child path {
+  & path:first-child {
     fill: transparent;
   }
 }

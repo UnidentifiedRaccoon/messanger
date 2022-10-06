@@ -7,7 +7,7 @@
         </div>
         <div class={{ styles.meta }}>
 <!--            ToDo add message status (sending|delivered|was read|error)-->
-            <span class={{styles.time}}>{{data.lastMessage.time}}</span>
+            <time class={{styles.time}} datetime={{data.lastMessage.time.datetime}}>{{data.lastMessage.time.formatted}}</time>
             {{#if data.unread}}
                 <span class={{styles.unread}}>
                 <span>

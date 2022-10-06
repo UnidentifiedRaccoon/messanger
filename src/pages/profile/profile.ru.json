@@ -1,5 +1,6 @@
 {
-  "title": "ИмяПользователя",
+  "titleProfile": "Профиль",
+  "userName": "ИмяПользователя",
   "email": "Почта",
   "login": "Логин",
   "name": "Имя",
@@ -11,8 +12,5 @@
   "infoChange": "Изменить данные",
   "passwordChange": "Изменить пароль",
   "exit": "Выйти",
-  "submitBtn": "Сохранить",
-  "oldPassword": "Старый пароль",
-  "newPassword": "Новый пароль",
-  "newPasswordRepeat": "Повторите новый пароль"
+  "submitBtn": "Сохранить"
 }

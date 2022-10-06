@@ -2,8 +2,11 @@ const path = require('path');
 
 const express = require('express');
 
-const app = express();
+const { port } = require('./config');
 
+const DEFAULT_PORT = 3000;
+
+const app = express();
 app.use(express.static(path.join(__dirname, 'dist')));
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
@@ -18,6 +21,8 @@ pages.forEach((page) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Application listening on port 3000!');
+const resPort = port || DEFAULT_PORT;
+
+app.listen(resPort, () => {
+  console.log(`Application listening on port ${resPort}!`);
 });

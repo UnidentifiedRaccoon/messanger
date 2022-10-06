@@ -1,11 +1,16 @@
 {
+  "title": "Рабочая область",
   "chatList": {
+    "title": "Список чатов",
     "addChatBtn": "Добавить чат",
     "profileLink": "Профиль",
     "searchPlaceholder": "Поиск",
     "emptyChatTabs": "Список чатов пуст"
   },
   "chat": {
+    "title": "Чат",
+    "inputFormTitle": "Форма для создания и отправки сообщения",
+    "contentTitle": "Сообщения",
     "messagePlaceholder": "Сообщение",
     "submitBtn": "Отправить",
     "emptyChat": "Выберите чат чтобы отправить сообщение",

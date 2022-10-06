@@ -1,10 +1,13 @@
 <section class={{styles.content}}>
+    <h3 class="visually-hidden">
+        {{staticData.contentTitle}}
+    </h3>
     {{#each days}}
         <!-- wrap all bubbles and messages of the day -->
         <div id="day-wrapper-{{this.day}}">
             <!-- day bubble -->
             <div id="day-bubble-wrapper-{{this.day}}">
-                {{> Bubble text=this.day}}
+                {{> Bubble time=this.day}}
             </div>
             <!-- old messages -->
             {{#each this.read}}

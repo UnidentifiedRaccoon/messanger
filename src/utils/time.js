@@ -1,7 +1,7 @@
-import uppercaseFirst from './text';
+import capitalize from './text';
 import i18y from './i18y.json';
 
-export const secInDay = 1000 * 60 * 60 * 24;
+export const SEC_IN_DAY = 1000 * 60 * 60 * 24;
 
 export const timeFormat = (date, short = true, locale = 'ru') => {
   const today = date.getDate() === new Date().getDate();
@@ -10,9 +10,9 @@ export const timeFormat = (date, short = true, locale = 'ru') => {
 
   if (today) {
     if (short) return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(date);
-    return uppercaseFirst(i18y[locale].today);
+    return capitalize(i18y[locale].today);
   } if (sameWeek) {
-    if (short) return uppercaseFirst(new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(date));
+    if (short) return capitalize(new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(date));
     return new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(date);
   } if (sameYear) {
     return new Intl.DateTimeFormat(locale, { month: short ? 'short' : 'long', day: 'numeric' }).format(date);
@@ -22,3 +22,18 @@ export const timeFormat = (date, short = true, locale = 'ru') => {
     { day: 'numeric', month: short ? 'short' : 'long', year: 'numeric' },
   ).format(date);
 };
+
+export const formatMessageTimeHHMM = (arr) => arr.map((item) => {
+  if (!arr.length) return [];
+  const date = new Date(item.time);
+  const formattedTime = new Intl.DateTimeFormat('ru', { hour: '2-digit', minute: '2-digit' }).format(date);
+  const time = date.toISOString();
+  return {
+    ...item,
+    time: { formatted: formattedTime, datetime: time },
+  };
+});
+
+export const formatToMessageTime = (arr) => arr.map((day) => (
+  { ...day, unread: formatMessageTimeHHMM(day.unread), read: formatMessageTimeHHMM(day.read) }
+));

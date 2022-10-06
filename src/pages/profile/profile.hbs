@@ -1,13 +1,16 @@
 <div class={{styles.profile}}>
+    <h1 class="visually-hidden">
+        {{staticData.titleProfile}}
+    </h1>
     <a href="./workspace" class={{styles.go-back}}>
         {{> Arrow text=staticData.goBackText}}
     </a>
     <div class={{styles.content}}>
         <div class={{styles.icon_wrapper}}>
-            {{> IconProfile alt=staticData.title }}
+            {{> IconProfile alt=staticData.userName }}
         </div>
         <h2 class="title {{styles.title}}">
-            {{staticData.title}}
+            {{staticData.userName}}
         </h2>
         <div class={{styles.form-wrapper}}>
             {{#> Form outerStyles=styles.form}}

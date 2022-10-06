@@ -1,6 +1,6 @@
-const uppercaseFirst = (str) => {
+const capitalize = (str) => {
   const upper = str[0].toUpperCase();
   return upper + str.slice(1);
 };
 
-export default uppercaseFirst;
+export default capitalize;

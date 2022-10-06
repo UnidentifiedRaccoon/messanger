@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-import { secInDay } from '../utils/time';
+import { SEC_IN_DAY } from '../utils/time';
 
 import { messagesTimeSort } from '../utils/sort';
 
@@ -21,13 +21,13 @@ const getRandomItems = (arr, n = arr.length) => {
   return randomArr;
 };
 
-const getRandomTime = () => new Date(Date.now() - randomN(secInDay));
+const getRandomTime = () => new Date(Date.now() - randomN(SEC_IN_DAY));
 
 const addMessageTime = (arr) => {
   const time = getRandomTime();
   return arr.map((text, i) => ({
     text,
-    time: new Date(time.valueOf() - randomN(i * secInDay)),
+    time: new Date(time.valueOf() - randomN(i * SEC_IN_DAY)),
   }));
 };
 

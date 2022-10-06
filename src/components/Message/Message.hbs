@@ -2,7 +2,7 @@
     <p>
         {{context.text}}
     </p>
-    <span class={{styles.time}}>
-        {{context.time}}
-    </span>
+    <time class={{styles.time}} datetime={{context.time.datetime}} >
+        {{context.time.formatted}}
+    </time>
 </div>
