@@ -1,0 +1,13 @@
+@use "./fonts";
+@use "./variables";
+@use "./common";
+
+#header-nav {
+  position: absolute;
+  z-index: 10;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}

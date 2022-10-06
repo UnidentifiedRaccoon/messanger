@@ -1,0 +1,49 @@
+:root {
+  font-family: var(--primary-fs);
+  font-size: var(--fs-base);
+  font-weight: 500;
+  color: var(--color-text-major);
+}
+
+body {
+  margin: 0;
+}
+
+.title {
+  font-size: var(--fs-title);
+  font-weight: 500;
+  line-height: var(--lh-large);
+  text-align: center;
+}
+
+// Delete browser styling for search fields
+[type="search"] {
+  appearance: textfield;
+}
+
+// Add common styled scrollbar
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-track {
+  width: 8px;
+  margin-block: 2em;
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 10px rgb(0 0 0 / 30%);
+}
+
+[class="visually-hidden"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

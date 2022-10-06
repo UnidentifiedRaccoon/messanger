@@ -1,0 +1,40 @@
+.arrow {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 0;
+  border: none;
+  border-radius: 50%;
+}
+
+.icon path {
+  fill: white;
+
+  &:first-child {
+    fill: var(--color-action);
+  }
+}
+
+.arrow:hover {
+  border: 2px solid var(--color-action);
+
+  .icon path {
+    fill: var(--color-action);
+
+    &:first-child {
+      fill: transparent;
+    }
+  }
+}
+
+.top {
+  transform: rotate(90deg);
+}
+
+.right {
+  transform: rotate(180deg);
+}
+
+.bottom {
+  transform: rotate(270deg);
+}

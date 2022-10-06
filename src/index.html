@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parcel hbs precompile</title>
+    <script>
+        // This temporary used for simple routing
+        (function() {
+            var pushState = history.pushState;
+            var replaceState = history.replaceState;
+
+            history.pushState = function() {
+                pushState.apply(history, arguments);
+                window.dispatchEvent(new Event('pushstate'));
+                window.dispatchEvent(new Event('locationchange'));
+            };
+
+            history.replaceState = function() {
+                replaceState.apply(history, arguments);
+                window.dispatchEvent(new Event('replacestate'));
+                window.dispatchEvent(new Event('locationchange'));
+            };
+
+            window.addEventListener('popstate', function() {
+                window.dispatchEvent(new Event('locationchange'))
+            });
+        })();
+    </script>
+    <script type="module" src="index.js"></script>
+    <link rel="stylesheet" href="index.scss">
+</head>
+<body>
+<div>
+    <header>
+        <nav id="header-nav" class="header__nav">
+            <a href="./4xx">4xx</a>
+            <a href="./5xx">5xx</a>
+            <a href="./sign_in">sign_in</a>
+            <a href="./login">login</a>
+            <a href="./profile">profile</a>
+            <a href="./workspace">workspace</a>
+        </nav>
+        <main id="app">
+        </main>
+    </header>
+</div>
+</body>
+</html>

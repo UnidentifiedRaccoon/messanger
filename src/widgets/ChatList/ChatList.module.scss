@@ -1,0 +1,44 @@
+.chat-list {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 1.5em 0.5em;
+  border-right: 1px solid var(--color-border-light);
+}
+
+.header {
+  padding-bottom: 1em;
+}
+
+.header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.add-chat-btn {
+  width: 22px;
+  height: 22px;
+}
+
+.profile-link {
+  position: relative;
+  padding-right: 1.2em;
+  color: var(--color-text-minor);
+  text-decoration: none;
+}
+
+.icon-next {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 12px;
+  height: 12px;
+
+  & path {
+    fill: var(--color-text-minor);
+  }
+}
