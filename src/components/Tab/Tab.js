@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import { timeFormat } from '../../utils/time';
+import { timeFormat } from '../../utils/commonFn/time';
 
 import * as styles from './Tab.module.scss';
 import template from './Tab.hbs';

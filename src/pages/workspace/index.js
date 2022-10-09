@@ -4,7 +4,7 @@ import { randomN } from '../../mocks/utils';
 
 import generatedChatsData from '../../mocks/generator';
 
-import { chatsTimeSort } from '../../utils/sort';
+import { chatsTimeSort } from '../../utils/commonFn/sort';
 
 import template from './workspace.hbs';
 import staticData from './workspace.ru.json';

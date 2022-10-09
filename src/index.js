@@ -30,31 +30,31 @@ const updatePage = (event) => {
 const loadPage = () => {
   const { pathname } = window.location;
   switch (pathname) {
-  case PAGES_PATHNAME.NOT_FOUND:
-    app.innerHTML = notFound;
-    break;
-  case PAGES_PATHNAME.SERVER_ERROR:
-    app.innerHTML = serverError;
-    break;
-  case PAGES_PATHNAME.SIGN_IN:
-    app.innerHTML = signIn;
-    break;
-  case PAGES_PATHNAME.LOGIN:
-    app.innerHTML = login;
-    break;
-  case PAGES_PATHNAME.PROFILE:
-    app.innerHTML = profile;
-    break;
-  case PAGES_PATHNAME.CHANGE_INFO:
-    app.innerHTML = changeInfo;
-    break;
-  case PAGES_PATHNAME.CHANGE_PASSWORD:
-    app.innerHTML = changePassword;
-    break;
-  case PAGES_PATHNAME.WORKSPACE:
-    app.innerHTML = workspace;
-    break;
-  default: break;
+    case PAGES_PATHNAME.NOT_FOUND:
+      app.innerHTML = notFound;
+      break;
+    case PAGES_PATHNAME.SERVER_ERROR:
+      app.innerHTML = serverError;
+      break;
+    case PAGES_PATHNAME.SIGN_IN:
+      app.innerHTML = signIn;
+      break;
+    case PAGES_PATHNAME.LOGIN:
+      app.innerHTML = login;
+      break;
+    case PAGES_PATHNAME.PROFILE:
+      app.innerHTML = profile;
+      break;
+    case PAGES_PATHNAME.CHANGE_INFO:
+      app.innerHTML = changeInfo;
+      break;
+    case PAGES_PATHNAME.CHANGE_PASSWORD:
+      app.innerHTML = changePassword;
+      break;
+    case PAGES_PATHNAME.WORKSPACE:
+      app.innerHTML = workspace;
+      break;
+    default: break;
   }
 };
 

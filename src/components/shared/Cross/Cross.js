@@ -8,9 +8,9 @@ import template from './Cross.hbs';
 Handlebars.registerPartial('Cross', (...props) => {
   let typeMode;
   switch (props[0].typeMode) {
-  case 'delete': typeMode = styles.delete; break;
-  case 'add': typeMode = styles.add; break;
-  default: typeMode = '';
+    case 'delete': typeMode = styles.delete; break;
+    case 'add': typeMode = styles.add; break;
+    default: typeMode = '';
   }
   return template({
     ...props[0], styles, cross, typeMode,

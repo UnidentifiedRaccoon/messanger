@@ -1,8 +1,8 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import { addNewBubble, separateByDays } from '../../utils/chatContentPrepare';
+import { addNewBubble, separateByDays } from '../../utils/commonFn/chatContentPrepare';
 
-import { formatToMessageTime } from '../../utils/time';
+import { formatToMessageTime } from '../../utils/commonFn/time';
 
 import template from './ChatContent.hbs';
 import * as styles from './ChatContent.module.scss';

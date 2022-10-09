@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid';
 
-import { SEC_IN_DAY } from '../utils/time';
+import { SEC_IN_DAY } from '../utils/commonFn/time';
 
-import { messagesTimeSort } from '../utils/sort';
+import { messagesTimeSort } from '../utils/commonFn/sort';
 
 import { icons, phrases, titles } from './const_chat';
 import { randomN } from './utils';
