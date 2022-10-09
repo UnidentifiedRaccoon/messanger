@@ -1,0 +1,12 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  font-family: inherit;
+  font-size: var(--fs-meaningful);
+  font-weight: inherit;
+  color: #fff;
+  background-color: var(--color-action);
+  border: none;
+  border-radius: 6px;
+}
