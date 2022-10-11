@@ -62,7 +62,9 @@
       "error",
       "always",
       { "exceptAfterSingleLine": true }
-    ]
+    ],
+    "@typescript-eslint/no-useless-constructor": 0,
+    "no-restricted-exports": 0
   }
 }
 

@@ -26,7 +26,8 @@
     "components": "./src/components",
     "commonFn": "./src/utils/commonFn",
     "widgets": "./src//widgets",
-    "pages": "./src/pages"
+    "pages": "./src/pages",
+    "modules": "./node_modules"
   },
   "author": "UnidentifiedRaccoon",
   "license": "ISC",
