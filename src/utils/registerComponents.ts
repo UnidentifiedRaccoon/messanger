@@ -7,8 +7,8 @@ import Block from './Block';
 // data.root - object which passed into template function in component's parent compile method.
 export default function registerComponents(Component: typeof Block) {
   Handlebars.registerHelper(Component.name, ({ hash, data }: HelperOptions) => {
-    // console.log(hash);
     const component = new Component(hash);
+    // eslint-disable-next-line no-param-reassign
     data.root.children[component.id] = component;
     return `<div data-id="id-${component.id}"></div>`;
   });

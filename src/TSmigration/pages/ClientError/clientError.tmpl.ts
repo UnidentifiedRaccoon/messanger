@@ -4,7 +4,7 @@ const clientErrorTmpl = () => `
         <h1 class="visually-hidden">
             {{staticData.title}}
         </h1>
-        {{> CriticalSiteError }}
+        {{{ RequestError staticData=staticData }}}
     </div>
   `;
 

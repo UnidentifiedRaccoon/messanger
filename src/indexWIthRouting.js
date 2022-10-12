@@ -1,6 +1,6 @@
 import './components';
 import './widgets';
-import notFound from './pages/4xx';
+import notFound from './pages/ClientError';
 import serverError from './pages/5xx';
 import signIn from './pages/sign_in';
 import login from './pages/login';

@@ -29,9 +29,7 @@ To fix eslint and stylelint errors in project
 
 ---
 
-
-### Project structure
----
+## Project structure
 
 ```
 ├── src/                             # Исходники
@@ -43,6 +41,61 @@ To fix eslint and stylelint errors in project
 │   ├── pages/                      
 │   ├── utils/                       
 │   ├── widgets/       # Папка с смысловыми блоками, объединяющими несколько компонентов
+```
+
+---
+
+## Code snippets
+### Block 
+
+
+---
+- add component with template 
+```
+import exampleTmpl from './example.tmpl';
+export default class Example extends Block {
+  render() {
+    return exampleTmpl();
+  }
+}
+```
+
+
+---
+- add staticData
+```
+import staticData from './example.ru.json';
+export default class Example extends Block {
+  constructor(rawProps: any) {
+    super({ ...rawProps, staticData });
+  }
+}
+```
+
+
+---
+- add styles
+```
+import styles from './example.module.scss';
+export default class Example extends Block {
+  constructor(rawProps: any) {
+    super({ ...rawProps, styles });
+  }
+}
+```
+
+
+---
+- forward staticData
+
+ add staticData, then:
+```
+const exampleTmpl = () => `
+    <div>
+        {{staticData.title}}
+        {{{ ExampleChild staticData=staticData }}}
+    </div>
+  `;
 ```
 
 ### Issues

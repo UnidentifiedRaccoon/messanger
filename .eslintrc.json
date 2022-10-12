@@ -64,7 +64,8 @@
       { "exceptAfterSingleLine": true }
     ],
     "@typescript-eslint/no-useless-constructor": 0,
-    "no-restricted-exports": 0
+    "no-restricted-exports": 0,
+    "class-methods-use-this": 0
   }
 }
 
