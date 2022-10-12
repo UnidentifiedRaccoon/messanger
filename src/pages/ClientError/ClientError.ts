@@ -1,8 +1,13 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 
-import clientErrorTmpl from './clientError.tmpl';
+import staticData from './ClientError.ru.json';
+import clientErrorTmpl from './ClientError.tmpl';
 
 export default class ClientError extends Block {
+  constructor(rawProps: any) {
+    super({ ...rawProps, staticData });
+  }
+
   render() {
     return clientErrorTmpl();
   }

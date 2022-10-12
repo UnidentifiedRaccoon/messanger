@@ -105,17 +105,27 @@ export default class Block {
     const template = Handlebars.compile(templateString);
     const fragment = document.createElement('template');
 
-    // compile it with data,
-    // use fragment to get DOM node instead of string
+    // compile it with props,
+    // use fragment to get DOM node from string
     fragment.innerHTML = template({ ...this.props, children: this.children });
 
     // template inject stub in place where our "controlled child" should be
     // than we should stub.replaceWith(childElement)
     Object.values(this.children).forEach((block) => {
       const stub = fragment.content.querySelector(`[data-id="id-${block.id}"]`);
-      if (stub) stub.replaceWith(block.getContent());
-      else throw new Error('Нет stub\'а для вставки block\'a');
+      if (stub) {
+        stub.replaceWith(block.getContent());
+
+        // layout - actually idk how it works
+        const slotContent = block.getContent().querySelector('[data-slot="1"]');
+        if (slotContent && slotContent.parentElement) {
+          slotContent.parentElement.append(...stub.childNodes);
+          slotContent.remove();
+        }
+      } else throw new Error('Нет stub\'а для вставки block\'a');
     });
+
+    // template inject stub in place where our "layout content" should be
 
     return fragment.content.firstElementChild as HTMLElement;
   }

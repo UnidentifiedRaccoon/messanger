@@ -1,6 +1,14 @@
-import renderDOM from './utils/renderDOM';
-import ClientError from './TSmigration/pages/ClientError';
+import ClientError from 'pages/ClientError';
+import ServerError from 'pages/ServerError';
+import Login from 'pages/Login';
+import SignIn from 'pages/SignIn';
+import Workspace from 'pages/Workspace';
+import Profile from 'pages/Profile';
+import ChangeInfo from 'pages/Profile/ChangeInfo';
+import ChangePassword from 'pages/Profile/ChangePassword';
+
 import registrar from './registrar';
+import renderDOM from './utils/renderDOM';
 
 const PAGES_PATHNAME = {
   CLIENT_ERROR: '/4xx',
@@ -25,6 +33,27 @@ const loadPage = () => {
   switch (pathname) {
     case PAGES_PATHNAME.CLIENT_ERROR:
       renderDOM('#core-app', new ClientError({}));
+      break;
+    case PAGES_PATHNAME.SERVER_ERROR:
+      renderDOM('#core-app', new ServerError({}));
+      break;
+    case PAGES_PATHNAME.LOGIN:
+      renderDOM('#core-app', new Login({}));
+      break;
+    case PAGES_PATHNAME.SIGN_IN:
+      renderDOM('#core-app', new SignIn({}));
+      break;
+    case PAGES_PATHNAME.WORKSPACE:
+      renderDOM('#core-app', new Workspace({}));
+      break;
+    case PAGES_PATHNAME.CHANGE_INFO:
+      renderDOM('#core-app', new ChangeInfo({}));
+      break;
+    case PAGES_PATHNAME.CHANGE_PASSWORD:
+      renderDOM('#core-app', new ChangePassword({}));
+      break;
+    case PAGES_PATHNAME.PROFILE:
+      renderDOM('#core-app', new Profile({}));
       break;
     default: break;
   }

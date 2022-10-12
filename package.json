@@ -25,6 +25,7 @@
   "alias": {
     "components": "./src/components",
     "commonFn": "./src/utils/commonFn",
+    "utils": "./src/utils",
     "widgets": "./src//widgets",
     "pages": "./src/pages",
     "modules": "./node_modules"
