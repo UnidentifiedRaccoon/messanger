@@ -7,7 +7,7 @@ import generatedChatsData from '../../mocks/generator';
 
 import ChatData from '../../mocks/chat';
 
-import styles from './Workspace.module.scss';
+import * as styles from './Workspace.module.scss';
 import workspaceTmpl from './Workspace.tmpl';
 import staticData from './Workspace.ru.json';
 

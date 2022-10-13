@@ -6,6 +6,7 @@ import tabTmpl from './Tab.tmpl';
 import * as styles from './Tab.module.scss';
 
 export default class Tab extends Block {
+  static className = 'Tab';
   constructor(rawProps: any) {
     const time = new Date(rawProps.data.lastMessage.time);
     const formattedTime = timeFormat(time);

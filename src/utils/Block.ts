@@ -4,7 +4,10 @@ import Handlebars from 'handlebars';
 
 import EventBus from './EventBus';
 
+type Children = Record<string, Block>;
 export default class Block {
+  static className: string = 'Block';
+
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -13,17 +16,20 @@ export default class Block {
   };
 
   id = nanoid(6);
+  // @ts-ignore - ругается на то что нет инициализации
+  // Так и задумано, #element инициализируется в результате вызова render колбека
+  // А вызов render колбека как раз и тригерится в конструкторе
   #element: HTMLElement;
   protected children: Record<string, Block>;
   protected readonly props: {
     events: Record<string, () => void>,
-    [index: string]: any
+    [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
   };
 
   #eventBus: () => EventBus;
 
   static extractChildren(rawProps: any) {
-    const children: any = {};
+    const children: Children = {};
     const props: any = {};
     Object.entries(rawProps).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -32,7 +38,6 @@ export default class Block {
         props[key] = value;
       }
     });
-
     return { props, children };
   }
 

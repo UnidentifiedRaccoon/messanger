@@ -6,6 +6,7 @@ import crossTmpl from './Cross.tmpl';
 import * as styles from './Cross.module.scss';
 
 export default class Cross extends Block {
+  static className = 'Cross';
   constructor(rawProps: any) {
     let typeMode;
     switch (rawProps.typeMode) {

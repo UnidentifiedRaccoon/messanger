@@ -12,14 +12,22 @@ const changeInfoTmpl = () => `
                 {{{ IconProfile alt=staticData.userName }}}
             </div>
             <div class={{styles.form-wrapper}}>
-                {{# Form outerStyles=styles.form}}
+                {{# Form outerStyles=styles.form onSubmit=onSubmit}}
                     <div>
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.email }}}
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.login }}}
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.name }}}
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.surname }}}
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.nickname }}}
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.phone }}}
+                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.email name="email"}}}
+                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.login name="login"}}}
+                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.name name="name"}}}
+                        {{{ Input styleMode='profile' 
+                          outerStyles=styles.field
+                          tooltip=staticData.surname
+                          name="surname"
+                        }}}
+                        {{{ Input styleMode='profile'
+                          outerStyles=styles.field
+                          tooltip=staticData.nickname
+                          name="nickname"
+                        }}}
+                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.phone name="phone"}}}
                     </div>
                     {{{ Button label=staticData.submitBtn outerStyles=styles.submit-btn }}}
                 {{/Form}}

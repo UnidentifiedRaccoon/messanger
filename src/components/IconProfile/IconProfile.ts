@@ -5,6 +5,7 @@ import profileIcon from './profile-icon.svg';
 import * as styles from './IconProfile.module.scss';
 
 export default class IconProfile extends Block {
+  static className = 'IconProfile';
   constructor(rawProps: any) {
     super({
       ...rawProps,

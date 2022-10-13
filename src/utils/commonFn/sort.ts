@@ -1,4 +1,4 @@
-import { ChatTabData, Message } from '../../mocks/mockTypes';
+import { ChatTabData, Message } from '../../typings/mockTypes';
 
 const chatsTimeSort = (arr: ChatTabData[]) => arr.sort(
   (a, b) => new Date(b.lastMessage.time).getTime() - new Date(a.lastMessage.time).getTime(),

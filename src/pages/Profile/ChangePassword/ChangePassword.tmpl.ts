@@ -12,11 +12,23 @@ const changePasswordTmpl = () => `
                 {{{ IconProfile alt=staticData.userName }}}
             </div>
             <div class={{styles.form-wrapper}}>
-                {{# Form outerStyles=styles.form}}
+                {{# Form outerStyles=styles.form onSubmit=onSubmit}}
                     <div>
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.oldPassword }}}
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.newPassword }}}
-                        {{{ Input styleMode='profile' outerStyles=styles.field tooltip=staticData.newPasswordRepeat }}}
+                        {{{ Input styleMode='profile'
+                          outerStyles=styles.field
+                          tooltip=staticData.oldPassword
+                          name="oldPassword"
+                        }}}
+                        {{{ Input styleMode='profile'
+                          outerStyles=styles.field
+                          tooltip=staticData.newPassword
+                          name="newPassword" 
+                        }}}
+                        {{{ Input styleMode='profile'
+                          outerStyles=styles.field
+                          tooltip=staticData.newPasswordRepeat
+                          name="newPasswordRepeat" 
+                        }}}
                     </div>
                     {{{ Button label=staticData.submitBtn outerStyles=styles.submit-btn }}}
                 {{/Form}}

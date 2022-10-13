@@ -6,6 +6,7 @@ import arrowTmpl from './Arrow.tmpl';
 import * as styles from './Arrow.module.scss';
 
 export default class Arrow extends Block {
+  static className = 'Arrow';
   constructor(rawProps: any) {
     let dirMode;
     switch (rawProps.dirMode) {

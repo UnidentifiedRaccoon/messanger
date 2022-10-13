@@ -4,6 +4,7 @@ import searchTmpl from './Search.tmpl';
 import * as styles from './Search.module.scss';
 
 export default class Search extends Block {
+  static className = 'Search';
   constructor(rawProps: any) {
     super({
       ...rawProps,

@@ -27,6 +27,7 @@ export default class EventBus {
     );
   }
 
+  // any использованною осознанно, я не хочу как-либо контролировать/ограничивать передачу параметров
   emit(event: string, ...args: any[]): void {
     if (!this.#listeners[event]) return;
     this.#listeners[event].forEach((listener) => {

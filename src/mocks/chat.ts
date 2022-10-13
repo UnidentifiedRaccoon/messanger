@@ -1,12 +1,13 @@
 import { nanoid } from 'nanoid';
 
+import { Message } from 'typings/mockTypes';
+
 import { SEC_IN_DAY } from '../utils/commonFn/time';
 
 import { messagesTimeSort } from '../utils/commonFn/sort';
 
 import { icons, phrases, titles } from './const_chat';
 import { randomN } from './utils';
-import { Message } from './mockTypes';
 
 const getRandomItem = (arr: any) => arr[randomN(arr.length)];
 const getRandomItems = <T>(arr: T[], n = arr.length) => {

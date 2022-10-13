@@ -1,5 +1,6 @@
+import { ChatTabData, Message } from '../typings/mockTypes';
+
 import generatedChatsData from './generator';
-import { ChatTabData, Message } from './mockTypes';
 
 export class RandomChatTabData implements ChatTabData {
   id: string;

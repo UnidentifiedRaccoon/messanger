@@ -7,7 +7,7 @@ import Profile from 'pages/Profile';
 import ChangeInfo from 'pages/Profile/ChangeInfo';
 import ChangePassword from 'pages/Profile/ChangePassword';
 
-import registrar from './registrar';
+import registrar from './utils/registrar';
 import renderDOM from './utils/renderDOM';
 
 const PAGES_PATHNAME = {
