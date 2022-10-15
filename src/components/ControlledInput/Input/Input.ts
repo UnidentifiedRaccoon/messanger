@@ -20,7 +20,7 @@ export default class Input extends Block {
     onInput, onFocus, onBlur, type, ...props
   }: InputProps) {
     super({
-      props,
+      ...props,
       type: type || 'text',
       events: {
         input: onInput,
