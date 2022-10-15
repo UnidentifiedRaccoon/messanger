@@ -13,6 +13,7 @@ export default class Button extends Block {
   static className = 'Button';
   constructor(props: ButtonProps) {
     super({
+      ...props,
       styles,
       events: {
         click: props.onClick,
