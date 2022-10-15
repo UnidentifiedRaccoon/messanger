@@ -12,22 +12,33 @@ const changePasswordTmpl = () => `
                 {{{ IconProfile alt=staticData.userName }}}
             </div>
             <div class={{styles.form-wrapper}}>
-                {{# Form outerStyles=styles.form onSubmit=onSubmit}}
+                {{# Form outerStyles=styles.form onSubmit=onSubmit refs=refs}}
                     <div>
-                        {{{ Input styleMode='profile'
-                          outerStyles=styles.field
-                          tooltip=staticData.oldPassword
-                          name="oldPassword"
+                        {{{ ControlledInput
+                            styleMode='profile'
+                            outerStyles=styles.field
+                            tooltip=staticData.oldPassword
+                            name="oldPassword"
+                            onInput=onInput
+                            onFocus=onFocus
+                            validateType="password"
                         }}}
-                        {{{ Input styleMode='profile'
-                          outerStyles=styles.field
-                          tooltip=staticData.newPassword
-                          name="newPassword" 
+                        {{{ ControlledInput
+                            styleMode='profile'
+                            outerStyles=styles.field
+                            tooltip=staticData.newPassword
+                            name="newPassword"
+                            onInput=onInput
+                            onFocus=onFocus
+                            validateType="password"
                         }}}
-                        {{{ Input styleMode='profile'
-                          outerStyles=styles.field
-                          tooltip=staticData.newPasswordRepeat
-                          name="newPasswordRepeat" 
+                        {{{ ControlledInput styleMode='profile'
+                            outerStyles=styles.field
+                            tooltip=staticData.newPasswordRepeat
+                            name="newPasswordRepeat"
+                            onInput=onInput
+                            onFocus=onFocus
+                            validateType="password"
                         }}}
                     </div>
                     {{{ Button label=staticData.submitBtn outerStyles=styles.submit-btn }}}

@@ -3,14 +3,19 @@ import Block from 'utils/Block';
 import buttonTmpl from './Button.tmpl';
 import * as styles from './Button.module.scss';
 
+interface ButtonProps {
+  label: string
+  outerStyles?: Record<string, string>
+  onClick?: (e: Event) => void
+}
+
 export default class Button extends Block {
   static className = 'Button';
-  constructor(rawProps: any) {
+  constructor(props: ButtonProps) {
     super({
-      ...rawProps,
       styles,
       events: {
-        click: rawProps.onClick,
+        click: props.onClick,
       },
     });
   }

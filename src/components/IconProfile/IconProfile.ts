@@ -4,13 +4,18 @@ import iconProfileTmpl from './IconProfile.tmpl';
 import profileIcon from './profile-icon.svg';
 import * as styles from './IconProfile.module.scss';
 
+type IconProfileProps = {
+  outerStyles?: Record<string, string>
+  icon?: string
+};
+
 export default class IconProfile extends Block {
   static className = 'IconProfile';
-  constructor(rawProps: any) {
+  constructor({ icon, ...props }: IconProfileProps) {
     super({
-      ...rawProps,
+      ...props,
       styles,
-      icon: rawProps.icon || profileIcon,
+      icon: icon || profileIcon,
     });
   }
 

@@ -5,11 +5,15 @@ import Block from 'utils/Block';
 import chatMessageBarTmpl from './ChatMessageBar.tmpl';
 import * as styles from './ChatMessageBar.module.scss';
 
+interface ChatMessageBarProps {
+  placeholder?: string
+}
+
 export default class ChatMessageBar extends Block {
   static className = 'ChatMessageBar';
-  constructor(rawProps: any) {
+  constructor(props: ChatMessageBarProps) {
     super({
-      ...rawProps,
+      ...props,
       styles,
       attachment,
       onSubmit: (data: any) => {

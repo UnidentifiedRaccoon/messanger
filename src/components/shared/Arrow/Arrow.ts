@@ -5,18 +5,24 @@ import Block from 'utils/Block';
 import arrowTmpl from './Arrow.tmpl';
 import * as styles from './Arrow.module.scss';
 
+interface ArrowProps {
+  text?: string
+  dirMode?: string
+  outerStyles?: Record<string, string>
+}
+
 export default class Arrow extends Block {
   static className = 'Arrow';
-  constructor(rawProps: any) {
+  constructor(props: ArrowProps) {
     let dirMode;
-    switch (rawProps.dirMode) {
+    switch (props.dirMode) {
       case 'top': dirMode = styles.top; break;
       case 'right': dirMode = styles.right; break;
       case 'bottom': dirMode = styles.bottom; break;
       default: dirMode = '';
     }
     super({
-      ...rawProps,
+      ...props,
       styles,
       arrow,
       dirMode,

@@ -2,18 +2,26 @@ import Block from 'utils/Block';
 
 import { timeFormat } from '../../utils/commonFn/time';
 
+import { ChatTabData } from '../../typings/mockTypes';
+
 import tabTmpl from './Tab.tmpl';
 import * as styles from './Tab.module.scss';
 
+interface TabProps {
+  data: ChatTabData
+  path: string
+  outerStyles?: Record<string, string>
+}
+
 export default class Tab extends Block {
   static className = 'Tab';
-  constructor(rawProps: any) {
-    const time = new Date(rawProps.data.lastMessage.time);
+  constructor({ data, ...props }: TabProps) {
+    const time = new Date(data.lastMessage.time);
     const formattedTime = timeFormat(time);
     const dataCopy = {
-      ...rawProps.data,
+      ...data,
       lastMessage: {
-        ...rawProps.data.lastMessage,
+        ...data.lastMessage,
         time: {
           formatted: formattedTime,
           datetime: time.toISOString(),
@@ -22,7 +30,7 @@ export default class Tab extends Block {
     };
 
     super({
-      ...rawProps,
+      ...props,
       data: dataCopy,
       styles,
     });

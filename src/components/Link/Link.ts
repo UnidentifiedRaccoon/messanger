@@ -3,10 +3,16 @@ import Block from 'utils/Block';
 import linkTmpl from './Link.tmpl';
 import * as styles from './Link.module.scss';
 
+type LinkProps = {
+  path?: string
+  text?: string
+  outerStyles?: Record<string, string>
+};
+
 export default class Link extends Block {
   static className = 'Link';
-  constructor(rawProps: any) {
-    super({ ...rawProps, styles });
+  constructor(props: LinkProps) {
+    super({ ...props, styles });
   }
 
   render() {

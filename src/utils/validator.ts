@@ -1,6 +1,6 @@
 import { numToNumeral } from './commonFn/time';
 
-enum ValidateTypes {
+export enum ValidateTypes {
   Name = 'name',
   Login = 'login',
   Email = 'email',
@@ -9,8 +9,8 @@ enum ValidateTypes {
   Message = 'message',
 }
 
-type ValidateRule = {
-  type: ValidateTypes
+export type ValidateRule = {
+  type: ValidateTypes,
   value: string
 };
 
@@ -32,8 +32,8 @@ class Validator {
 
   min(n: number, message?: string): Validator {
     if (this.error) return this;
-    if (this.value.length < n) {
-      const numeral = numToNumeral(n, ['знак', 'знака', 'знаков']);
+    if (!this.value || this.value.length < n) {
+      const numeral = numToNumeral(n, ['знака', 'знаков', 'знаков']);
       this.error = message || `Поле должно содержать не менее ${n} ${numeral}`;
     }
     return this;
@@ -41,8 +41,8 @@ class Validator {
 
   max(n: number, message?: string): Validator {
     if (this.error) return this;
-    if (this.value.length < n) {
-      const numeral = numToNumeral(n, ['знак', 'знака', 'знаков']);
+    if (!this.value || this.value.length > n) {
+      const numeral = numToNumeral(n, ['знака', 'знаков', 'знаков']);
       this.error = message || `Поле должно содержать не более ${n} ${numeral}`;
     }
     return this;
@@ -50,7 +50,7 @@ class Validator {
 
   firstCapital(message?: string): Validator {
     if (this.error) return this;
-    if (/[A-ZА-Я]/.test(this.value.charAt(0))) {
+    if (!this.value || /[A-ZА-Я]/.test(this.value.charAt(0))) {
       this.error = message || 'Первая буква должна быть заглавной';
     }
     return this;
@@ -146,37 +146,36 @@ const validateMessage = (str: string): string => {
   return validator.error;
 };
 
-const validate = (rules: ValidateRule[]) => {
+const validate = (rule: ValidateRule): string => {
+  const { value, type } = rule;
   let errorMessage = '';
-  rules.forEach((rule) => {
-    switch (rule.type) {
-      case ValidateTypes.Name: {
-        errorMessage = validateName(rule.value);
-        break;
-      }
-      case ValidateTypes.Login: {
-        errorMessage = validateLogin(rule.value);
-        break;
-      }
-      case ValidateTypes.Email: {
-        errorMessage = validateEmail(rule.value);
-        break;
-      }
-      case ValidateTypes.Password: {
-        errorMessage = validatePassword(rule.value);
-        break;
-      }
-      case ValidateTypes.Phone: {
-        errorMessage = validatePhone(rule.value);
-        break;
-      }
-      case ValidateTypes.Message: {
-        errorMessage = validateMessage(rule.value);
-        break;
-      }
-      default: break;
+  switch (type) {
+    case ValidateTypes.Name: {
+      errorMessage = validateName(value);
+      break;
     }
-  });
+    case ValidateTypes.Login: {
+      errorMessage = validateLogin(value);
+      break;
+    }
+    case ValidateTypes.Email: {
+      errorMessage = validateEmail(value);
+      break;
+    }
+    case ValidateTypes.Password: {
+      errorMessage = validatePassword(value);
+      break;
+    }
+    case ValidateTypes.Phone: {
+      errorMessage = validatePhone(value);
+      break;
+    }
+    case ValidateTypes.Message: {
+      errorMessage = validateMessage(value);
+      break;
+    }
+    default: break;
+  }
   return errorMessage;
 };
 

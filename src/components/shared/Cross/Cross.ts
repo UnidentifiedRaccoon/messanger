@@ -5,17 +5,23 @@ import Block from 'utils/Block';
 import crossTmpl from './Cross.tmpl';
 import * as styles from './Cross.module.scss';
 
+interface CrossProps {
+  text?: string
+  typeMode?: string
+  outerStyles?: Record<string, string>
+}
+
 export default class Cross extends Block {
   static className = 'Cross';
-  constructor(rawProps: any) {
+  constructor(props: CrossProps) {
     let typeMode;
-    switch (rawProps.typeMode) {
+    switch (props.typeMode) {
       case 'delete': typeMode = styles.delete; break;
       case 'add': typeMode = styles.add; break;
       default: typeMode = '';
     }
     super({
-      ...rawProps,
+      ...props,
       styles,
       cross,
       typeMode,

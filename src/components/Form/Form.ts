@@ -1,25 +1,33 @@
 import Block from 'utils/Block';
 
+import { PreparedFormData } from '../../typings/commonTypes';
+
 import formTmpl from './Form.tmpl';
 import * as styles from './Form.module.scss';
 
+interface FormProps {
+  onSubmit: (data: Record<string, FormDataEntryValue>) => void;
+  outerStyles?: Record<string, string>;
+}
+
 export default class Form extends Block {
   static className = 'Form';
-  constructor(rawProps: any) {
+  constructor({ onSubmit, ...props }: FormProps) {
     super({
-      ...rawProps,
+      ...props,
       styles,
       events: {
         submit: (e: SubmitEvent) => {
           e.preventDefault();
           if (e.target instanceof HTMLFormElement) {
-            const formData = new FormData(e.target);
-            const data: Record<string, FormDataEntryValue> = {};
-            // eslint-disable-next-line no-restricted-syntax
-            for (const [key, value] of formData) {
-              data[key] = value;
-            }
-            rawProps.onSubmit(data);
+            const inputs: HTMLInputElement[] = Array.from(e.target.querySelectorAll('input'));
+            const data: PreparedFormData = inputs.reduce((acc, input) => {
+              input.focus();
+              input.blur();
+              const key = input.name as string;
+              return { ...acc, [key]: input.value };
+            }, {});
+            onSubmit(data);
           }
         },
       },

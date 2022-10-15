@@ -26,6 +26,8 @@ export default class Block {
     [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
   };
 
+  protected refs: { [key: string]: Block } = {};
+
   #eventBus: () => EventBus;
 
   static extractChildren(rawProps: any) {
@@ -90,7 +92,17 @@ export default class Block {
     if (response) this.#eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any): boolean { return oldProps !== newProps; }
+  protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const prop of Object.keys(newProps)) {
+      if (newProps[prop] !== oldProps[prop]) return true;
+    }
+    // eslint-disable-next-line no-restricted-syntax
+    for (const prop of Object.keys(oldProps)) {
+      if (newProps[prop] !== oldProps[prop]) return true;
+    }
+    return false;
+  }
 
   /** <code style="color: #952dd2">FLOW_RENDER</code> -
    *  happened before <code style="color: #952dd2">FLOW_CDU</code>
@@ -100,6 +112,7 @@ export default class Block {
     const newElem = this.compile(templateString);
     if (this.#element) this.#element.replaceWith(newElem);
     this.#element = newElem;
+
     this.#addListeners();
   }
 
@@ -112,7 +125,7 @@ export default class Block {
 
     // compile it with props,
     // use fragment to get DOM node from string
-    fragment.innerHTML = template({ ...this.props, children: this.children });
+    fragment.innerHTML = template({ ...this.props, children: this.children, refs: this.refs });
 
     // template inject stub in place where our "controlled child" should be
     // than we should stub.replaceWith(childElement)
@@ -129,7 +142,6 @@ export default class Block {
         }
       } else throw new Error('Нет stub\'а для вставки block\'a');
     });
-
     // template inject stub in place where our "layout content" should be
 
     return fragment.content.firstElementChild as HTMLElement;
@@ -142,7 +154,6 @@ export default class Block {
     if (!newProps) {
       return;
     }
-
     Object.assign(this.props, newProps);
   };
 
@@ -173,7 +184,7 @@ export default class Block {
     });
   }
 
-  getContent() {
+  getContent(): HTMLElement {
     return this.#element;
   }
 

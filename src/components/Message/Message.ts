@@ -3,11 +3,18 @@ import Block from 'utils/Block';
 import messageTmpl from './Message.tmpl';
 import * as styles from './Message.module.scss';
 
+interface MessageProps {
+  context: {
+    text?: string
+    time?: { datetime: string, format: string }
+  }
+}
+
 export default class Message extends Block {
   static className = 'Message';
-  constructor(rawProps: any) {
+  constructor(props: MessageProps) {
     super({
-      ...rawProps,
+      ...props,
       styles,
     });
   }
