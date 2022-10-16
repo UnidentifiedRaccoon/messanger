@@ -10,5 +10,5 @@ export interface ChatTabData {
   icon: string;
   title: string;
   lastMessage: Message;
-  unread: any;
+  unread: number;
 }

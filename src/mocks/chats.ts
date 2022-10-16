@@ -7,7 +7,7 @@ export class RandomChatTabData implements ChatTabData {
   icon: string;
   title: string;
   lastMessage: Message;
-  unread: any;
+  unread: number;
   constructor(i: number) {
     this.id = generatedChatsData[i].id;
     this.icon = generatedChatsData[i].icon;

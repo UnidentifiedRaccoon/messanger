@@ -18,7 +18,7 @@ export default class ChangeInfo extends Block {
       staticData,
       onFocus: (e: Event, input: ControlledInput) => {
         e.preventDefault();
-        const inputEl = input.getContent() as HTMLInputElement;
+        const inputEl = input.getRefs().input.getContent() as HTMLInputElement;
         const errorMessage = validate({
           type: input.getProps().validateType,
           value: inputEl.value,

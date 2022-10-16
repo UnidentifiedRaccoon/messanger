@@ -1,15 +1,18 @@
+import { Message } from '../../typings/mockTypes';
+
+import { DayFormattedMessages, DayMessages } from '../../typings/utilityTypes';
+
 import { timeFormat } from './time';
 
-export const separate = (separateIn: any, message: any) => {
+export const separate = (separateIn: DayMessages, message: Message) => {
   if (message.unread) separateIn.unread.push(message);
   else separateIn.read.push(message);
 };
 
-export const separateByDays = (arr: any) => {
-  const days = [];
-  // console.log(arr);
+export const separateByDays = (arr: Message[]): DayMessages[] => {
+  const days: DayMessages[] = [];
   for (let i = 0; i < arr.length;) {
-    const day = {
+    const day: DayMessages = {
       day: {
         datetime: arr[i].time,
         formatted: timeFormat(arr[i].time, false),
@@ -29,9 +32,9 @@ export const separateByDays = (arr: any) => {
   return days;
 };
 
-export const addNewBubble = (arr: any, text: string) => {
+export const addNewBubble = (arr: DayFormattedMessages[], text: string) => {
   const withNewBubble = arr.slice();
-  const firstDayWithUnread = arr.findIndex((dayObj: any) => dayObj.unread.length > 0);
+  const firstDayWithUnread = arr.findIndex((dayObj) => dayObj.unread.length > 0);
   if (firstDayWithUnread !== -1) withNewBubble[firstDayWithUnread].new = text;
   return withNewBubble;
 };

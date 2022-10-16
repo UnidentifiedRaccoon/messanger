@@ -9,7 +9,7 @@ import { messagesTimeSort } from '../utils/commonFn/sort';
 import { icons, phrases, titles } from './const_chat';
 import { randomN } from './utils';
 
-const getRandomItem = (arr: any) => arr[randomN(arr.length)];
+const getRandomItem = <T>(arr: T[]) => arr[randomN(arr.length)];
 const getRandomItems = <T>(arr: T[], n = arr.length) => {
   let i = 0;
   let tmpArr = arr;
@@ -17,7 +17,7 @@ const getRandomItems = <T>(arr: T[], n = arr.length) => {
   while (i < n) {
     const randomItem = getRandomItem(tmpArr);
     randomArr.push(randomItem);
-    tmpArr = tmpArr.filter((item: any) => item !== randomItem);
+    tmpArr = tmpArr.filter((item) => item !== randomItem);
     i += 1;
   }
   return randomArr;
@@ -35,8 +35,8 @@ const createMessages = (arr: string[]): Message[] => {
   }));
 };
 
-const addUnreadMessage = (messages: any, unreadAmount: any) => messages.map(
-  (m: any, i: any) => ({ ...m, unread: unreadAmount > i }),
+const addUnreadMessage = (messages: Message[], unreadAmount: number) => messages.map(
+  (m, i) => ({ ...m, unread: unreadAmount > i }),
 );
 
 export default class ChatData {

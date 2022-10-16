@@ -2,6 +2,8 @@ import attachment from 'bundle-text:./attachment.svg';
 
 import Block from 'utils/Block';
 
+import { PreparedFormData } from '../../typings/commonTypes';
+
 import chatMessageBarTmpl from './ChatMessageBar.tmpl';
 import * as styles from './ChatMessageBar.module.scss';
 
@@ -16,7 +18,7 @@ export default class ChatMessageBar extends Block {
       ...props,
       styles,
       attachment,
-      onSubmit: (data: any) => {
+      onSubmit: (data: PreparedFormData) => {
         console.log(data);
       },
     });

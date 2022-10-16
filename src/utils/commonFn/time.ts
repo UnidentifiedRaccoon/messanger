@@ -1,3 +1,7 @@
+import { ChatMessage, DayFormattedMessages, DayMessages } from '../../typings/utilityTypes';
+
+import { Message } from '../../typings/mockTypes';
+
 import capitalize from './text';
 import i18y from './i18y.json';
 
@@ -23,8 +27,7 @@ export const timeFormat = (date: Date, short = true, locale = 'ru') => {
   ).format(date);
 };
 
-export const formatMessageTimeHHMM = (arr: any) => arr.map((item: any) => {
-  if (!arr.length) return [];
+export const formatMessageTimeHHMM = (arr: Message[]): ChatMessage[] => arr.map((item) => {
   const date = new Date(item.time);
   const formattedTime = new Intl.DateTimeFormat('ru', { hour: '2-digit', minute: '2-digit' }).format(date);
   const time = date.toISOString();
@@ -34,8 +37,12 @@ export const formatMessageTimeHHMM = (arr: any) => arr.map((item: any) => {
   };
 });
 
-export const formatToMessageTime = (arr: any) => arr.map((day: any) => (
-  { ...day, unread: formatMessageTimeHHMM(day.unread), read: formatMessageTimeHHMM(day.read) }
+export const formatToMessageTime = (arr: DayMessages[]): DayFormattedMessages[] => arr.map((day) => (
+  {
+    ...day,
+    unread: formatMessageTimeHHMM(day.unread),
+    read: formatMessageTimeHHMM(day.read),
+  }
 ));
 
 export function numToNumeral(n: number, titles: string[]) {

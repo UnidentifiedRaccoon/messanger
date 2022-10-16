@@ -19,7 +19,7 @@ export default class SignIn extends Block {
       styles,
       onFocus: (e: Event, input: ControlledInput) => {
         e.preventDefault();
-        const inputEl = input.getContent() as HTMLInputElement;
+        const inputEl = input.getRefs().input.getContent() as HTMLInputElement;
         const errorMessage = validate({
           type: input.getProps().validateType,
           value: inputEl.value,

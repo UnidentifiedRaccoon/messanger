@@ -50,7 +50,7 @@ class Validator {
 
   firstCapital(message?: string): Validator {
     if (this.error) return this;
-    if (!this.value || /[A-ZА-Я]/.test(this.value.charAt(0))) {
+    if (!this.value || !/[A-ZА-Я]/.test(this.value.charAt(0))) {
       this.error = message || 'Первая буква должна быть заглавной';
     }
     return this;
@@ -136,7 +136,7 @@ const validatePhone = (str: string): string => {
   const validator = new Validator(str)
     .min(10)
     .max(15)
-    .pattern(/^('+')?[0-9]+$/, 'Номер должен состоять из чисел может начитаться с "+"');
+    .pattern(/^[+]??[0-9]+$/, 'Номер должен состоять из чисел может начитаться с "+"');
   return validator.error;
 };
 
