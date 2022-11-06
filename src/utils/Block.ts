@@ -28,7 +28,7 @@ export default class Block {
 
   protected refs: { [key: string]: Block } = {};
 
-  #eventBus: () => EventBus;
+  #eventBus: () => EventBus<typeof Block.EVENTS>;
 
   static extractChildren(rawProps: any) {
     const children: Children = {};
@@ -47,7 +47,7 @@ export default class Block {
     const { props, children = {} } = Block.extractChildren(rawProps);
     this.props = this.#makePropsProxy(props);
     this.children = children;
-    const eventBus = new EventBus();
+    const eventBus = new EventBus<typeof Block.EVENTS>();
     this.#eventBus = () => eventBus;
     this.#registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
@@ -58,7 +58,7 @@ export default class Block {
    *  <code style="color: #007ba7">EVENTS.INIT</code>  <br>
    *    register lifecycle methods on lifecycle events, <br>
    *    when  somewhere event will be emitted, dedicated method will run */
-  #registerEvents(eventBus: EventBus) {
+  #registerEvents(eventBus: EventBus<typeof Block.EVENTS>) {
     eventBus.on(Block.EVENTS.INIT, this.#init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this.#componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this.#componentDidUpdate.bind(this));
