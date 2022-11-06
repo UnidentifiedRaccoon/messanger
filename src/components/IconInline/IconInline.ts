@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import iconInlineTmpl from './IconInline.tmpl';
 

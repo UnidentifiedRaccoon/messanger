@@ -1,10 +1,11 @@
-import Block from 'utils/Block';
-
 import * as styles from '../Profile.module.scss';
 
 import ControlledInput from '../../../components/ControlledInput';
-import validate from '../../../utils/validator';
 import { PreparedFormData } from '../../../typings/commonTypes';
+
+import Block from '../../../utils/Core/Block';
+
+import validate from '../../../utils/Form/validator';
 
 import changeInfoTmpl from './ChangeInfo.tmpl';
 import staticData from './ChangeInfo.ru.json';

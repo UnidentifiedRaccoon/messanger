@@ -1,8 +1,8 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
-import { addNewBubble, separateByDays } from '../../utils/commonFn/chatContentPrepare';
+import { addNewBubble, separateByDays } from '../../utils/common/chatContentPrepare';
 
-import { formatToMessageTime } from '../../utils/commonFn/time';
+import { formatToMessageTime } from '../../utils/common/time';
 
 import ChatData from '../../mocks/chat';
 

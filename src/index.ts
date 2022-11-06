@@ -7,8 +7,8 @@ import Profile from 'pages/Profile';
 import ChangeInfo from 'pages/Profile/ChangeInfo';
 import ChangePassword from 'pages/Profile/ChangePassword';
 
-import registrar from './utils/registrar';
-import renderDOM from './utils/renderDOM';
+import renderDOM from './utils/Core/renderDOM';
+import registrar from './utils/Core/registrar';
 
 const PAGES_PATHNAME = {
   CLIENT_ERROR: '/4xx',

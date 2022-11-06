@@ -2,9 +2,9 @@ import { nanoid } from 'nanoid';
 
 import { Message } from 'typings/mockTypes';
 
-import { SEC_IN_DAY } from '../utils/commonFn/time';
+import { SEC_IN_DAY } from '../utils/common/time';
 
-import { messagesTimeSort } from '../utils/commonFn/sort';
+import { messagesTimeSort } from '../utils/common/sort';
 
 import { icons, phrases, titles } from './const_chat';
 import { randomN } from './utils';

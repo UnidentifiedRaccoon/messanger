@@ -1,10 +1,10 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import ControlledInput from '../../components/ControlledInput';
 
-import validate from '../../utils/validator';
-
 import { PreparedFormData } from '../../typings/commonTypes';
+
+import validate from '../../utils/Form/validator';
 
 import staticData from './SignIn.ru.json';
 import signInTmpl from './SignIn.tmpl';

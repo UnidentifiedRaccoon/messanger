@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from '../../../utils/Core/Block';
 
 import chatEmptyTmpl from './ChatEmpty.tmpl';
 import * as styles from './ChatEmpty.module.scss';

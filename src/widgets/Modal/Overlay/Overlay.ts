@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from '../../../utils/Core/Block';
 
 import overlayTmpl from './Overlay.tmpl';
 import * as styles from './Overlay.module.scss';

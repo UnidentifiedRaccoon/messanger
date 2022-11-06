@@ -1,4 +1,4 @@
-import { numToNumeral } from './commonFn/time';
+import { numToNumeral } from '../common/time';
 
 export enum ValidateTypes {
   Name = 'name',

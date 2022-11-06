@@ -1,6 +1,6 @@
 import arrow from 'bundle-text:./arrow.svg';
 
-import Block from 'utils/Block';
+import Block from '../../../utils/Core/Block';
 
 import arrowTmpl from './Arrow.tmpl';
 import * as styles from './Arrow.module.scss';

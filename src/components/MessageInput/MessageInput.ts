@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import messageInputTmpl from './MessageInput.tmpl';
 import * as styles from './MessageInput.module.scss';

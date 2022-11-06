@@ -1,6 +1,6 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
-import validate from '../../utils/validator';
+import validate from '../../utils/Form/validator';
 
 import controlledInputTmpl from './ControlledInput.tmpl';
 import * as defaultStyles from './Input.module.scss';

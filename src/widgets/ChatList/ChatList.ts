@@ -1,6 +1,6 @@
 import next from 'bundle-text:./next.svg';
 
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import { RandomChatTabData } from '../../mocks/chats';
 

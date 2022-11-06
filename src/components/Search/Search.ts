@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import searchTmpl from './Search.tmpl';
 import * as styles from './Search.module.scss';

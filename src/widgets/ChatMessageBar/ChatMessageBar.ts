@@ -1,6 +1,6 @@
 import attachment from 'bundle-text:./attachment.svg';
 
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import { PreparedFormData } from '../../typings/commonTypes';
 

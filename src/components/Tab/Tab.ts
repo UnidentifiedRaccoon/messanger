@@ -1,6 +1,6 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
-import { timeFormat } from '../../utils/commonFn/time';
+import { timeFormat } from '../../utils/common/time';
 
 import { ChatTabData } from '../../typings/mockTypes';
 

@@ -1,6 +1,6 @@
 import cross from 'bundle-text:./cross.svg';
 
-import Block from 'utils/Block';
+import Block from '../../../utils/Core/Block';
 
 import crossTmpl from './Cross.tmpl';
 import * as styles from './Cross.module.scss';

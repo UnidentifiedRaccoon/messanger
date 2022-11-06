@@ -1,6 +1,6 @@
-import Block from 'utils/Block';
-
 import { PreparedFormData } from '../../typings/commonTypes';
+
+import Block from '../../utils/Core/Block';
 
 import formTmpl from './Form.tmpl';
 import * as styles from './Form.module.scss';

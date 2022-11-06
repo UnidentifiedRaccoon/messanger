@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import bubbleTmpl from './Bubble.tmpl';
 import * as styles from './Bubble.module.scss';

@@ -1,7 +1,7 @@
-import Block from 'utils/Block';
+import Block from '../../utils/Core/Block';
 
 import { randomN } from '../../mocks/utils';
-import { chatsTimeSort } from '../../utils/commonFn/sort';
+import { chatsTimeSort } from '../../utils/common/sort';
 import { generateChatListData } from '../../mocks/chats';
 import generatedChatsData from '../../mocks/generator';
 
