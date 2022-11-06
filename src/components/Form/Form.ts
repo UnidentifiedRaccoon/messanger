@@ -12,6 +12,7 @@ interface FormProps {
 
 export default class Form extends Block {
   static className = 'Form';
+
   constructor({ onSubmit, ...props }: FormProps) {
     super({
       ...props,

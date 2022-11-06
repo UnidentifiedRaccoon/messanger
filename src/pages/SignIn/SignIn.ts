@@ -1,42 +1,25 @@
 import Block from '../../utils/Core/Block';
 
-import ControlledInput from '../../components/ControlledInput';
-
-import { PreparedFormData } from '../../typings/commonTypes';
-
-import validate from '../../utils/Form/validator';
+import { PreparedFormData, PreparedFormErrors } from '../../typings/commonTypes';
 
 import staticData from './SignIn.ru.json';
 import signInTmpl from './SignIn.tmpl';
 import * as styles from './SignIn.module.scss';
 
 export default class SignIn extends Block {
-  private errors: Map<string, ControlledInput>;
+  private errors: PreparedFormErrors;
   constructor(rawProps: any) {
     super({
       ...rawProps,
       staticData,
       styles,
-      onFocus: (e: Event, input: ControlledInput) => {
-        e.preventDefault();
-        const inputEl = input.getRefs().input.getContent() as HTMLInputElement;
-        const errorMessage = validate({
-          type: input.getProps().validateType,
-          value: inputEl.value,
-        });
-        input.setProps({
-          errorMessage,
-        });
+      onFocus: (name: string, _: string, errorMessage: string) => {
         if (errorMessage) {
-          this.errors.set(input.id, input);
+          this.errors.set(name, errorMessage);
         }
       },
-      onInput: (e: Event, input: ControlledInput) => {
-        e.preventDefault();
-        input.setProps({
-          errorMessage: '',
-        });
-        this.errors.delete(input.id);
+      onInput: (name: string) => {
+        this.errors.delete(name);
       },
       onSubmit: (data: PreparedFormData) => {
         if (this.errors.size === 0) {

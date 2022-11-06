@@ -15,8 +15,8 @@ interface ControlledInputProps {
   type?: 'text' | 'password' | 'email' | 'phone' | 'search'
   styleMode?: 'profile'
   outerStyles?: Record<string, string>
-  onInput?: (e: Event, input: ControlledInput) => void
-  onFocus?: (e: Event, input: ControlledInput) => void
+  onInput?: (name: string, value: string) => void
+  onFocus?: (name: string, value: string, errorMessage: string) => void
 }
 
 export default class ControlledInput extends Block {
@@ -29,17 +29,28 @@ export default class ControlledInput extends Block {
     super({
       ...props,
       onFocus: (e: Event) => {
-        if (this.props.readonly === 'true') {
-          e.preventDefault();
-          return;
-        }
+        e.preventDefault();
+        const field = this.refs.input.getContent() as HTMLInputElement;
+        const fieldType = this.props.validateType;
+        const errorMessage = validate({
+          type: fieldType,
+          value: field.value,
+        });
+        this.setProps({
+          errorMessage,
+        });
         if (onFocus) {
-          onFocus(e, this);
+          onFocus(this.props.name, field.value, errorMessage);
         }
       },
       onInput: (e: Event) => {
+        const field = this.refs.input.getContent() as HTMLInputElement;
+        e.preventDefault();
+        this.setProps({
+          errorMessage: '',
+        });
         if (onInput) {
-          onInput(e, this);
+          onInput(this.props.name, field.value);
         }
       },
       onBlur: (e: Event) => {
