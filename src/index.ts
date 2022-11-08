@@ -9,63 +9,83 @@ import ChangePassword from './app/pages/Profile/ChangePassword';
 
 import renderDOM from './utils/Core/renderDOM';
 import registrar from './utils/Core/registrar';
+import PathRouter from './utils/Router/PathRouter';
+import Block from './utils/Core/Block';
 
-const PAGES_PATHNAME = {
-  CLIENT_ERROR: '/4xx',
-  SERVER_ERROR: '/5xx',
-  SIGN_IN: '/sign_in',
-  LOGIN: '/login',
-  PROFILE: '/profile',
-  CHANGE_INFO: '/change_info',
-  CHANGE_PASSWORD: '/change_password',
-  WORKSPACE: '/workspace',
+export type Screen = { path: string, Block: typeof Block, shouldAuthorized: boolean };
+
+type ScreenNames = 'ClientError'
+| 'ServerError'
+| 'Login'
+| 'SignIn'
+| 'Workspace'
+| 'Profile'
+| 'ChangeInfo'
+| 'ChangePassword';
+
+const Screens: Record<ScreenNames, Screen> = {
+  ClientError: {
+    path: '/',
+    Block: ClientError,
+    shouldAuthorized: false,
+  },
+  ServerError: {
+    path: '/5xx',
+    Block: ServerError,
+    shouldAuthorized: false,
+  },
+  Login: {
+    path: '/login',
+    Block: Login,
+    shouldAuthorized: false,
+  },
+  SignIn: {
+    path: '/sign_in',
+    Block: SignIn,
+    shouldAuthorized: false,
+  },
+  Workspace: {
+    path: '/workspace',
+    Block: Workspace,
+    shouldAuthorized: true,
+  },
+  Profile: {
+    path: '/profile',
+    Block: Profile,
+    shouldAuthorized: true,
+  },
+  ChangeInfo: {
+    path: '/change_info',
+    Block: ChangeInfo,
+    shouldAuthorized: true,
+  },
+  ChangePassword: {
+    path: '/change_password',
+    Block: ChangePassword,
+    shouldAuthorized: true,
+  },
+};
+
+const initRouter = () => {
+  Object.values(Screens).forEach((screen) => {
+    PathRouter.use(screen.path, () => {
+      renderDOM('#core-app', new screen.Block({}));
+    });
+  });
+  const currentPath = window.location.pathname;
+  PathRouter.go(currentPath);
 };
 
 const updatePage = (event: Event) => {
   if (event.target instanceof HTMLAnchorElement) {
     event.preventDefault();
-    window.history.pushState(null, '', event.target.href);
-  }
-};
-
-const loadPage = () => {
-  const { pathname } = window.location;
-  switch (pathname) {
-    case PAGES_PATHNAME.CLIENT_ERROR:
-      renderDOM('#core-app', new ClientError({}));
-      break;
-    case PAGES_PATHNAME.SERVER_ERROR:
-      renderDOM('#core-app', new ServerError({}));
-      break;
-    case PAGES_PATHNAME.LOGIN:
-      renderDOM('#core-app', new Login({}));
-      break;
-    case PAGES_PATHNAME.SIGN_IN:
-      renderDOM('#core-app', new SignIn({}));
-      break;
-    case PAGES_PATHNAME.WORKSPACE:
-      renderDOM('#core-app', new Workspace({}));
-      break;
-    case PAGES_PATHNAME.CHANGE_INFO:
-      renderDOM('#core-app', new ChangeInfo({}));
-      break;
-    case PAGES_PATHNAME.CHANGE_PASSWORD:
-      renderDOM('#core-app', new ChangePassword({}));
-      break;
-    case PAGES_PATHNAME.PROFILE:
-      renderDOM('#core-app', new Profile({}));
-      break;
-    default: break;
+    PathRouter.go(event.target.href);
   }
 };
 
 window.addEventListener('DOMContentLoaded', () => {
   registrar();
+  initRouter();
   const links = [...document.querySelectorAll('.header__nav a[href]')];
   links.forEach((link) => { link.addEventListener('click', updatePage); });
-  loadPage();
-});
-
-window.addEventListener('locationchange', () => {
-  loadPage();
 });

@@ -5,6 +5,7 @@ import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
 type Children = Record<string, Block>;
+
 export default class Block {
   static className: string = 'Block';
 
