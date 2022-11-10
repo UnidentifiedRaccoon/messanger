@@ -1,7 +1,7 @@
 // language=hbs
 const linkTmpl = () => `
     <a href="{{path}}" class="{{styles.link}} {{outerStyles}}">
-        {{text}}
+        <div data-slot="1"></div>
     </a>
   `;
 

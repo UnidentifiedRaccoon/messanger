@@ -4,15 +4,20 @@ const changePasswordTmpl = () => `
         <h1 class="visually-hidden">
             {{staticData.titleChangePassword}}
         </h1>
-        <a href="./profile" class={{styles.go-back}}>
+        {{# Link onClick=onMoveToBack outerStyles=styles.go-back }}
             {{{ Arrow text=staticData.goBackText }}}
-        </a>
+        {{/Link}}
         <div class={{styles.content}}>
             <div class={{styles.icon}}>
                 {{{ IconProfile alt=staticData.userName }}}
             </div>
             <div class={{styles.form-wrapper}}>
-                {{# Form outerStyles=styles.form onSubmit=onSubmit refs=refs}}
+                {{# Form outerStyles=styles.form 
+                         onSubmit=onSubmit
+                         submitLabel=staticData.submitBtn
+                         formError=formSubmitError
+                         refs=refs
+                }}
                     <div>
                         {{{ ControlledInput
                             styleMode='profile'
@@ -41,7 +46,6 @@ const changePasswordTmpl = () => `
                             validateType="password"
                         }}}
                     </div>
-                    {{{ Button label=staticData.submitBtn outerStyles=styles.submit-btn }}}
                 {{/Form}}
             </div>
         </div>

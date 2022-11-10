@@ -7,10 +7,10 @@ const chatListTmpl = () => `
         <header class= {{ styles.header }}>
             <div class= {{ styles.header-top-row}}>
                 {{{ Cross typeMode="add" outerStyles=styles.add-chat-btn }}}
-                <a href="./profile" class= {{ styles.profile-link }}>
+                {{# Link onClick=onMoveToProfile outerStyles=styles.profile-link }}
                     {{staticData.profileLink}}
                     {{{ IconInline icon=next outerStyles=styles.icon-next }}}
-                </a>
+                {{/Link}}
             </div>
             {{{ Search placeholder=staticData.searchPlaceholder }}}
         </header>

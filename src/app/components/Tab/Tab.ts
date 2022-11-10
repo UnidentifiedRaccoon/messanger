@@ -4,6 +4,10 @@ import { timeFormat } from '../../../utils/common/time';
 
 import { ChatTabData } from '../../../typings/mockTypes';
 
+import PathRouter from '../../../utils/Router/PathRouter';
+
+import { Screens } from '../../../utils/Router/Screens';
+
 import tabTmpl from './Tab.tmpl';
 import * as styles from './Tab.module.scss';
 
@@ -33,6 +37,9 @@ export default class Tab extends Block {
       ...props,
       data: dataCopy,
       styles,
+      onMoveToChat: () => {
+        PathRouter.go(`${Screens.Workspace.path}/${data.id}`);
+      },
     });
   }
 

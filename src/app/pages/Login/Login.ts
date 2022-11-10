@@ -2,6 +2,10 @@ import Block from '../../../utils/Core/Block';
 
 import { PreparedFormData, PreparedFormErrors } from '../../../typings/commonTypes';
 
+import PathRouter from '../../../utils/Router/PathRouter';
+
+import { Routes } from '../../../utils/Router/Routes';
+
 import staticData from './Login.ru.json';
 import loginTmpl from './Login.tmpl';
 import * as styles from './Login.module.scss';
@@ -13,6 +17,7 @@ export default class Login extends Block {
       ...rawProps,
       staticData,
       styles,
+      formSubmitError: '',
       onFocus: (name: string, _: string, errorMessage: string) => {
         if (errorMessage) {
           this.errors.set(name, errorMessage);
@@ -25,6 +30,9 @@ export default class Login extends Block {
         if (this.errors.size === 0) {
           console.log(data);
         }
+      },
+      onMoveToSignIn: () => {
+        PathRouter.go(Routes.SignUp.path);
       },
     });
     this.errors = new Map();

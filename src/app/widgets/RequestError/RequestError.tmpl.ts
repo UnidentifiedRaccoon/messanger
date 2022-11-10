@@ -9,7 +9,9 @@ const requestErrorTmpl = () => `
             {{this}}<br>
         {{/each}}
     </h2>
-    {{{ Link path="./workspace" text=staticData.backLink outerStyles=styles.back-link }}}
+      {{# Link onClick=onMoveToWorkspace outerStyles=styles.link }}
+          {{staticData.backLink}}
+      {{/Link}}
 </div>
 `;
 

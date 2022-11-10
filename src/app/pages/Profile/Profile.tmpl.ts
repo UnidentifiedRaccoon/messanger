@@ -4,9 +4,9 @@ const profileTmpl = () => `
         <h1 class="visually-hidden">
             {{staticData.titleProfile}}
         </h1>
-        <a href="./workspace" class={{styles.go-back}}>
+        {{# Link onClick=onMoveToBack outerStyles=styles.go-back }}
             {{{ Arrow text=staticData.goBackText }}}
-        </a>
+        {{/Link}}
         <div class={{styles.content}}>
             <div class={{styles.icon_wrapper}}>
                 {{{ IconProfile alt=staticData.userName  }}}
@@ -79,9 +79,15 @@ const profileTmpl = () => `
                         }}}
                     </div>
                 {{/Form}}
-                {{{ Link path="./change_info" text=staticData.infoChange outerStyles=styles.link }}}
-                {{{ Link path="./change_password" text=staticData.passwordChange outerStyles=styles.link }}}
-                {{{ Link path="./login" text=staticData.exit outerStyles=styles.link }}}
+                {{# Link onClick=onMoveToChangeInfo outerStyles=styles.link }}
+                    {{staticData.infoChange}}
+                {{/Link}}
+                {{# Link onClick=onMoveToChangePassword outerStyles=styles.link }}
+                    {{staticData.passwordChange}}
+                {{/Link}}
+                {{# Link onClick=onExit outerStyles=styles.link }}
+                    {{staticData.exit}}
+                {{/Link}}
             </div>
         </div>
     </div>

@@ -1,4 +1,20 @@
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 300px;
+  align-self: center;
+}
+
+.error {
+  margin-top: auto;
+  display: block;
+  height: 1px;
+  color: var(--color-danger);
+  text-align: center;
 }

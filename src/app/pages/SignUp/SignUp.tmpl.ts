@@ -1,11 +1,16 @@
 // language=hbs
-const signInTmpl = () => `
+const signUpTmpl = () => `
     <div class="{{styles.sign-in}}">
         {{# Overlay}}
             <h1 class="title {{styles.title}}">
                 {{staticData.title}}
             </h1>
-            {{# Form outerStyles=styles.form onSubmit=onSubmit refs=refs}}
+            {{# Form outerStyles=styles.form
+                     onSubmit=onSubmit
+                     submitLabel=staticData.submitBtn
+                     formError=formSubmitError
+                     refs=refs
+            }}
                 {{{ ControlledInput
                     tooltip=staticData.email
                     outerStyles=styles.field
@@ -64,11 +69,12 @@ const signInTmpl = () => `
                     onFocus=onFocus
                     validateType="password"
                 }}}
-                {{{ Button label=staticData.submitBtn outerStyles=styles.submit-btn }}}
             {{/Form}}
-            {{{ Link path="./login" text=staticData.loginLink outerStyles=styles.link }}}
+            {{# Link onClick=onMoveToLogin outerStyles=styles.link }}
+                {{staticData.loginLink}}
+            {{/Link}}
         {{/Overlay}}
     </div>
   `;
 
-export default signInTmpl;
+export default signUpTmpl;

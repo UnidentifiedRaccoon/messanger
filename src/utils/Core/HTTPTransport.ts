@@ -9,7 +9,7 @@ type RequestBody = Document | XMLHttpRequestBodyInit;
 type Options = {
   method: METHODS,
   data?: RequestBody,
-  headers: Record<string, string>,
+  headers?: Record<string, string>,
   timeout?: number
   tries?: number
 };
@@ -24,21 +24,26 @@ function setHeaders(xhr: XMLHttpRequest, headers: Record<string, string>): void 
 }
 
 export default class HTTPTransport {
-  get(url: string, options: Options): Promise<XMLHttpRequest> {
+  private baseUrl: string;
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
+  get(url: string, options: Partial<Options>): Promise<XMLHttpRequest> {
     const query = options.data ? queryStringify(options.data) : '';
-    return this.request(url + query, { ...options, method: METHODS.GET }, options.timeout);
+    return this.request(this.baseUrl + url + query, { ...options, method: METHODS.GET }, options.timeout);
   }
 
-  put(url: string, options: Options) {
-    return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  put(url: string, options: Partial<Options>) {
+    return this.request(this.baseUrl + url, { ...options, method: METHODS.PUT }, options.timeout);
   }
 
-  post(url: string, options: Options) {
-    return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+  post(url: string, options: Partial<Options>) {
+    return this.request(this.baseUrl + url, { ...options, method: METHODS.POST }, options.timeout);
   }
 
-  delete(url: string, options: Options) {
-    return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+  delete(url: string, options: Partial<Options>) {
+    return this.request(this.baseUrl + url, { ...options, method: METHODS.DELETE }, options.timeout);
   }
 
   request = (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> => {
@@ -48,7 +53,9 @@ export default class HTTPTransport {
       const xhr = new XMLHttpRequest();
 
       xhr.open(method, url);
-      setHeaders(xhr, headers);
+      if (headers) {
+        setHeaders(xhr, headers);
+      }
 
       xhr.onload = () => resolve(xhr);
 
@@ -65,14 +72,14 @@ export default class HTTPTransport {
   };
 }
 
-export function fetchWithRetry(url: string, options: Options) {
+export function fetchWithRetry(request: Promise<XMLHttpRequest>, options: Options) {
   let { tries = 1 } = options;
   const initialTries = tries;
   function onError(): Promise<XMLHttpRequest> {
     if (tries > 0) {
       tries -= 1;
-      return new HTTPTransport().get(url, options).catch(onError);
+      return request.catch(onError);
     } throw new Error(`Request failed after ${initialTries} tries`);
   }
-  return new HTTPTransport().get(url, options).catch(onError);
+  return request.catch(onError);
 }

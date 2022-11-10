@@ -6,7 +6,12 @@ const loginTmpl = () => `
                 {{staticData.title}}
             </h1>
 
-            {{# Form outerStyles=styles.form onSubmit=onSubmit refs=refs}}
+            {{# Form outerStyles=styles.form
+                     onSubmit=onSubmit
+                     submitLabel=staticData.submitBtn
+                     formError=formSubmitError
+                     refs=refs
+            }}
                 {{{ ControlledInput 
                     name="login"
                     tooltip=staticData.login
@@ -23,9 +28,10 @@ const loginTmpl = () => `
                     onFocus=onFocus
                     validateType="password"
                 }}}
-                {{{ Button label=staticData.submitBtn outerStyles=styles.submit-btn }}}
             {{/Form}}
-            {{{ Link path="./sign_in" text=staticData.signInLink outerStyles=styles.link }}}
+            {{# Link onClick=onMoveToSignIn outerStyles=styles.link }}
+                {{staticData.signInLink}}
+            {{/Link}}
         {{/Overlay}}
     </div>
   `;

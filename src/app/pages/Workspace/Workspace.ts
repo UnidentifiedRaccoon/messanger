@@ -20,7 +20,11 @@ if (sorted.length !== 0) recentChatData = generatedChatsData.find((chat) => chat
 export default class Workspace extends Block {
   constructor(rawProps: any) {
     super({
-      ...rawProps, staticData, styles, chatListData: sorted, chatData: recentChatData,
+      ...rawProps,
+      staticData,
+      styles,
+      chatListData: sorted,
+      chatData: recentChatData,
     });
   }
 

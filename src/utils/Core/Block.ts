@@ -137,9 +137,8 @@ export default class Block {
 
         // layout - actually idk how it works
         const slotContent = block.getContent().querySelector('[data-slot="1"]');
-        if (slotContent && slotContent.parentElement) {
-          slotContent.parentElement.append(...stub.childNodes);
-          slotContent.remove();
+        if (slotContent) {
+          slotContent.replaceWith(...stub.childNodes);
         }
       } else throw new Error('Нет stub\'а для вставки block\'a');
     });

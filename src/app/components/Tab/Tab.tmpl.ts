@@ -1,7 +1,7 @@
 // ToDo add message status (sending|delivered|was read|error)
 // language=hbs
 const tabTmpl = () => `
-    <a href="{{path}}" class={{styles.tab-link}}>
+    {{# Link onClick=onMoveToChat outerStyles=styles.tab-link }}
         <div class={{styles.tab}}>
             {{{ IconProfile outerStyles=styles.icon icon=data.icon }}}
             <div class={{styles.caption}} >
@@ -21,8 +21,7 @@ const tabTmpl = () => `
                 {{/if}}
             </div>
         </div>
-    </a>
-
+    {{/Link}}
   `;
 
 export default tabTmpl;

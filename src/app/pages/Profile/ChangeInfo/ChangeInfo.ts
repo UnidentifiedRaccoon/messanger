@@ -3,6 +3,8 @@ import { PreparedFormData, PreparedFormErrors } from '../../../../typings/common
 
 import Block from '../../../../utils/Core/Block';
 
+import PathRouter from '../../../../utils/Router/PathRouter';
+
 import changeInfoTmpl from './ChangeInfo.tmpl';
 import staticData from './ChangeInfo.ru.json';
 
@@ -13,6 +15,7 @@ export default class ChangeInfo extends Block {
       ...rawProps,
       styles,
       staticData,
+      formSubmitError: '',
       onFocus: (name: string, _: string, errorMessage: string) => {
         if (errorMessage) {
           this.errors.set(name, errorMessage);
@@ -25,6 +28,9 @@ export default class ChangeInfo extends Block {
         if (this.errors.size === 0) {
           console.log(data);
         }
+      },
+      onMoveToBack: () => {
+        PathRouter.back();
       },
     });
     this.errors = new Map();

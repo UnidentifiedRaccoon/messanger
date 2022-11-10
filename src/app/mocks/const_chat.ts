@@ -1,4 +1,4 @@
-export const icons = [...new Array(4)].map((_, i) => `user-icons/pet_${i}.jpg`);
+export const icons = [...new Array(4)].map((_, i) => `/user-icons/pet_${i}.jpg`);
 
 export const titles = [
   'Катя',
