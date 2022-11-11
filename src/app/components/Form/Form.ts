@@ -2,10 +2,14 @@ import { PreparedFormData } from '../../../typings/commonTypes';
 
 import Block from '../../../utils/Core/Block';
 
+import { isEqual } from '../../../utils/common/objectHelpers';
+
 import formTmpl from './Form.tmpl';
 import * as styles from './Form.module.scss';
 
 interface FormProps {
+  formError: string
+  submitLabel:string
   onSubmit: (data: Record<string, FormDataEntryValue>) => void;
   outerStyles?: Record<string, string>;
 }
@@ -33,6 +37,14 @@ export default class Form extends Block {
         },
       },
     });
+  }
+
+  componentDidUpdate(oldProps:any, newProps:any) {
+    if (oldProps.formError !== newProps.formError && newProps.formError) {
+      // ToDo popup
+      return false;
+    }
+    return !isEqual(oldProps, newProps);
   }
 
   render() {

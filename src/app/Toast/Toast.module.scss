@@ -1,0 +1,86 @@
+.toast-line {
+  width: 100%;
+
+}
+
+.toast {
+  z-index: 100;
+  box-sizing: border-box;
+  position: absolute;
+  top: 20px;
+  right: 100px;
+  width: 300px;
+  padding: 10px 20px;
+  border-left: 3px solid var(--color-danger);
+  transform: translateX(calc(100% + 110px));
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  background-color: #fff8f8 ;
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.error {
+  display: flex;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.type {
+  color: var(--color-text-major);
+  margin: 0;
+}
+
+.message {
+  font-size: var(--fs-meaningful);
+}
+
+// добавил button для форсирования переопределения стилей
+button.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+
+  &:hover {
+    border: none;
+    opacity: 1;
+  }
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: transparent;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-danger);
+    animation: progress 5s linear forwards;
+  }
+}
+
+@keyframes progress {
+  100%{
+    right: 100%;
+  }
+}

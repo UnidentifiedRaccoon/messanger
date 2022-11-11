@@ -2,6 +2,8 @@
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
+import { isEqual } from '../common/objectHelpers';
+
 import EventBus from './EventBus';
 
 type Children = Record<string, Block>;
@@ -21,7 +23,8 @@ export default class Block {
   // Так и задумано, #element инициализируется в результате вызова render колбека
   // А вызов render колбека как раз и тригерится в конструкторе
   #element: HTMLElement;
-  protected children: Record<string, Block>;
+  protected children: Record<string, Block> = {};
+  protected propChildren: Record<string, Block>;
   protected readonly props: {
     events: Record<string, () => void>,
     [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
@@ -47,7 +50,7 @@ export default class Block {
   constructor(rawProps = {}) {
     const { props, children = {} } = Block.extractChildren(rawProps);
     this.props = this.#makePropsProxy(props);
-    this.children = children;
+    this.propChildren = children;
     const eventBus = new EventBus<typeof Block.EVENTS>();
     this.#eventBus = () => eventBus;
     this.#registerEvents(eventBus);
@@ -94,15 +97,7 @@ export default class Block {
   }
 
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const prop of Object.keys(newProps)) {
-      if (newProps[prop] !== oldProps[prop]) return true;
-    }
-    // eslint-disable-next-line no-restricted-syntax
-    for (const prop of Object.keys(oldProps)) {
-      if (newProps[prop] !== oldProps[prop]) return true;
-    }
-    return false;
+    return !isEqual(oldProps, newProps);
   }
 
   /** <code style="color: #952dd2">FLOW_RENDER</code> -
@@ -126,6 +121,10 @@ export default class Block {
 
     // compile it with props,
     // use fragment to get DOM node from string
+    // During template() fn run, app fill this.children with
+    // new ChildComponent, so before template run, need to remove old children
+    // and set this.children with link to the new object {}
+    this.children = { ...this.propChildren };
     fragment.innerHTML = template({ ...this.props, children: this.children, refs: this.refs });
 
     // template inject stub in place where our "controlled child" should be

@@ -1,6 +1,6 @@
 // language=hbs
 const signUpTmpl = () => `
-    <div class="{{styles.sign-in}}">
+    <div class="{{styles.signup}}">
         {{# Overlay}}
             <h1 class="title {{styles.title}}">
                 {{staticData.title}}
@@ -10,6 +10,7 @@ const signUpTmpl = () => `
                      submitLabel=staticData.submitBtn
                      formError=formSubmitError
                      refs=refs
+                     ref="form"
             }}
                 {{{ ControlledInput
                     tooltip=staticData.email

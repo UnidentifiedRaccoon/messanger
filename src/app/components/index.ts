@@ -13,3 +13,4 @@ export { default as IconInline } from './IconInline';
 export { default as IconProfile } from './IconProfile';
 export { default as Arrow } from './shared/Arrow';
 export { default as Cross } from './shared/Cross';
+export { default as Error } from './shared/Error';

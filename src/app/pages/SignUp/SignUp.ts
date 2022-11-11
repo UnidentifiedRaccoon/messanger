@@ -2,9 +2,15 @@ import { Routes } from 'utils/Router/Routes';
 
 import Block from '../../../utils/Core/Block';
 
-import { PreparedFormData, PreparedFormErrors } from '../../../typings/commonTypes';
+import { PreparedFormErrors } from '../../../typings/commonTypes';
 
 import PathRouter from '../../../utils/Router/PathRouter';
+
+import AuthController from '../../../utils/Api/Auth/AuthController';
+
+import { SignupForm } from '../../../utils/Api/Auth/Types';
+
+import informer from '../../../utils/Core/informer';
 
 import staticData from './SignUp.ru.json';
 import signUpTmpl from './SignUp.tmpl';
@@ -26,9 +32,14 @@ export default class SignUp extends Block {
       onInput: (name: string) => {
         this.errors.delete(name);
       },
-      onSubmit: (data: PreparedFormData) => {
+      onSubmit: async (data: SignupForm) => {
         if (this.errors.size === 0) {
-          console.log(data);
+          try {
+            const response = await AuthController.signup(data);
+            console.log(response);
+          } catch (err: any) {
+            informer(err.message);
+          }
         }
       },
       onMoveToLogin: () => {
