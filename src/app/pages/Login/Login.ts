@@ -1,10 +1,16 @@
 import Block from '../../../utils/Core/Block';
 
-import { PreparedFormData, PreparedFormErrors } from '../../../typings/commonTypes';
+import { PreparedFormErrors } from '../../../typings/commonTypes';
 
 import PathRouter from '../../../utils/Router/PathRouter';
 
 import { Routes } from '../../../utils/Router/Routes';
+
+import informer from '../../../utils/Core/informer';
+
+import { LoginForm } from '../../../utils/Api/Auth/Types';
+
+import { Thunks } from '../../../utils/Store/Store';
 
 import staticData from './Login.ru.json';
 import loginTmpl from './Login.tmpl';
@@ -26,9 +32,14 @@ export default class Login extends Block {
       onInput: (name: string) => {
         this.errors.delete(name);
       },
-      onSubmit: (data: PreparedFormData) => {
+      onSubmit: async (data: LoginForm) => {
         if (this.errors.size === 0) {
-          console.log(data);
+          try {
+            await Thunks.login(data);
+            PathRouter.go(Routes.Workspace.path);
+          } catch (err: any) {
+            informer(err.message);
+          }
         }
       },
       onMoveToSignIn: () => {

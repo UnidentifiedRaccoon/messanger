@@ -1,5 +1,5 @@
 /*eslint-disable */
-type Indexed<T = any> = {
+export type Indexed<T = any> = {
   [key in string]: T;
 };
 
@@ -21,10 +21,6 @@ export function merge(lhs: Indexed, rhs: Indexed): any {
 export function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
   if (typeof object !== 'object' || object === null) {
     return object;
-  }
-
-  if (typeof path !== 'string') {
-    throw new Error('path must be string');
   }
 
   const result = path.split('.').reduceRight<Indexed>((acc, key) => ({
@@ -152,6 +148,10 @@ export const exactEqual = (lhs: Indexed, rhs: Indexed, path: string): boolean =>
   for (const field of direction) {
     fromLhs = fromLhs[field]
     fromRhs = fromRhs[field]
+  }
+
+  if (!isArrayOrObject(fromLhs)) {
+    return fromLhs === fromRhs
   }
   return isEqual(fromLhs, fromRhs)
 }

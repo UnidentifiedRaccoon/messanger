@@ -1,22 +1,18 @@
 import { Routes } from 'utils/Router/Routes';
 
+import PathRouter from '../../../utils/Router/PathRouter';
+import AuthController from '../../../utils/Api/Auth/AuthController';
+import { SignupForm } from '../../../utils/Api/Auth/Types';
 import Block from '../../../utils/Core/Block';
 
 import { PreparedFormErrors } from '../../../typings/commonTypes';
-
-import PathRouter from '../../../utils/Router/PathRouter';
-
-import AuthController from '../../../utils/Api/Auth/AuthController';
-
-import { SignupForm } from '../../../utils/Api/Auth/Types';
-
 import informer from '../../../utils/Core/informer';
 
 import staticData from './SignUp.ru.json';
 import signUpTmpl from './SignUp.tmpl';
 import * as styles from './SignUp.module.scss';
 
-export default class SignUp extends Block {
+class SignUp extends Block {
   private errors: PreparedFormErrors;
   constructor(rawProps: any) {
     super({
@@ -35,8 +31,8 @@ export default class SignUp extends Block {
       onSubmit: async (data: SignupForm) => {
         if (this.errors.size === 0) {
           try {
-            const response = await AuthController.signup(data);
-            console.log(response);
+            await AuthController.signup(data);
+            PathRouter.go(Routes.Login.path);
           } catch (err: any) {
             informer(err.message);
           }
@@ -53,3 +49,5 @@ export default class SignUp extends Block {
     return signUpTmpl();
   }
 }
+
+export default SignUp;

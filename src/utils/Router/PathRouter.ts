@@ -45,6 +45,15 @@ class PathRouter implements IRouter {
   forward() {
     window.history.forward();
   }
+
+  reload() {
+    const route = Object.keys(this.routes).find((routePathname) => this.stack[this.current] === routePathname);
+    if (route) this.routes[route]();
+    else if (this.routes['*']) this.routes['*']();
+    else {
+      throw new Error('Ошибка на клиенте, отсутствует страница ошибки');
+    }
+  }
 }
 
 export default new PathRouter();

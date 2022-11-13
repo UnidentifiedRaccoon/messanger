@@ -51,8 +51,8 @@ export default class HTTPTransport {
     if (!method) throw new Error('request without method');
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-
       xhr.open(method, url);
+      xhr.withCredentials = true;
       if (headers) {
         setHeaders(xhr, headers);
       }

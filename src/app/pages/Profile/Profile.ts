@@ -4,6 +4,8 @@ import PathRouter from '../../../utils/Router/PathRouter';
 
 import { Routes } from '../../../utils/Router/Routes';
 
+import { Thunks } from '../../../utils/Store/Store';
+
 import staticData from './Profile.ru.json';
 import profileTmpl from './Profile.tmpl';
 import * as styles from './Profile.module.scss';
@@ -23,7 +25,8 @@ export default class Profile extends Block {
       onMoveToChangeInfo: () => {
         PathRouter.go(Routes.ChangeInfo.path);
       },
-      onExit: () => {
+      onExit: async () => {
+        await Thunks.logout();
         PathRouter.go(Routes.Login.path);
       },
     });

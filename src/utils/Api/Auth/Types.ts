@@ -16,3 +16,13 @@ export type SignupFormDTO = {
   password: string,
   phone: string
 };
+
+export type LoginForm = {
+  login: string
+  password: string
+};
+
+export type LoginFormDTO = {
+  login: string
+  password: string
+};
