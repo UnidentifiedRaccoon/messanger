@@ -6,18 +6,35 @@ import { Routes } from '../../../utils/Router/Routes';
 
 import { Thunks } from '../../../utils/Store/Store';
 
+import { User } from '../../../utils/Api/User/Types';
+
+import { withUser } from '../../../utils/Store/connect';
+
+import informer from '../../../utils/Core/informer';
+
 import staticData from './Profile.ru.json';
 import profileTmpl from './Profile.tmpl';
 import * as styles from './Profile.module.scss';
 
-export default class Profile extends Block {
-  constructor(rawProps: any) {
+type ProfileProps = {
+  user: User
+};
+
+class Profile extends Block {
+  constructor(rawProps: ProfileProps) {
     super({
       ...rawProps,
       staticData,
       styles,
       onMoveToBack: () => {
         PathRouter.back();
+      },
+      onLoadAvatar: async (formData: FormData) => {
+        try {
+          await Thunks.changeAvatar(formData);
+        } catch (e: any) {
+          informer(e.message);
+        }
       },
       onMoveToChangePassword: () => {
         PathRouter.go(Routes.ChangePassword.path);
@@ -26,8 +43,12 @@ export default class Profile extends Block {
         PathRouter.go(Routes.ChangeInfo.path);
       },
       onExit: async () => {
-        await Thunks.logout();
-        PathRouter.go(Routes.Login.path);
+        try {
+          await Thunks.logout();
+          PathRouter.go(Routes.Login.path);
+        } catch (e: any) {
+          informer(e.message);
+        }
       },
     });
   }
@@ -36,3 +57,5 @@ export default class Profile extends Block {
     return profileTmpl();
   }
 }
+
+export default withUser(Profile);

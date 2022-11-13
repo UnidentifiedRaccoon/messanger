@@ -11,6 +11,8 @@ export { default as Message } from './Message';
 export { default as Bubble } from './Bubble';
 export { default as IconInline } from './IconInline';
 export { default as IconProfile } from './IconProfile';
+export { default as AvatarLoader } from './AvatarLoader';
+export { default as FileLoader } from './FileLoader';
 export { default as Arrow } from './shared/Arrow';
 export { default as Cross } from './shared/Cross';
 export { default as Error } from './shared/Error';

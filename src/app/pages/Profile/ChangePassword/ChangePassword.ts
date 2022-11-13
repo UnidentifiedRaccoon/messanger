@@ -1,16 +1,28 @@
 import * as styles from '../Profile.module.scss';
-import { PreparedFormData, PreparedFormErrors } from '../../../../typings/commonTypes';
+import { PreparedFormErrors } from '../../../../typings/commonTypes';
 
 import Block from '../../../../utils/Core/Block';
 
 import PathRouter from '../../../../utils/Router/PathRouter';
 
-import changePasswordTmpl from './ChangePassword.tmpl';
-import staticData from './ChangePassword.ru.json';
+import { Passwords, User } from '../../../../utils/Api/User/Types';
 
-export default class ChangePassword extends Block {
+import { withUser } from '../../../../utils/Store/connect';
+
+import { Thunks } from '../../../../utils/Store/Store';
+import { Routes } from '../../../../utils/Router/Routes';
+import informer from '../../../../utils/Core/informer';
+
+import staticData from './ChangePassword.ru.json';
+import changePasswordTmpl from './ChangePassword.tmpl';
+
+type ChangePasswordProps = {
+  user: User
+};
+
+class ChangePassword extends Block {
   private errors: PreparedFormErrors;
-  constructor(rawProps: any) {
+  constructor(rawProps: ChangePasswordProps) {
     super({
       ...rawProps,
       styles,
@@ -24,9 +36,14 @@ export default class ChangePassword extends Block {
       onInput: (name: string) => {
         this.errors.delete(name);
       },
-      onSubmit: (data: PreparedFormData) => {
+      onSubmit: async (data: Passwords) => {
         if (this.errors.size === 0) {
-          console.log(data);
+          try {
+            await Thunks.changePassword(data);
+            PathRouter.go(Routes.Profile.path);
+          } catch (err: any) {
+            informer(err.message);
+          }
         }
       },
       onMoveToBack: () => {
@@ -40,3 +57,5 @@ export default class ChangePassword extends Block {
     return changePasswordTmpl();
   }
 }
+
+export default withUser(ChangePassword);

@@ -19,3 +19,9 @@ export type UserDTO = {
   phone: string
   avatar: string
 };
+
+export type Passwords = {
+  oldPassword: string
+  newPassword: string
+  newPasswordRepeat: string
+};

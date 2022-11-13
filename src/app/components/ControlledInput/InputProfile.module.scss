@@ -16,11 +16,18 @@
   padding: 0.25em 0 0.3em;
   font-family: inherit;
   font-weight: inherit;
+  color: var(--color-text-minor);
   text-align: right;
   border: none;
   border-radius: 5px;
 
+  &::placeholder {
+    color: var(--color-text-minor);
+    opacity: 1;
+  }
+
   &:focus {
+    color: var(--color-text-major);
     background-color: var(--color-focus-input-bg-light);
     outline: none;
   }

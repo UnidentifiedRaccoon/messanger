@@ -15,7 +15,7 @@ export default class IconProfile extends Block {
     super({
       ...props,
       styles,
-      icon: icon || profileIcon,
+      icon: icon ? `https://ya-praktikum.tech/api/v2/resources${icon}` : profileIcon,
     });
   }
 

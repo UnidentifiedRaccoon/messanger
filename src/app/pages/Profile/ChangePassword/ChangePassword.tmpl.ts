@@ -9,7 +9,7 @@ const changePasswordTmpl = () => `
         {{/Link}}
         <div class={{styles.content}}>
             <div class={{styles.icon}}>
-                {{{ IconProfile alt=staticData.userName }}}
+                {{{ IconProfile alt=staticData.userName icon=user.avatar}}}
             </div>
             <div class={{styles.form-wrapper}}>
                 {{# Form outerStyles=styles.form 
@@ -23,6 +23,7 @@ const changePasswordTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.oldPassword
+                            defaultValue=user.password
                             name="oldPassword"
                             onInput=onInput
                             onFocus=onFocus

@@ -6,9 +6,10 @@ import controlledInputTmpl from './ControlledInput.tmpl';
 import * as defaultStyles from './Input.module.scss';
 import * as profileStyles from './InputProfile.module.scss';
 
-interface ControlledInputProps {
+type ControlledInputProps = {
   name: string
   tooltip: string
+  defaultValue? : string
   errorMessage?: string
   validateType?: string
   readonly?: string
@@ -17,7 +18,7 @@ interface ControlledInputProps {
   outerStyles?: Record<string, string>
   onInput?: (name: string, value: string) => void
   onFocus?: (name: string, value: string, errorMessage: string) => void
-}
+};
 
 export default class ControlledInput extends Block {
   static className = 'ControlledInput';
@@ -28,6 +29,8 @@ export default class ControlledInput extends Block {
   }: ControlledInputProps) {
     super({
       ...props,
+      type: type || 'text',
+      styles: styleMode === 'profile' ? profileStyles : defaultStyles,
       onFocus: (e: Event) => {
         e.preventDefault();
         const field = this.refs.input.getContent() as HTMLInputElement;
@@ -67,8 +70,6 @@ export default class ControlledInput extends Block {
           errorMessage,
         });
       },
-      type: type || 'text',
-      styles: styleMode === 'profile' ? profileStyles : defaultStyles,
     });
   }
 

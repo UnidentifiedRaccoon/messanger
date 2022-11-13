@@ -5,13 +5,13 @@ import inputTmpl from './Input.tmpl';
 interface InputProps {
   placeholder: string
   name: string
-  value: string
+  defaultValue?: string
   type?: 'text' | 'password' | 'email' | 'phone' | 'search'
   outerStyles?: Record<string, string>
   readonly?: boolean
-  onInput?: () => void
-  onFocus?: () => void
-  onBlur?: () => void
+  onInput?: (e: InputEvent) => void
+  onFocus?: (e: FocusEvent) => void
+  onBlur?: (e: Event) => void
 }
 
 export default class Input extends Block {

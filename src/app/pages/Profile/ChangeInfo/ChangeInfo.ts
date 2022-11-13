@@ -1,16 +1,28 @@
 import * as styles from '../Profile.module.scss';
-import { PreparedFormData, PreparedFormErrors } from '../../../../typings/commonTypes';
+import { PreparedFormErrors } from '../../../../typings/commonTypes';
 
 import Block from '../../../../utils/Core/Block';
 
 import PathRouter from '../../../../utils/Router/PathRouter';
 
-import changeInfoTmpl from './ChangeInfo.tmpl';
-import staticData from './ChangeInfo.ru.json';
+import { withUser } from '../../../../utils/Store/connect';
 
-export default class ChangeInfo extends Block {
+import { User } from '../../../../utils/Api/User/Types';
+
+import { Thunks } from '../../../../utils/Store/Store';
+import { Routes } from '../../../../utils/Router/Routes';
+import informer from '../../../../utils/Core/informer';
+
+import staticData from './ChangeInfo.ru.json';
+import changeInfoTmpl from './ChangeInfo.tmpl';
+
+type ChangeInfoProps = {
+  user: User
+};
+
+class ChangeInfo extends Block {
   private errors: PreparedFormErrors;
-  constructor(rawProps: any) {
+  constructor(rawProps: ChangeInfoProps) {
     super({
       ...rawProps,
       styles,
@@ -24,9 +36,14 @@ export default class ChangeInfo extends Block {
       onInput: (name: string) => {
         this.errors.delete(name);
       },
-      onSubmit: (data: PreparedFormData) => {
+      onSubmit: async (data: Partial<User>) => {
         if (this.errors.size === 0) {
-          console.log(data);
+          try {
+            await Thunks.changeInfo(data);
+            PathRouter.go(Routes.Profile.path);
+          } catch (err: any) {
+            informer(err.message);
+          }
         }
       },
       onMoveToBack: () => {
@@ -40,3 +57,5 @@ export default class ChangeInfo extends Block {
     return changeInfoTmpl();
   }
 }
+
+export default withUser(ChangeInfo);

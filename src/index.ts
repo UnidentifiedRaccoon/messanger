@@ -3,7 +3,7 @@ import PathRouter from './utils/Router/PathRouter';
 import renderDOM from './utils/Core/renderDOM';
 import { Screens } from './utils/Router/Screens';
 import store, {
-  AppState, selectorAuthStatus, Store, Thunks,
+  AppState, Selectors, Store, Thunks,
 } from './utils/Store/Store';
 import ClientError from './app/pages/ClientError';
 import { Routes } from './utils/Router/Routes';
@@ -19,7 +19,7 @@ const updatePage = (event: Event) => {
 const initRouter = () => {
   Object.values(Screens).forEach((screen) => {
     PathRouter.use(screen.path, () => {
-      const isAuthorized = Boolean(selectorAuthStatus());
+      const isAuthorized = Boolean(Selectors.authStatus());
       if (xor(isAuthorized, !screen.shouldAuthorized)) {
         renderDOM('#core-app', new screen.Block({}));
       } else if (!isAuthorized && Object.values(Routes).map((x) => x.path).includes(screen.path)) {

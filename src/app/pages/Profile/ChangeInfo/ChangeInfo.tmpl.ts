@@ -8,8 +8,8 @@ const changeInfoTmpl = () => `
             {{{ Arrow text=staticData.goBackText }}}
         {{/Link}}
         <div class={{styles.content}}>
-            <div class={{styles.icon}}>
-                {{{ IconProfile alt=staticData.userName }}}
+            <div class={{styles.icon_wrapper}}>
+                {{{ IconProfile alt=staticData.userName  icon=user.avatar }}}
             </div>
             <div class={{styles.form-wrapper}}>
                 {{# Form outerStyles=styles.form
@@ -24,6 +24,7 @@ const changeInfoTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.email
+                            defaultValue=user.email
                             onInput=onInput
                             onFocus=onFocus
                             validateType="email"
@@ -33,6 +34,7 @@ const changeInfoTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.login
+                            defaultValue=user.login
                             onInput=onInput
                             onFocus=onFocus
                             validateType="login"
@@ -42,6 +44,7 @@ const changeInfoTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.name
+                            defaultValue=user.name
                             onInput=onInput
                             onFocus=onFocus
                             validateType="name"
@@ -51,15 +54,17 @@ const changeInfoTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.surname
+                            defaultValue=user.surname
                             onInput=onInput
                             onFocus=onFocus
                             validateType="name"
                         }}}
                         {{{ ControlledInput
-                            name="nickname"
+                            name="displayName"
                             styleMode='profile'
                             outerStyles=styles.field
-                            tooltip=staticData.nickname
+                            tooltip=staticData.displayName
+                            defaultValue=user.displayName
                             onInput=onInput
                             onFocus=onFocus
                             validateType="name"
@@ -69,6 +74,7 @@ const changeInfoTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.phone
+                            defaultValue=user.phone
                             onInput=onInput
                             onFocus=onFocus
                             validateType="phone"

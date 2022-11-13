@@ -20,7 +20,7 @@ class AuthController {
 
   async login(loginData: LoginForm) {
     const data = await AuthApi.login(loginData);
-    if (data.response === 'OK') {
+    if (data.status >= 200 && data.status < 400) {
       return;
     }
     const response = JSON.parse(data.response);

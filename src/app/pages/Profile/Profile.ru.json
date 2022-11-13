@@ -5,7 +5,7 @@
   "login": "Логин",
   "name": "Имя",
   "surname": "Фамилия",
-  "nickname": "Имя в чате",
+  "displayName": "Имя в чате",
   "phone": "Телефон",
   "password": "Пароль",
   "passwordRepeat": "Пароль (ещё раз)",

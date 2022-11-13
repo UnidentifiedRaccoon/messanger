@@ -8,11 +8,11 @@ const profileTmpl = () => `
             {{{ Arrow text=staticData.goBackText }}}
         {{/Link}}
         <div class={{styles.content}}>
-            <div class={{styles.icon_wrapper}}>
-                {{{ IconProfile alt=staticData.userName  }}}
-            </div>
+            {{#AvatarLoader outerStyles=styles.icon onClick=onLoadAvatar}}
+                {{{ IconProfile alt=staticData.userName icon=user.avatar}}}
+            {{/AvatarLoader}}
             <h2 class="title {{styles.title}}">
-                {{staticData.userName}}
+                {{user.name}} {{user.surname}}
             </h2>
             <div class={{styles.form-wrapper}}>
                 {{# Form outerStyles=styles.form}}
@@ -22,6 +22,7 @@ const profileTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.email
+                            defaultValue=user.email
                             onInput=onInput
                             onFocus=onFocus
                             validateType="email"
@@ -32,6 +33,7 @@ const profileTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.login
+                            defaultValue=user.login
                             onInput=onInput
                             onFocus=onFocus
                             validateType="login"
@@ -42,6 +44,7 @@ const profileTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.name
+                            defaultValue=user.name
                             onInput=onInput
                             onFocus=onFocus
                             validateType="name"
@@ -52,6 +55,7 @@ const profileTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.surname
+                            defaultValue=user.surname
                             onInput=onInput
                             onFocus=onFocus
                             validateType="name"
@@ -61,7 +65,8 @@ const profileTmpl = () => `
                             name="nickname"
                             styleMode='profile'
                             outerStyles=styles.field
-                            tooltip=staticData.nickname
+                            tooltip=staticData.displayName
+                            defaultValue=user.displayName
                             onInput=onInput
                             onFocus=onFocus
                             validateType="name"
@@ -72,6 +77,7 @@ const profileTmpl = () => `
                             styleMode='profile'
                             outerStyles=styles.field
                             tooltip=staticData.phone
+                            defaultValue=user.phone
                             onInput=onInput
                             onFocus=onFocus
                             validateType="phone"

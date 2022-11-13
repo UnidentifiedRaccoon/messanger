@@ -3,9 +3,9 @@ import {
   cloneDeep, exactEqual, merge, objectFromPath,
 } from '../common/objectHelpers';
 import UserController from '../Api/User/UserController';
-import informer from '../Core/informer';
 import { LoginForm } from '../Api/Auth/Types';
 import AuthController from '../Api/Auth/AuthController';
+import { Passwords, User } from '../Api/User/Types';
 
 export type StoreState = {
   user: Record<string, any> | null;
@@ -44,14 +44,7 @@ export class Store<State extends Record<string, any>> extends EventBus<typeof St
     this.emit(Store.EVENTS.CHANGE, prevState, this.state);
   }
 
-  dispatch(action: Action<State> | Promise<Action<State>>): boolean | Promise<boolean> {
-    // dispatch thunk
-    if (action instanceof Promise) {
-      // thunk вообще не обязательно диспатчить, тк они не работают
-      // со стором напрямую, но я хочу иметь общий интерфейс
-      return true;
-    }
-
+  dispatch(action: Action<State>): boolean | Promise<boolean> {
     // dispatch action
     if (!exactEqual(this.state, action.updateStateWith, action.path)) {
       this.set(action.updateStateWith);
@@ -77,9 +70,18 @@ const defaultState: AppState = {
 const store = new Store(defaultState);
 export default store;
 
+// Selectors
+const selectorAuthStatus = () => store.getState().store.authStatus;
+const selectorUser = () => store.getState().store.user;
+
+export const Selectors = {
+  authStatus: selectorAuthStatus,
+  user: selectorUser,
+};
+
 // Actions
 // export const action = store.actionCreator((value) => {
-//   const path = 'store.authStatus';
+//   const path = 'store.field';
 //   return {
 //     path,
 //     updateStateWith: objectFromPath(path, value),
@@ -114,22 +116,25 @@ export const Actions = {
 
 // Thunks
 const loginThunk = async (data: LoginForm) => {
-  await AuthController.login(data);
-  const user = await UserController.getUser();
-  localStorage.setItem('user', JSON.stringify(user));
-  store.dispatch(Actions.setUser(user));
+  try {
+    await AuthController.login(data);
+    const user = await UserController.getUser();
+    localStorage.setItem('user', JSON.stringify(user));
+    store.dispatch(Actions.setUser(user));
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
 };
 
 const revalidateUser = async () => {
-  let user = JSON.parse(localStorage.getItem('user')!);
-  store.dispatch(Actions.setUser(user));
   try {
+    let user = JSON.parse(localStorage.getItem('user')!);
+    store.dispatch(Actions.setUser(user));
     user = await UserController.getUser();
     localStorage.setItem('user', JSON.stringify(user));
     store.dispatch(Actions.setUser(user));
   } catch (err: any) {
-    // Вот тут информер показывать не обязательно,
-    informer(err.message);
+    throw new Error(err.message);
   }
 };
 
@@ -139,8 +144,37 @@ const logoutThunk = async () => {
     localStorage.removeItem('user');
     store.dispatch(Actions.setUser(null));
   } catch (err: any) {
-  // Вот тут информер показывать не обязательно,
-    informer(err.message);
+    throw new Error(err.message);
+  }
+};
+
+const changeInfo = async (data: Partial<User>) => {
+  try {
+    const storedUser = Selectors.user()!;
+    const updatedUser = merge(cloneDeep(storedUser), data);
+    const user = await UserController.changeInfo(updatedUser);
+    localStorage.setItem('user', JSON.stringify(user));
+    store.dispatch(Actions.setUser(user));
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const changeAvatar = async (formData: FormData) => {
+  try {
+    const user = await UserController.changeAvatar(formData);
+    localStorage.setItem('user', JSON.stringify(user));
+    store.dispatch(Actions.setUser(user));
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const changePassword = async (passwords: Passwords) => {
+  try {
+    await UserController.changePassword(passwords);
+  } catch (err: any) {
+    throw new Error(err.message);
   }
 };
 
@@ -148,7 +182,7 @@ export const Thunks = {
   login: loginThunk,
   logout: logoutThunk,
   revalidateUser,
+  changeInfo,
+  changeAvatar,
+  changePassword,
 };
-
-// Selectors
-export const selectorAuthStatus = () => store.getState().store.authStatus;

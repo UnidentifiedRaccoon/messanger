@@ -4,6 +4,7 @@ const controlledInputTmpl = () => `
         <span class="{{ styles.tooltip }}">{{ tooltip }}</span>
         {{{ Input outerStyles=styles.input
             placeholder=tooltip
+            defaultValue=defaultValue
             type=type
             readonly=readonly
             name=name
