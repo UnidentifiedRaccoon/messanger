@@ -1,22 +1,49 @@
 import Block from '../../../utils/Core/Block';
 
-import ChatData from '../../mocks/chat';
+import { withActiveChat } from '../../../utils/Store/connect';
 
-import chatTmpl from './Chat.tmpl';
+import { Selectors, Thunks } from '../../../utils/Store/Store';
+import { ChatTab } from '../../../utils/Api/Chats/Types';
+import { Routes } from '../../../utils/Router/Routes';
+import PathRouter from '../../../utils/Router/PathRouter';
+import informer from '../../../utils/Core/informer';
+
+import portal from '../../../utils/Core/portal';
+
+import AddUserToChat from '../AddUserToChat/AddUserToChat';
+
 import * as styles from './Chat.module.scss';
+import chatTmpl from './Chat.tmpl';
 
-interface ChatProps {
+type ChatProps = {
   staticData: Record<string, any>
-  data?: ChatData
-}
+  activeChat: ChatTab
+};
 
-export default class Chat extends Block {
+class Chat extends Block {
   static className = 'Chat';
   constructor(props: ChatProps) {
-    super({ ...props, styles });
+    super({
+      ...props,
+      styles,
+      onChatDelete: async () => {
+        try {
+          await Thunks.deleteChat(this.props.activeChat.id);
+          PathRouter.go(Routes.Workspace.path);
+        } catch (err: any) {
+          informer(err.message);
+        }
+      },
+      onAddUserToChat: async () => {
+        portal(AddUserToChat, { staticData: props.staticData.addUserToChat });
+      },
+    });
   }
 
   render() {
-    return chatTmpl();
+    const isChatOwner = this.props.activeChat ? this.props.activeChat.createdBy === Selectors.user()!.id : false;
+    return chatTmpl(isChatOwner);
   }
 }
+
+export default withActiveChat(Chat);

@@ -6,12 +6,16 @@ import UserController from '../Api/User/UserController';
 import { LoginForm } from '../Api/Auth/Types';
 import AuthController from '../Api/Auth/AuthController';
 import { Passwords, User } from '../Api/User/Types';
+import ChatsController from '../Api/Chats/ChatsController';
+import { ChatSettings, ChatTab } from '../Api/Chats/Types';
 
 export type StoreState = {
-  user: Record<string, any> | null;
-  chats: Record<string, any> | null;
-  isLoading: boolean,
-  authStatus: boolean,
+  user: Record<string, any> | null
+  chats: Record<string, any> | null
+  activeChat: Record<string, any> | null
+  activeChatToken: string
+  isLoading: boolean
+  authStatus: boolean
 };
 
 export type AppState = {
@@ -62,8 +66,10 @@ const defaultState: AppState = {
   store: {
     user: null,
     chats: null,
+    activeChat: null,
     isLoading: true,
     authStatus: false,
+    activeChatToken: '',
   },
 };
 
@@ -73,20 +79,17 @@ export default store;
 // Selectors
 const selectorAuthStatus = () => store.getState().store.authStatus;
 const selectorUser = () => store.getState().store.user;
+const selectorChats = () => store.getState().store.chats;
+const selectorActiveChat = () => store.getState().store.activeChat;
+const selectorToken = () => store.getState().store.activeChat;
 
 export const Selectors = {
   authStatus: selectorAuthStatus,
   user: selectorUser,
+  token: selectorToken,
 };
 
 // Actions
-// export const action = store.actionCreator((value) => {
-//   const path = 'store.field';
-//   return {
-//     path,
-//     updateStateWith: objectFromPath(path, value),
-//   };
-// });
 const setAuth = store.actionCreator((value) => {
   const path = 'store.authStatus';
   return {
@@ -110,8 +113,35 @@ const setUser = store.actionCreator((user) => {
   };
 });
 
+const setChats = store.actionCreator((chats) => {
+  const path = 'store.chats';
+  return {
+    path,
+    updateStateWith: objectFromPath(path, chats),
+  };
+});
+
+const setActiveChat = store.actionCreator((activeChat) => {
+  const path = 'store.activeChat';
+  return {
+    path,
+    updateStateWith: objectFromPath(path, activeChat),
+  };
+});
+
+const setToken = store.actionCreator((token: string) => {
+  const path = 'store.activeChatToken';
+  return {
+    path,
+    updateStateWith: objectFromPath(path, token),
+  };
+});
+
 export const Actions = {
   setUser,
+  setChats,
+  setActiveChat,
+  setToken,
 };
 
 // Thunks
@@ -178,6 +208,79 @@ const changePassword = async (passwords: Passwords) => {
   }
 };
 
+const getChats = async () => {
+  try {
+    const chats = await ChatsController.getChats({ offset: 0 });
+    store.dispatch(Actions.setChats(chats));
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const getChat = async (id: number) => {
+  try {
+    const chats = selectorChats();
+    if (chats) {
+      // Получить метаинформацию чата
+      const activeChat = chats.find((chat: ChatTab) => chat.id === id);
+      // Получить токен
+
+      // Подключиться по wss
+
+      // Выполнить диспатч, чтобы отобразить чат
+      store.dispatch(setActiveChat(activeChat));
+    }
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const addChat = async (data: ChatSettings) => {
+  try {
+    await ChatsController.addChat(data);
+    getChats();
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const addUserToChat = async (userId: number) => {
+  try {
+    const activeChat = selectorActiveChat();
+    if (activeChat) {
+      await ChatsController.addUserToChat(activeChat.id, userId);
+    } else {
+      throw new Error('Добавления пользователя при не активном чате');
+    }
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const deleteChat = async (id: number) => {
+  try {
+    store.dispatch(Actions.setActiveChat(null));
+    await ChatsController.deleteChat(id);
+    getChats();
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const getChatToken = async () => {
+  try {
+    const activeChat = selectorActiveChat();
+    if (activeChat) {
+      const token = await ChatsController.getChatToken(activeChat.id);
+      store.dispatch(Actions.setToken(token));
+    } else {
+      throw new Error('Подключение к неактивному чату');
+    }
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
 export const Thunks = {
   login: loginThunk,
   logout: logoutThunk,
@@ -185,4 +288,10 @@ export const Thunks = {
   changeInfo,
   changeAvatar,
   changePassword,
+  getChats,
+  getChat,
+  addChat,
+  deleteChat,
+  addUserToChat,
+  getChatToken,
 };

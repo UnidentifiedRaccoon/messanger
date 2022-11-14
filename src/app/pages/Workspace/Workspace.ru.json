@@ -5,7 +5,12 @@
     "addChatBtn": "Добавить чат",
     "profileLink": "Профиль",
     "searchPlaceholder": "Поиск",
-    "emptyChatTabs": "Список чатов пуст"
+    "emptyChatTabs": "Список чатов пуст",
+    "addChat": {
+      "title": "Добавление чата",
+      "submitBtn": "Добавить",
+      "placeholder": "Название чата"
+    }
   },
   "chat": {
     "title": "Чат",
@@ -14,6 +19,11 @@
     "messagePlaceholder": "Сообщение",
     "submitBtn": "Отправить",
     "emptyChat": "Выберите чат чтобы отправить сообщение",
-    "newSeparator": "Новые сообщения"
+    "newSeparator": "Новые сообщения",
+    "addUserToChat": {
+      "title": "Добавление пользователей",
+      "submitBtn": "Добавить",
+      "placeholder": "ID пользователя"
+    }
   }
 }

@@ -32,7 +32,7 @@ class SignUp extends Block {
         if (this.errors.size === 0) {
           try {
             await AuthController.signup(data);
-            PathRouter.go(Routes.Login.path);
+            PathRouter.go(Routes.Workspace.path);
           } catch (err: any) {
             informer(err.message);
           }

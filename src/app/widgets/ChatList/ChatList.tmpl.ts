@@ -6,7 +6,7 @@ const chatListTmpl = () => `
         </h2>
         <header class= {{ styles.header }}>
             <div class= {{ styles.header-top-row}}>
-                {{{ Cross typeMode="add" outerStyles=styles.add-chat-btn }}}
+                {{{ Cross onClick=onAddChat typeMode="add" outerStyles=styles.add-chat-btn}}}
                 {{# Link onClick=onMoveToProfile outerStyles=styles.profile-link }}
                     {{staticData.profileLink}}
                     {{{ IconInline icon=next outerStyles=styles.icon-next }}}
@@ -14,7 +14,7 @@ const chatListTmpl = () => `
             </div>
             {{{ Search placeholder=staticData.searchPlaceholder }}}
         </header>
-        {{{ ChatTabs data=data }}}
+        {{{ ChatTabs data=chats staticData=staticData}}}
     </section>
 `;
 

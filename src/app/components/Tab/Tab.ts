@@ -2,17 +2,21 @@ import Block from '../../../utils/Core/Block';
 
 import { timeFormat } from '../../../utils/common/time';
 
-import { ChatTabData } from '../../../typings/mockTypes';
-
 import PathRouter from '../../../utils/Router/PathRouter';
 
 import { Screens } from '../../../utils/Router/Screens';
+
+import { ChatTab } from '../../../utils/Api/Chats/Types';
+
+import informer from '../../../utils/Core/informer';
+
+import { Thunks } from '../../../utils/Store/Store';
 
 import tabTmpl from './Tab.tmpl';
 import * as styles from './Tab.module.scss';
 
 interface TabProps {
-  data: ChatTabData
+  data: ChatTab
   path: string
   outerStyles?: Record<string, string>
 }
@@ -20,25 +24,35 @@ interface TabProps {
 export default class Tab extends Block {
   static className = 'Tab';
   constructor({ data, ...props }: TabProps) {
-    const time = new Date(data.lastMessage.time);
-    const formattedTime = timeFormat(time);
+    let time;
+    let formattedTime;
+    if (data.lastMessage && data.lastMessage.time) {
+      time = new Date(data.lastMessage.time);
+      formattedTime = timeFormat(time);
+    }
+
     const dataCopy = {
       ...data,
-      lastMessage: {
+      lastMessage: data.lastMessage && time ? {
         ...data.lastMessage,
         time: {
           formatted: formattedTime,
           datetime: time.toISOString(),
         },
-      },
+      } : null,
     };
 
     super({
       ...props,
       data: dataCopy,
       styles,
-      onMoveToChat: () => {
-        PathRouter.go(`${Screens.Workspace.path}/${data.id}`);
+      onMoveToChat: async () => {
+        try {
+          await Thunks.getChat(data.id);
+          PathRouter.go(`${Screens.Workspace.path}/${data.id}`);
+        } catch (err: any) {
+          informer(err.message);
+        }
       },
     });
   }
