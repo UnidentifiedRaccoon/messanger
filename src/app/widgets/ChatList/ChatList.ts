@@ -2,22 +2,27 @@ import next from 'bundle-text:./next.svg';
 
 import Block from '../../../utils/Core/Block';
 
-import { RandomChatTabData } from '../../mocks/chats';
-
 import PathRouter from '../../../utils/Router/PathRouter';
 
 import { Routes } from '../../../utils/Router/Routes';
 
-import chatListTmpl from './ChatList.tmpl';
+import portal from '../../../utils/Core/portal';
+
+import AddChat from '../AddChat/AddChat';
+
+import { ChatTab } from '../../../utils/Api/Chats/Types';
+
 import * as styles from './ChatList.module.scss';
+import chatListTmpl from './ChatList.tmpl';
 
 interface ChatListProps {
   staticData: Record<string, any>
-  data: RandomChatTabData[]
+  chats: ChatTab[]
 }
 
 export default class ChatList extends Block {
   static className = 'ChatList';
+
   constructor(props: ChatListProps) {
     super({
       ...props,
@@ -25,6 +30,9 @@ export default class ChatList extends Block {
       next,
       onMoveToProfile: () => {
         PathRouter.go(Routes.Profile.path);
+      },
+      onAddChat() {
+        portal(AddChat, { staticData: props.staticData.addChat });
       },
     });
   }

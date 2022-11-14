@@ -5,10 +5,10 @@ const workspaceTmpl = () => `
             {{staticData.title}}
         </h1>
         <div class={{styles.chat-list}}>
-            {{{ ChatList data=chatListData staticData=staticData.chatList }}}
+            {{{ ChatList chats=chats staticData=staticData.chatList }}}
         </div>
         <div class={{styles.chat}}>
-            {{{ Chat data=chatData staticData=staticData.chat }}}
+            {{{ Chat staticData=staticData.chat }}}
         </div>
     </div>
   `;

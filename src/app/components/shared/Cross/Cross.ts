@@ -9,6 +9,7 @@ interface CrossProps {
   text?: string
   typeMode?: string
   outerStyles?: Record<string, string>
+  onClick: (e: Event) => void
 }
 
 export default class Cross extends Block {
@@ -25,6 +26,9 @@ export default class Cross extends Block {
       styles,
       cross,
       typeMode,
+      events: {
+        click: props.onClick,
+      },
     });
   }
 

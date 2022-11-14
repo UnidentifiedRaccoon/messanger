@@ -14,6 +14,7 @@ export function merge(lhs: Indexed, rhs: Indexed): any {
       if (isObject(lhs[key])) lhs[key] = merge(lhs[key], rhs[key]);
       else lhs[key] = rhs[key]; // make deep copy
     }
+    else if (rhs[key] === null) lhs[key] = null
   });
   return lhs;
 }
@@ -47,7 +48,11 @@ function isArrayOrObject(value: unknown): value is PlainObject {
 
 export function isEqual(lhs: PlainObject, rhs: PlainObject) {
   // Сравнение количества ключей объектов и массивов
-  if (Object.keys(lhs).length !== Object.keys(rhs).length) {
+  if (
+     (lhs===null && rhs!==null)
+    || (lhs!==null && rhs===null)
+    || (Object.keys(lhs).length !== Object.keys(rhs).length)
+  ) {
     return false;
   }
 

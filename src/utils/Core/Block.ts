@@ -26,7 +26,7 @@ export default class Block {
   #element: HTMLElement;
   protected children: Record<string, Block> = {};
   protected propChildren: Record<string, Block>;
-  protected readonly props: {
+  protected props: {
     events: Record<string, () => void>,
     [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
   };
@@ -81,6 +81,7 @@ export default class Block {
    *     by calling <code style="color: #007ba7">dispatchComponentDidMount()</code> */
   #componentDidMount() {
     this.componentDidMount();
+    Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
   }
 
   protected componentDidMount(): void {}
@@ -118,9 +119,19 @@ export default class Block {
   #render() {
     const templateString = this.render();
     const newElem = this.compile(templateString);
-    if (this.#element) this.#element.replaceWith(newElem);
+    if (this.#element) {
+      // ToDo Потеря ссылки на элемент
+      // По непонятной причине this.#element иногда содержит не валидную ссылку
+      // Поэтому замена вида  this.#element.replaceWith(newElem); становится невозможной
+      const classElem = Array.from(this.#element.classList.entries());
+      const query = document.querySelector(`.${classElem[classElem.length - 1][1]}`);
+      if (query) {
+        query.replaceWith(newElem);
+      } else {
+        throw new Error('Could not find element for replaceWith()');
+      }
+    }
     this.#element = newElem;
-
     this.#addListeners();
   }
 
@@ -205,5 +216,22 @@ export default class Block {
 
   hide() {
     this.getContent().style.display = 'none';
+  }
+
+  destroy() {
+    this.getContent().remove();
+    this.#eventBus().destroy();
+    // @ts-ignore
+    this.#element = null;
+    // @ts-ignore
+    this.children = null;
+    // @ts-ignore
+    this.propChildren = null;
+    // @ts-ignore
+    this.props = null;
+    // @ts-ignore
+    this.refs = null;
+    // @ts-ignore
+    this.#eventBus = null;
   }
 }

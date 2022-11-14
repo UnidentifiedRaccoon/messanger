@@ -36,8 +36,8 @@ const initRouter = () => {
   });
   const currentPath = window.location.pathname;
   PathRouter.go(currentPath);
-  store.on(Store.EVENTS.CHANGE, (_: AppState, newProps: AppState) => {
-    if (newProps.store.authStatus) PathRouter.reload();
+  store.on(Store.EVENTS.CHANGE, (oldProps: AppState, newProps: AppState) => {
+    if (oldProps.store.authStatus !== newProps.store.authStatus) PathRouter.reload();
   });
 };
 

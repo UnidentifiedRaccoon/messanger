@@ -42,3 +42,5 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed) {
 // }
 
 export const withUser = connect((state) => ({ user: state.store.user }));
+export const withChats = connect((state) => ({ chats: state.store.chats }));
+export const withActiveChat = connect((state) => ({ activeChat: state.store.activeChat }));

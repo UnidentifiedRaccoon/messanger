@@ -7,16 +7,12 @@ enum METHODS {
 
 type RequestBody = Document | XMLHttpRequestBodyInit;
 type Options = {
-  method: METHODS,
+  method?: METHODS,
   data?: RequestBody,
   headers?: Record<string, string>,
   timeout?: number
   tries?: number
 };
-
-function queryStringify(data: RequestBody): string {
-  return `?${Object.entries(data).map(([key, val]) => `${key}=${val.toString()}`).join('&')}`;
-}
 
 function setHeaders(xhr: XMLHttpRequest, headers: Record<string, string>): void {
   if (!headers) return;
@@ -30,8 +26,8 @@ export default class HTTPTransport {
   }
 
   get(url: string, options: Partial<Options>): Promise<XMLHttpRequest> {
-    const query = options.data ? queryStringify(options.data) : '';
-    return this.request(this.baseUrl + url + query, { ...options, method: METHODS.GET }, options.timeout);
+    const query = options.data ? options.data : '';
+    return this.request(`${this.baseUrl + url}?${query}`, { ...options, method: METHODS.GET }, options.timeout);
   }
 
   put(url: string, options: Partial<Options>) {

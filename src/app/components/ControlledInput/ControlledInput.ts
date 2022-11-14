@@ -9,6 +9,7 @@ import * as profileStyles from './InputProfile.module.scss';
 type ControlledInputProps = {
   name: string
   tooltip: string
+  placeholder?: string
   defaultValue? : string
   errorMessage?: string
   validateType?: string
@@ -25,10 +26,12 @@ export default class ControlledInput extends Block {
   getProps() { return this.props; }
   getRefs() { return this.refs; }
   constructor({
-    onFocus, onInput, type, styleMode, ...props
+    onFocus, onInput, type, styleMode, placeholder, tooltip, ...props
   }: ControlledInputProps) {
     super({
       ...props,
+      tooltip,
+      placeholder: placeholder || tooltip,
       type: type || 'text',
       styles: styleMode === 'profile' ? profileStyles : defaultStyles,
       onFocus: (e: Event) => {

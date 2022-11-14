@@ -12,6 +12,9 @@ const informer = (message: string) => {
   setTimeout(() => {
     toastWrapper!.setAttribute('style', 'transform: translateX(calc(100% + 110px))');
   }, 5000);
+  setTimeout(() => {
+    toast.destroy();
+  }, 6000);
 };
 
 export default informer;
