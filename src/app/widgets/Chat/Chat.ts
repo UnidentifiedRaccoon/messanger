@@ -59,13 +59,30 @@ class Chat extends Block {
   }
 
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    if (newProps.messagesSocketMeta === null && this.messagesSocket) {
-      this.messagesSocket.close();
-    } else if (!isEqual(oldProps.messagesSocketMeta, newProps.messagesSocketMeta)) {
+    if (!isEqual(oldProps.messagesSocketMeta, newProps.messagesSocketMeta)) {
       this.messagesSocket?.close();
       this.messagesSocket = new MessagesSocket(newProps.messagesSocketMeta);
       this.messagesSocket.onMessage((event: any) => {
-        console.log(event);
+        let messages = event;
+        if (!Array.isArray(event)) {
+          messages = [event];
+        } else {
+          messages = event.reverse();
+        }
+
+        messages.forEach((message: Record<string, any>) => {
+          this.refs.content.setProps({
+            message: {
+              insert: Array.isArray(event) ? 'prepend' : 'append',
+              type: message.type,
+              content: message.content,
+              time: new Date(message.time) || new Date(),
+              id: message.id || -1,
+              userId: message.user_id || +messages.content,
+              new: !message.is_read,
+            },
+          });
+        });
       });
     }
     return super.componentDidUpdate(oldProps, newProps);

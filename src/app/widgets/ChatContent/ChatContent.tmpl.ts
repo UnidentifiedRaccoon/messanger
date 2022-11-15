@@ -1,9 +1,6 @@
 // language=hbs
 const chatContentTmpl = () => `
-    <section class={{styles.content}}>
-        <h3 class="visually-hidden">
-            {{staticData.contentTitle}}
-        </h3>
+    <section id="messages-box" class={{styles.content}}>
         {{#each days}}
             <!-- wrap all bubbles and messages of the day -->
             <div id="day-wrapper-{{this.day}}">

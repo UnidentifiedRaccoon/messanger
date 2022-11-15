@@ -12,12 +12,13 @@ interface FormProps {
   submitLabel:string
   onSubmit: (data: Record<string, FormDataEntryValue>) => void;
   outerStyles?: Record<string, string>;
+  shouldReset?: boolean
 }
 
 export default class Form extends Block {
   static className = 'Form';
 
-  constructor({ onSubmit, ...props }: FormProps) {
+  constructor({ onSubmit, shouldReset, ...props }: FormProps) {
     super({
       ...props,
       styles,
@@ -33,6 +34,7 @@ export default class Form extends Block {
               return { ...acc, [key]: input.value };
             }, {});
             onSubmit(data);
+            if (shouldReset) e.target.reset();
           }
         },
       },

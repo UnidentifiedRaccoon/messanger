@@ -1,7 +1,7 @@
 // language=hbs
 const chatMessageBarTmpl = () => `
     <section class={{styles.bar}}>
-    {{# Form outerStyles=styles.form onSubmit=onSubmit}}
+    {{# Form outerStyles=styles.form onSubmit=onSubmit shouldReset=true}}
             <h3 class="visually-hidden">
                 {{staticData.inputFormTitle}}
             </h3>

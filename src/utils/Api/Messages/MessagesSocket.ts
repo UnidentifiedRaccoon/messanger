@@ -35,6 +35,7 @@ class MessagesSocket {
     });
 
     this.socket.addEventListener('close', (event) => {
+      clearInterval(this.interval);
       if (event.wasClean) {
         console.log('Соединение закрыто чисто');
       } else {
@@ -53,7 +54,7 @@ class MessagesSocket {
     let gottenCount = 0;
     console.log('unread:', this.unread);
 
-    while (gottenCount < this.unread) {
+    while (gottenCount < this.unread + 1) {
       console.log('send to get unread');
       this.socket.send(JSON.stringify({
         content: gottenCount.toString(),
@@ -68,7 +69,6 @@ class MessagesSocket {
   }
 
   close() {
-    clearInterval(this.interval);
     this.socket.close();
   }
 

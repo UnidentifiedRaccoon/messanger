@@ -6,7 +6,7 @@ import * as styles from './Message.module.scss';
 interface MessageProps {
   context: {
     text?: string
-    time?: { datetime: string, format: string }
+    time?: { datetime: string, formatted: string }
   }
 }
 

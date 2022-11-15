@@ -5,7 +5,7 @@ import * as styles from './Bubble.module.scss';
 
 type BubbleProps = {
   text?: string
-  time?: { datetime: string, format: string }
+  time?: { datetime: string, formatted: string }
 };
 
 export default class Bubble extends Block {

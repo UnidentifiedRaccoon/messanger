@@ -13,7 +13,7 @@ const chatTmpl = (isChatOwner: boolean) => `
                     {{{ Cross typeMode="delete" outerStyles=styles.delete-btn onClick=onChatDelete }}}
                 {{/if}}
             </header>
-            {{{ ChatContent data=activeChat staticData=staticData }}}
+            {{{ ChatContent ref="content" staticData=staticData }}}
             {{{ ChatMessageBar staticData=staticData onSubmit=onMessageSend }}}
         {{else}} 
             {{{ ChatEmpty text=staticData.emptyChat }}}
