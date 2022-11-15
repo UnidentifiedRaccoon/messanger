@@ -87,9 +87,7 @@ export default class ChatContent extends Block {
         this.getUnread = true;
       }
       dayContainer.append(messageHTML);
-      const scrollTo = messageHTML.offsetTop;
-      this.getContent().scrollTop = scrollTo;
-      console.log(message);
+      this.getContent().scrollTop = messageHTML.offsetTop;
       return false;
     }
     return super.componentDidUpdate(oldProps, newProps);
