@@ -2,24 +2,27 @@ import attachment from 'bundle-text:./attachment.svg';
 
 import Block from '../../../utils/Core/Block';
 
-import { PreparedFormData } from '../../../typings/commonTypes';
-
 import chatMessageBarTmpl from './ChatMessageBar.tmpl';
 import * as styles from './ChatMessageBar.module.scss';
 
-interface ChatMessageBarProps {
+export type MessagePayload = {
+  message: string
+};
+
+type ChatMessageBarProps = {
   placeholder?: string
-}
+  onSubmit: (message: MessagePayload) => void
+};
 
 export default class ChatMessageBar extends Block {
   static className = 'ChatMessageBar';
-  constructor(props: ChatMessageBarProps) {
+  constructor({ onSubmit, ...props }: ChatMessageBarProps) {
     super({
       ...props,
       styles,
       attachment,
-      onSubmit: (data: PreparedFormData) => {
-        console.log(data);
+      onSubmit: (chatMessage: MessagePayload) => {
+        onSubmit(chatMessage);
       },
     });
   }

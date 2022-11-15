@@ -44,6 +44,15 @@ class ChatsController {
     }
     throw new Error(`Непредвиденная ошибка, код ошибки${data.status}. Обратитесь в службу поддержки`);
   }
+
+  async getChatUnreadAmount(chatId: number) {
+    const data = await ChatsApi.getChatUnreadAmount(chatId);
+    const response = JSON.parse(data.response);
+    if (data.status >= 200 && data.status < 400) {
+      return response.unread_count;
+    }
+    throw new Error(`Непредвиденная ошибка, код ошибки${data.status}. Обратитесь в службу поддержки`);
+  }
 }
 
 export default new ChatsController();

@@ -10,7 +10,7 @@ import { ChatTab } from '../../../utils/Api/Chats/Types';
 
 import informer from '../../../utils/Core/informer';
 
-import { Thunks } from '../../../utils/Store/Store';
+import { Selectors, Thunks } from '../../../utils/Store/Store';
 
 import tabTmpl from './Tab.tmpl';
 import * as styles from './Tab.module.scss';
@@ -30,11 +30,17 @@ export default class Tab extends Block {
       time = new Date(data.lastMessage.time);
       formattedTime = timeFormat(time);
     }
+    const currentUser = Selectors.user();
+    let who;
+    if (currentUser && data.lastMessage && data.lastMessage.user) {
+      who = currentUser.email === data.lastMessage.user.email ? 'Вы' : data.lastMessage.user.name;
+    }
 
     const dataCopy = {
       ...data,
       lastMessage: data.lastMessage && time ? {
         ...data.lastMessage,
+        content: data.lastMessage.content,
         time: {
           formatted: formattedTime,
           datetime: time.toISOString(),
@@ -44,6 +50,7 @@ export default class Tab extends Block {
 
     super({
       ...props,
+      who,
       data: dataCopy,
       styles,
       onMoveToChat: async () => {

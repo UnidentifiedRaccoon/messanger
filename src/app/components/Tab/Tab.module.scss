@@ -34,9 +34,13 @@
   -webkit-box-orient: vertical;
 }
 
+.who {
+  color: var(--color-action);
+  opacity: 0.5;
+}
+
 .last-message {
   /* stylelint-disable-line */
-
   display: -webkit-box;
   overflow: hidden;
   font-size: var(--fs-text);
@@ -60,7 +64,7 @@
   color: var(--color-text-minor);
 }
 
-.unread {
+.unread-count {
   display: flex;
   align-items: center;
   justify-content: center;

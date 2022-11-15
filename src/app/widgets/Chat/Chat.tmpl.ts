@@ -14,7 +14,7 @@ const chatTmpl = (isChatOwner: boolean) => `
                 {{/if}}
             </header>
             {{{ ChatContent data=activeChat staticData=staticData }}}
-            {{{ ChatMessageBar staticData=staticData }}}
+            {{{ ChatMessageBar staticData=staticData onSubmit=onMessageSend }}}
         {{else}} 
             {{{ ChatEmpty text=staticData.emptyChat }}}
         {{/if}}

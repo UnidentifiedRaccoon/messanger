@@ -43,7 +43,11 @@ class ChatsApi {
   }
 
   getChatToken(id: number) {
-    return transport.post(`/token${id}`, {});
+    return transport.post(`/token/${id}`, {});
+  }
+
+  getChatUnreadAmount(id: number) {
+    return transport.get(`/new/${id}`, {});
   }
 }
 

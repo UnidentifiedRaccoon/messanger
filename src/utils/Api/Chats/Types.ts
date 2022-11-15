@@ -9,7 +9,7 @@ export type ChatTab = {
   lastMessage: {
     user?: Partial<User>,
     time?: string,
-    content?: string
+    content?: { message: string }
   }
 };
 
@@ -22,7 +22,7 @@ export type ChatTabDTO = {
   last_message: {
     user?: Partial<UserDTO>,
     time?: string,
-    content?: string
+    content?: { message: string }
   }
 };
 

@@ -48,6 +48,10 @@ function isArrayOrObject(value: unknown): value is PlainObject {
 
 export function isEqual(lhs: PlainObject, rhs: PlainObject) {
   // Сравнение количества ключей объектов и массивов
+  if (lhs===null && rhs===null) {
+    return true
+  }
+
   if (
      (lhs===null && rhs!==null)
     || (lhs!==null && rhs===null)

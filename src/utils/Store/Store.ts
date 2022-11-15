@@ -13,7 +13,12 @@ export type StoreState = {
   user: Record<string, any> | null
   chats: Record<string, any> | null
   activeChat: Record<string, any> | null
-  activeChatToken: string
+  messagesSocket: {
+    userId: number
+    chatId: number
+    unread: number
+    token: string
+  } | null
   isLoading: boolean
   authStatus: boolean
 };
@@ -67,9 +72,9 @@ const defaultState: AppState = {
     user: null,
     chats: null,
     activeChat: null,
+    messagesSocket: null,
     isLoading: true,
     authStatus: false,
-    activeChatToken: '',
   },
 };
 
@@ -81,12 +86,11 @@ const selectorAuthStatus = () => store.getState().store.authStatus;
 const selectorUser = () => store.getState().store.user;
 const selectorChats = () => store.getState().store.chats;
 const selectorActiveChat = () => store.getState().store.activeChat;
-const selectorToken = () => store.getState().store.activeChat;
 
 export const Selectors = {
   authStatus: selectorAuthStatus,
+  activeChat: selectorActiveChat,
   user: selectorUser,
-  token: selectorToken,
 };
 
 // Actions
@@ -129,11 +133,15 @@ const setActiveChat = store.actionCreator((activeChat) => {
   };
 });
 
-const setToken = store.actionCreator((token: string) => {
-  const path = 'store.activeChatToken';
+const setMessagesSocket = store.actionCreator(({ token, unread }) => {
+  const userId = Selectors.user()?.id;
+  const chatId = Selectors.activeChat()?.id;
+  const path = 'store.messagesSocket';
   return {
     path,
-    updateStateWith: objectFromPath(path, token),
+    updateStateWith: objectFromPath(path, {
+      token, unread, userId, chatId,
+    }),
   };
 });
 
@@ -141,7 +149,7 @@ export const Actions = {
   setUser,
   setChats,
   setActiveChat,
-  setToken,
+  setMessagesSocket,
 };
 
 // Thunks
@@ -157,15 +165,15 @@ const loginThunk = async (data: LoginForm) => {
 };
 
 const revalidateUser = async () => {
-  try {
-    let user = JSON.parse(localStorage.getItem('user')!);
-    store.dispatch(Actions.setUser(user));
-    user = await UserController.getUser();
-    localStorage.setItem('user', JSON.stringify(user));
-    store.dispatch(Actions.setUser(user));
-  } catch (err: any) {
-    throw new Error(err.message);
-  }
+  // try {
+  let user = JSON.parse(localStorage.getItem('user')!);
+  store.dispatch(Actions.setUser(user));
+  user = await UserController.getUser();
+  localStorage.setItem('user', JSON.stringify(user));
+  store.dispatch(Actions.setUser(user));
+  // } catch (err: any) {
+  //   throw new Error(err.message);
+  // }
 };
 
 const logoutThunk = async () => {
@@ -217,18 +225,22 @@ const getChats = async () => {
   }
 };
 
-const getChat = async (id: number) => {
+const getChat = async (chatId: number) => {
   try {
     const chats = selectorChats();
     if (chats) {
       // Получить метаинформацию чата
-      const activeChat = chats.find((chat: ChatTab) => chat.id === id);
-      // Получить токен
-
-      // Подключиться по wss
-
+      const activeChat = chats.find((chat: ChatTab) => chat.id === chatId);
       // Выполнить диспатч, чтобы отобразить чат
       store.dispatch(setActiveChat(activeChat));
+      // Получить токен и непрочитанные
+      const { token } = await ChatsController.getChatToken(activeChat.id);
+      const unread = await ChatsController.getChatUnreadAmount(chatId);
+
+      // Выполнить диспатч метаинформации необходимой для wss соединения
+      store.dispatch(
+        Actions.setMessagesSocket({ token, unread }),
+      );
     }
   } catch (err: any) {
     throw new Error(err.message);
@@ -249,8 +261,6 @@ const addUserToChat = async (userId: number) => {
     const activeChat = selectorActiveChat();
     if (activeChat) {
       await ChatsController.addUserToChat(activeChat.id, userId);
-    } else {
-      throw new Error('Добавления пользователя при не активном чате');
     }
   } catch (err: any) {
     throw new Error(err.message);
@@ -262,20 +272,6 @@ const deleteChat = async (id: number) => {
     store.dispatch(Actions.setActiveChat(null));
     await ChatsController.deleteChat(id);
     getChats();
-  } catch (err: any) {
-    throw new Error(err.message);
-  }
-};
-
-const getChatToken = async () => {
-  try {
-    const activeChat = selectorActiveChat();
-    if (activeChat) {
-      const token = await ChatsController.getChatToken(activeChat.id);
-      store.dispatch(Actions.setToken(token));
-    } else {
-      throw new Error('Подключение к неактивному чату');
-    }
   } catch (err: any) {
     throw new Error(err.message);
   }
@@ -293,5 +289,4 @@ export const Thunks = {
   addChat,
   deleteChat,
   addUserToChat,
-  getChatToken,
 };
