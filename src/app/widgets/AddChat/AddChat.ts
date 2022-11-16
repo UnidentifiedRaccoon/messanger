@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import { ChatSettings } from '../../../utils/Api/Chats/Types';
 
@@ -13,7 +13,7 @@ interface AddChatProps {
   staticData: Record<string, any>
 }
 
-export default class AddChat extends Block {
+export default class AddChat extends Block<BaseProps> {
   static className = 'AddChat';
   constructor(props: AddChatProps) {
     super({

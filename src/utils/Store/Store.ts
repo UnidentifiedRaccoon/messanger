@@ -165,11 +165,15 @@ const loginThunk = async (data: LoginForm) => {
 };
 
 const revalidateUser = async () => {
-  let user = JSON.parse(localStorage.getItem('user')!);
-  store.dispatch(Actions.setUser(user));
-  user = await UserController.getUser();
-  localStorage.setItem('user', JSON.stringify(user));
-  store.dispatch(Actions.setUser(user));
+  try {
+    let user = JSON.parse(localStorage.getItem('user')!);
+    store.dispatch(Actions.setUser(user));
+    user = await UserController.getUser();
+    localStorage.setItem('user', JSON.stringify(user));
+    store.dispatch(Actions.setUser(user));
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
 };
 
 const logoutThunk = async () => {

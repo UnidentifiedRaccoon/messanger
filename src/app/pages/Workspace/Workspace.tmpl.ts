@@ -1,6 +1,6 @@
 // language=hbs
 const workspaceTmpl = () => `
-    <div class={{styles.workspace}}>
+    <main class={{styles.workspace}}>
         <h1 class="visually-hidden">
             {{staticData.title}}
         </h1>
@@ -10,7 +10,7 @@ const workspaceTmpl = () => `
         <div class={{styles.chat}}>
             {{{ Chat staticData=staticData.chat }}}
         </div>
-    </div>
+    </main>
   `;
 
 export default workspaceTmpl;

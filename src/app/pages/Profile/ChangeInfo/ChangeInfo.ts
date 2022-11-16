@@ -1,7 +1,7 @@
 import * as styles from '../Profile.module.scss';
 import { PreparedFormErrors } from '../../../../typings/commonTypes';
 
-import Block from '../../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../../utils/Core/Block';
 
 import PathRouter from '../../../../utils/Router/PathRouter';
 
@@ -20,7 +20,7 @@ type ChangeInfoProps = {
   user: User
 };
 
-class ChangeInfo extends Block {
+class ChangeInfo extends Block<BaseProps> {
   private errors: PreparedFormErrors;
   constructor(rawProps: ChangeInfoProps) {
     super({

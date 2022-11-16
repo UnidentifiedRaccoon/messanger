@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import validate from '../../../utils/Form/validator';
 
@@ -21,7 +21,7 @@ type ControlledInputProps = {
   onFocus?: (name: string, value: string, errorMessage: string) => void
 };
 
-export default class ControlledInput extends Block {
+export default class ControlledInput extends Block<BaseProps> {
   static className = 'ControlledInput';
   getProps() { return this.props; }
   getRefs() { return this.refs; }

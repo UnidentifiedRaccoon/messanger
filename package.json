@@ -12,13 +12,13 @@
   },
   "scripts": {
     "start": "npm run build && node index.js",
-    "dev": "npm run rm:dist && parcel",
+    "dev": "npm run rm:dist && parcel --port 4000 --open",
     "build": "npm run rm:dist && parcel build --no-source-maps",
     "test": "./node_modules/.bin/mocha",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "eslint": "eslint ./src/**/*{.js,.ts}",
     "fix": "npm run eslint:fix && npm run lint:fix",
-    "start_local": "npm run build && node -r dotenv/config index.js",
+    "start_local": "node -r dotenv/config scripts/open.js && node -r dotenv/config index.js",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",
     "eslint:fix": "eslint ./src/**/*{.js,.ts} --fix",
     "rm:dist": "rimraf dist"
@@ -50,6 +50,7 @@
     "gh-pages": "4.0.0",
     "husky": "8.0.1",
     "mocha": "10.1.0",
+    "open": "8.4.0",
     "parcel": "2.7.0",
     "parcel-reporter-static-files-copy": "1.4.0",
     "postcss": "8.4.16",

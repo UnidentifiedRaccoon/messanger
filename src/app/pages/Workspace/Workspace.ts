@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 import informer from '../../../utils/Core/informer';
 
 import { Thunks } from '../../../utils/Store/Store';
@@ -13,7 +13,7 @@ type WorkspaceProps = {
   chats: ChatTab[]
 };
 
-class Workspace extends Block {
+class Workspace extends Block<BaseProps> {
   constructor({ chats, ...rawProps }: WorkspaceProps) {
     super({
       ...rawProps,

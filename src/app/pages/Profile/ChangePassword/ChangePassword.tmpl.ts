@@ -1,6 +1,6 @@
 // language=hbs
 const changePasswordTmpl = () => `
-    <div class="{{styles.profile}} {{styles.change-password}}">
+    <main class="{{styles.profile}} {{styles.change-password}}">
         <h1 class="visually-hidden">
             {{staticData.titleChangePassword}}
         </h1>
@@ -50,7 +50,7 @@ const changePasswordTmpl = () => `
                 {{/Form}}
             </div>
         </div>
-    </div>
+    </main>
 `;
 
 export default changePasswordTmpl;

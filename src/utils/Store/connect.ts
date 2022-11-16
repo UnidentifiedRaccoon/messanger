@@ -1,10 +1,10 @@
 import { Indexed, isEqual } from '../common/objectHelpers';
-import Block from '../Core/Block';
+import Block, { BaseProps } from '../Core/Block';
 
 import store, { AppState, Store } from './Store';
 
 export function connect(mapStateToProps: (state: Indexed) => Indexed) {
-  return (Component: typeof Block) => class extends Component {
+  return (Component: typeof Block<BaseProps>) => class extends Component {
     private componentState: Indexed;
     constructor(props: any) {
       const state = mapStateToProps(store.getState());

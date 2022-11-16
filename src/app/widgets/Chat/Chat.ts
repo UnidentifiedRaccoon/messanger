@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import { withActiveChat, withMessagesSocketMeta } from '../../../utils/Store/connect';
 
@@ -32,7 +32,7 @@ type ChatProps = {
   }
 };
 
-class Chat extends Block {
+class Chat extends Block<BaseProps> {
   static className = 'Chat';
   private messagesSocket: MessagesSocket | null = null;
   constructor(props: ChatProps) {

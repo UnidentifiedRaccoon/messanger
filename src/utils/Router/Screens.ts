@@ -6,13 +6,13 @@ import Workspace from '../../app/pages/Workspace';
 import Profile from '../../app/pages/Profile';
 import ChangeInfo from '../../app/pages/Profile/ChangeInfo';
 import ChangePassword from '../../app/pages/Profile/ChangePassword';
-import Block from '../Core/Block';
+import Block, { BaseProps } from '../Core/Block';
 
 import { merge } from '../common/objectHelpers';
 
 import { Routes, ScreenNames } from './Routes';
 
-export type Screen = { path: string, Block: typeof Block, shouldAuthorized: boolean };
+export type Screen = { path: string, Block: typeof Block<BaseProps>, shouldAuthorized: boolean };
 
 export const Screens: Record<ScreenNames, Screen> = merge({
   ClientError: {

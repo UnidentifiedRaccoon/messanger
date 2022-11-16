@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import PathRouter from '../../../utils/Router/PathRouter';
 import { Routes } from '../../../utils/Router/Routes';
@@ -10,7 +10,7 @@ interface RequestErrorProps {
   staticData: Record<string, any>;
 }
 
-export default class RequestError extends Block {
+export default class RequestError extends Block<BaseProps> {
   static className = 'RequestError';
   constructor(props: RequestErrorProps) {
     super({

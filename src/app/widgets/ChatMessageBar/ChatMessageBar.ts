@@ -1,6 +1,6 @@
 import attachment from 'bundle-text:./attachment.svg';
 
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import chatMessageBarTmpl from './ChatMessageBar.tmpl';
 import * as styles from './ChatMessageBar.module.scss';
@@ -14,7 +14,7 @@ type ChatMessageBarProps = {
   onSubmit: (message: MessagePayload) => void
 };
 
-export default class ChatMessageBar extends Block {
+export default class ChatMessageBar extends Block<BaseProps> {
   static className = 'ChatMessageBar';
   constructor({ onSubmit, ...props }: ChatMessageBarProps) {
     super({

@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../../utils/Core/Block';
 
 import inputTmpl from './Input.tmpl';
 
@@ -14,7 +14,7 @@ interface InputProps {
   onBlur?: (e: Event) => void
 }
 
-export default class Input extends Block {
+export default class Input extends Block<BaseProps> {
   static className = 'Input';
   constructor({
     onInput, onFocus, onBlur, type, ...props

@@ -28,9 +28,14 @@ class MessagesSocket {
     }, 10000);
 
     this.socket.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type !== 'pong') {
-        this.listeners.forEach((cb) => cb(data));
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type !== 'pong') {
+          this.listeners.forEach((cb) => cb(data));
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
       }
     });
 

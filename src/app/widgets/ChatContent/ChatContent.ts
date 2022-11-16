@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import { isEqual } from '../../../utils/common/objectHelpers';
 
@@ -16,7 +16,7 @@ interface ChatContentProps {
   message: Record<string, any>
 }
 
-export default class ChatContent extends Block {
+export default class ChatContent extends Block<BaseProps> {
   static className = 'ChatContent';
   private getUnread = false;
   constructor(props: ChatContentProps) {

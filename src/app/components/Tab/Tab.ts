@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import { timeFormat } from '../../../utils/common/time';
 
@@ -21,7 +21,7 @@ interface TabProps {
   outerStyles?: Record<string, string>
 }
 
-export default class Tab extends Block {
+export default class Tab extends Block<BaseProps> {
   static className = 'Tab';
   constructor({ data, ...props }: TabProps) {
     let time;

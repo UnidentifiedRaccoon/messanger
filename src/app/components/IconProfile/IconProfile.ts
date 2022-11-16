@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import iconProfileTmpl from './IconProfile.tmpl';
 import profileIcon from './profile-icon.svg';
@@ -9,7 +9,7 @@ type IconProfileProps = {
   icon?: string
 };
 
-export default class IconProfile extends Block {
+export default class IconProfile extends Block<BaseProps> {
   static className = 'IconProfile';
   constructor({ icon, ...props }: IconProfileProps) {
     super({

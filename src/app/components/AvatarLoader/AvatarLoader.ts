@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import avatarLoaderTmpl from './AvatarLoader.tmpl';
 import * as styles from './AvatarLoader.module.scss';
@@ -24,7 +24,7 @@ interface AvatarLoaderProps {
   onClick: (formData: FormData) => void
 }
 
-export default class AvatarLoader extends Block {
+export default class AvatarLoader extends Block<BaseProps> {
   static className = 'AvatarLoader';
 
   constructor({ onClick, ...props }: AvatarLoaderProps) {

@@ -1,11 +1,11 @@
 // language=hbs
 const clientErrorTmpl = () => `
-    <div>
+    <main>
         <h1 class="visually-hidden">
             {{staticData.title}}
         </h1>
         {{{ RequestError staticData=staticData }}}
-    </div>
+      </main>
   `;
 
 export default clientErrorTmpl;

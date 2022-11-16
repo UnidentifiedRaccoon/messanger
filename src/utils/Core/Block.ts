@@ -6,9 +6,14 @@ import { isEqual } from '../common/objectHelpers';
 
 import EventBus from './EventBus';
 
-type Children = Record<string, Block>;
+export type BaseProps = {
+  events?: Record<string, (...args: any[]) => void>,
+  [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
+};
 
-export default class Block {
+type Children = Record<string, Block<BaseProps>>;
+
+export default class Block<Props extends BaseProps> {
   static className: string = 'Block';
 
   static EVENTS = {
@@ -24,18 +29,15 @@ export default class Block {
   // Так и задумано, #element инициализируется в результате вызова render колбека
   // А вызов render колбека как раз и тригерится в конструкторе
   #element: HTMLElement;
-  protected children: Record<string, Block> = {};
-  protected propChildren: Record<string, Block>;
-  protected props: {
-    events: Record<string, () => void>,
-    [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
-  };
+  protected children: Record<string, Block<BaseProps>> = {};
+  protected propChildren: Record<string, Block<BaseProps>>;
+  protected props: Props;
 
-  protected refs: { [key: string]: Block } = {};
+  protected refs: { [key: string]: Block<BaseProps> } = {};
 
   #eventBus: () => EventBus<typeof Block.EVENTS>;
 
-  static extractChildren(rawProps: any) {
+  extractChildren(rawProps: Props) {
     const children: Children = {};
     const props: any = {};
     Object.entries(rawProps).forEach(([key, value]) => {
@@ -48,9 +50,9 @@ export default class Block {
     return { props, children };
   }
 
-  constructor(rawProps = {}) {
-    const { props, children = {} } = Block.extractChildren(rawProps);
-    this.props = this.#makePropsProxy(props);
+  constructor(rawProps: Props) {
+    const { props, children = {} } = this.extractChildren(rawProps);
+    this.props = this.#makePropsProxy(props) as Props;
     this.propChildren = children;
     const eventBus = new EventBus<typeof Block.EVENTS>();
     this.#eventBus = () => eventBus;
@@ -94,12 +96,12 @@ export default class Block {
    *     This action is emitted when
    *     someone trying to change <code style="color: #007ba7">props</code> and
    *     <code style="color: #007ba7">proxy</code> catch it */
-  #componentDidUpdate(oldProps: any, newProps: any) {
+  #componentDidUpdate(oldProps: Props, newProps: Props) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) this.#eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+  protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     return !isEqual(oldProps, newProps);
   }
 
@@ -124,11 +126,12 @@ export default class Block {
       // По непонятной причине this.#element иногда содержит не валидную ссылку
       // Поэтому замена вида  this.#element.replaceWith(newElem); становится невозможной
       const classElem = Array.from(this.#element.classList.entries());
-      const query = document.querySelector(`.${classElem[classElem.length - 1][1]}`);
-      if (query) {
-        query.replaceWith(newElem);
+      const query = Array.from(document.querySelectorAll(`.${classElem[classElem.length - 1][1]}`));
+      if (query.length === 1) {
+        query[0].replaceWith(newElem);
       } else {
-        throw new Error('Could not find element for replaceWith()');
+        this.#element.replaceWith(newElem);
+        // throw new Error('Could not find element for replaceWith()');
       }
     }
     this.#element = newElem;
@@ -172,14 +175,14 @@ export default class Block {
   /** <code style="color: #952dd2">SET PROPS WITH PROXY</code> -
    * <code style="color: #007ba7">proxy</code> is used in order to get control over setup new
    * <code style="color: #007ba7">props</code>,  */
-  setProps = (newProps: any) => {
+  setProps = (newProps: Partial<Props>) => {
     if (!newProps) {
       return;
     }
     Object.assign(this.props, newProps);
   };
 
-  #makePropsProxy(props: any): any {
+  #makePropsProxy(props: Props): Record<string, unknown> {
     const self = this;
     return new Proxy(props, {
       get(target: Record<string, unknown>, prop: string, receiver: any) {

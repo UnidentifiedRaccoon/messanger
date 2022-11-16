@@ -1,6 +1,6 @@
 // language=hbs
 const changeInfoTmpl = () => `
-    <div class="{{styles.profile}} {{styles.change-info}}">
+    <main class="{{styles.profile}} {{styles.change-info}}">
         <h1 class="visually-hidden">
             {{staticData.titleChangeInfo}}
         </h1>
@@ -83,7 +83,7 @@ const changeInfoTmpl = () => `
                 {{/Form}}
             </div>
         </div>
-    </div>
+    </main>
 `;
 
 export default changeInfoTmpl;

@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import { Thunks } from '../../../utils/Store/Store';
 
@@ -11,7 +11,7 @@ interface AddUserToChatProps {
   staticData: Record<string, any>
 }
 
-export default class AddUserToChat extends Block {
+export default class AddUserToChat extends Block<BaseProps> {
   static className = 'AddUserToChat';
   constructor(props: AddUserToChatProps) {
     super({

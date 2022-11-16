@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import PathRouter from '../../../utils/Router/PathRouter';
 
@@ -20,7 +20,7 @@ type ProfileProps = {
   user: User
 };
 
-class Profile extends Block {
+class Profile extends Block<BaseProps> {
   constructor(rawProps: ProfileProps) {
     super({
       ...rawProps,

@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import bubbleTmpl from './Bubble.tmpl';
 import * as styles from './Bubble.module.scss';
@@ -8,7 +8,7 @@ type BubbleProps = {
   time?: { datetime: string, formatted: string }
 };
 
-export default class Bubble extends Block {
+export default class Bubble extends Block<BaseProps> {
   static className = 'Bubble';
   constructor(props: BubbleProps) {
     super({

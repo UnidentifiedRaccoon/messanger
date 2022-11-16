@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import chatTabsTmpl from './ChatTabs.tmpl';
 import * as styles from './ChatTabs.module.scss';
@@ -7,7 +7,7 @@ interface ChatTabsProps {
   data: ChatTabs[]
 }
 
-export default class ChatTabs extends Block {
+export default class ChatTabs extends Block<BaseProps> {
   static className = 'ChatTabs';
   constructor(rawProps: ChatTabsProps) {
     super({ ...rawProps, styles });

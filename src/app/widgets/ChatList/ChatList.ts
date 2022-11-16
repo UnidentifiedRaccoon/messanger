@@ -1,6 +1,6 @@
 import next from 'bundle-text:./next.svg';
 
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import PathRouter from '../../../utils/Router/PathRouter';
 
@@ -20,7 +20,7 @@ interface ChatListProps {
   chats: ChatTab[]
 }
 
-export default class ChatList extends Block {
+export default class ChatList extends Block<BaseProps> {
   static className = 'ChatList';
 
   constructor(props: ChatListProps) {

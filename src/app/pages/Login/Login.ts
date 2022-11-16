@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import { PreparedFormErrors } from '../../../typings/commonTypes';
 
@@ -16,7 +16,7 @@ import staticData from './Login.ru.json';
 import loginTmpl from './Login.tmpl';
 import * as styles from './Login.module.scss';
 
-export default class Login extends Block {
+export default class Login extends Block<BaseProps> {
   private errors: PreparedFormErrors;
   constructor(rawProps: any) {
     super({

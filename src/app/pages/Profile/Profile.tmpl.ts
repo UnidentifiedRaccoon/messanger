@@ -1,6 +1,6 @@
 // language=hbs
 const profileTmpl = () => `
-    <div class={{styles.profile}}>
+    <main class={{styles.profile}}>
         <h1 class="visually-hidden">
             {{staticData.titleProfile}}
         </h1>
@@ -96,7 +96,7 @@ const profileTmpl = () => `
                 {{/Link}}
             </div>
         </div>
-    </div>
+    </main>
 `;
 
 export default profileTmpl;

@@ -1,9 +1,11 @@
-import HTTPTransport from '../../Core/HTTPTransport';
+import YandexTransport from '../transports';
+
+import Headers from '../headers';
 
 import { Passwords, UserDTO } from './Types';
 
-const transportAuth = new HTTPTransport('https://ya-praktikum.tech/api/v2/auth');
-const transportChange = new HTTPTransport('https://ya-praktikum.tech/api/v2/user');
+const transportAuth = new YandexTransport('/auth');
+const transportChange = new YandexTransport('/user');
 
 class UserApi {
   getUser() {
@@ -21,9 +23,7 @@ class UserApi {
         phone: data.phone,
         avatar: data.avatar,
       }),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 
@@ -39,9 +39,7 @@ class UserApi {
         oldPassword: data.oldPassword,
         newPassword: data.newPassword,
       }),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 }

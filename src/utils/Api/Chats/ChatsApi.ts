@@ -1,21 +1,24 @@
-import HTTPTransport from '../../Core/HTTPTransport';
 import queryStringify from '../../common/queryStringify';
+
+import YandexTransport from '../transports';
+
+import Headers from '../headers';
 
 import { ChatSettings, ChatsQuery } from './Types';
 
-const transport = new HTTPTransport('https://ya-praktikum.tech/api/v2/chats');
+const transport = new YandexTransport('/chats');
 
 class ChatsApi {
   getChats(queryData: ChatsQuery) {
-    return transport.get('', { data: queryStringify(queryData) });
+    return transport.get('', {
+      data: queryStringify(queryData),
+    });
   }
 
   addChat(settings: ChatSettings) {
     return transport.post('', {
       data: JSON.stringify(settings),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 
@@ -27,18 +30,14 @@ class ChatsApi {
         ],
         chatId,
       }),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 
   deleteChat(id: number) {
     return transport.delete('', {
       data: JSON.stringify({ chatId: id }),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 

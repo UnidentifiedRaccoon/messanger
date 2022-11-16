@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import FileLoaderTmpl from './FileLoader.tmpl';
 import * as styles from './FileLoader.module.scss';
@@ -8,7 +8,7 @@ interface FileLoaderProps {
   name: string
 }
 
-export default class FileLoader extends Block {
+export default class FileLoader extends Block<BaseProps> {
   static className = 'FileLoader';
 
   constructor({ ...props }: FileLoaderProps) {

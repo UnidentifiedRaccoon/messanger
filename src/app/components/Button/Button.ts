@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import buttonTmpl from './Button.tmpl';
 import * as styles from './Button.module.scss';
@@ -9,7 +9,7 @@ interface ButtonProps {
   onClick?: (e: Event) => void
 }
 
-export default class Button extends Block {
+export default class Button extends Block<BaseProps> {
   static className = 'Button';
   constructor(props: ButtonProps) {
     super({

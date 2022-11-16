@@ -8,6 +8,7 @@ import store, {
 import ClientError from './app/pages/ClientError';
 import { Routes } from './utils/Router/Routes';
 import xor from './utils/common/xor';
+import informer from './utils/Core/informer';
 
 const updatePage = (event: Event) => {
   if (event.target instanceof HTMLAnchorElement) {
@@ -47,7 +48,7 @@ const initRouter = () => {
 
 window.addEventListener('DOMContentLoaded', async () => {
   registrar();
-  Thunks.revalidateUser();
+  Thunks.revalidateUser().then().catch((err) => informer(err.message));
   initRouter();
   const links = [...document.querySelectorAll('.header__nav a[href]')];
   links.forEach((link) => { link.addEventListener('click', updatePage); });

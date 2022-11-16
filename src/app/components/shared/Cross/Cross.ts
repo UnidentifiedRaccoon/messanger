@@ -1,6 +1,6 @@
 import cross from 'bundle-text:./cross.svg';
 
-import Block from '../../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../../utils/Core/Block';
 
 import crossTmpl from './Cross.tmpl';
 import * as styles from './Cross.module.scss';
@@ -12,7 +12,7 @@ interface CrossProps {
   onClick: (e: Event) => void
 }
 
-export default class Cross extends Block {
+export default class Cross extends Block<BaseProps> {
   static className = 'Cross';
   constructor(props: CrossProps) {
     let typeMode;

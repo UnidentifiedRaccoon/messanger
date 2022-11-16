@@ -1,6 +1,6 @@
 import arrow from 'bundle-text:./arrow.svg';
 
-import Block from '../../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../../utils/Core/Block';
 
 import arrowTmpl from './Arrow.tmpl';
 import * as styles from './Arrow.module.scss';
@@ -11,7 +11,7 @@ interface ArrowProps {
   outerStyles?: Record<string, string>
 }
 
-export default class Arrow extends Block {
+export default class Arrow extends Block<BaseProps> {
   static className = 'Arrow';
   constructor(props: ArrowProps) {
     let dirMode;

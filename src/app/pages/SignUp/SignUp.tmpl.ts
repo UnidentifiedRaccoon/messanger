@@ -1,6 +1,6 @@
 // language=hbs
 const signUpTmpl = () => `
-    <div class="{{styles.signup}}">
+    <main class="{{styles.signup}}">
         {{# Overlay}}
             <h1 class="title {{styles.title}}">
                 {{staticData.title}}
@@ -75,7 +75,7 @@ const signUpTmpl = () => `
                 {{staticData.loginLink}}
             {{/Link}}
         {{/Overlay}}
-    </div>
+    </main>
   `;
 
 export default signUpTmpl;

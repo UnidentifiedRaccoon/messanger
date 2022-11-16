@@ -1,11 +1,11 @@
 import Handlebars, { HelperOptions } from 'handlebars';
 
-import Block from './Block';
+import Block, { BaseProps } from './Block';
 
 // function allows register hbs helpers and use them in template
 // We want to get "controlled templates" which we can reactively rerender when new data passed in
 // data.root - object which passed into template function in component's parent compile method.
-export default function registerComponents(Component: typeof Block) {
+export default function registerComponents(Component: typeof Block<BaseProps>) {
   Handlebars.registerHelper(Component.className, ({ hash: { ref, ...hash }, data, fn }: HelperOptions) => {
     const { children, refs } = data.root;
     const component = new Component(hash);

@@ -19,28 +19,27 @@ function setHeaders(xhr: XMLHttpRequest, headers: Record<string, string>): void 
   Object.entries(headers).forEach(([key, val]) => xhr.setRequestHeader(key, val));
 }
 
+type HTTPMethod = (url: string, options: Partial<Options>) => Promise<XMLHttpRequest>;
+
 export default class HTTPTransport {
   private baseUrl: string;
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl;
   }
 
-  get(url: string, options: Partial<Options>): Promise<XMLHttpRequest> {
-    const query = options.data ? options.data : '';
+  get: HTTPMethod = (url, options) => {
+    const query = options.data && typeof options.data === 'string' ? options.data : '';
     return this.request(`${this.baseUrl + url}?${query}`, { ...options, method: METHODS.GET }, options.timeout);
-  }
+  };
 
-  put(url: string, options: Partial<Options>) {
-    return this.request(this.baseUrl + url, { ...options, method: METHODS.PUT }, options.timeout);
-  }
+  put: HTTPMethod = (url, options) => this
+    .request(this.baseUrl + url, { ...options, method: METHODS.PUT }, options.timeout);
 
-  post(url: string, options: Partial<Options>) {
-    return this.request(this.baseUrl + url, { ...options, method: METHODS.POST }, options.timeout);
-  }
+  post: HTTPMethod = (url, options) => this
+    .request(this.baseUrl + url, { ...options, method: METHODS.POST }, options.timeout);
 
-  delete(url: string, options: Partial<Options>) {
-    return this.request(this.baseUrl + url, { ...options, method: METHODS.DELETE }, options.timeout);
-  }
+  delete: HTTPMethod = (url, options) => this
+    .request(this.baseUrl + url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> => {
     const { method, data, headers } = options;

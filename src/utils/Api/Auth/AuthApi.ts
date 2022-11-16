@@ -1,33 +1,29 @@
-import HTTPTransport from '../../Core/HTTPTransport';
+import YandexTransport from '../transports';
+
+import Headers from '../headers';
 
 import { LoginFormDTO, SignupFormDTO } from './Types';
 
-const transport = new HTTPTransport('https://ya-praktikum.tech/api/v2/auth');
+const transport = new YandexTransport('/auth');
 
 class AuthApi {
   signup(data: SignupFormDTO) {
     return transport.post('/signup', {
       data: JSON.stringify(data),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 
   login(data: LoginFormDTO) {
     return transport.post('/signin', {
       data: JSON.stringify(data),
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 
   logout() {
     return transport.post('/logout', {
-      headers: {
-        'Content-type': 'application/json; charset=utf-8',
-      },
+      headers: { ...Headers.json },
     });
   }
 }

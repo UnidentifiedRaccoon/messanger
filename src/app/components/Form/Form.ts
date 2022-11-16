@@ -1,6 +1,6 @@
 import { PreparedFormData } from '../../../typings/commonTypes';
 
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import { isEqual } from '../../../utils/common/objectHelpers';
 
@@ -15,7 +15,7 @@ interface FormProps {
   shouldReset?: boolean
 }
 
-export default class Form extends Block {
+export default class Form extends Block<BaseProps> {
   static className = 'Form';
 
   constructor({ onSubmit, shouldReset, ...props }: FormProps) {

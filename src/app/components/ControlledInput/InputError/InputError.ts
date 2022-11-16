@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../../utils/Core/Block';
 
 import inputErrorTmpl from './InputError.tmpl';
 
@@ -7,7 +7,7 @@ interface InputErrorProps {
   outerStyles?: Record<string, string>
 }
 
-export default class InputError extends Block {
+export default class InputError extends Block<BaseProps> {
   static className = 'InputError';
   constructor(props: InputErrorProps) {
     super(props);

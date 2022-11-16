@@ -1,4 +1,4 @@
-import Block from '../../../utils/Core/Block';
+import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import linkTmpl from './Link.tmpl';
 import * as styles from './Link.module.scss';
@@ -10,7 +10,7 @@ type LinkProps = {
   onClick?: () => void
 };
 
-export default class Link extends Block {
+export default class Link extends Block<BaseProps> {
   static className = 'Link';
   constructor(props: LinkProps) {
     super({
