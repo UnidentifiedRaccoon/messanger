@@ -1,0 +1,44 @@
+.label {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.tooltip {
+  padding: 0.25em 0;
+  margin-right: auto;
+  font-size: var(--fs-meaningful);
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 0.25em 0 0.3em;
+  font-family: inherit;
+  font-weight: inherit;
+  color: var(--color-text-minor);
+  text-align: right;
+  border: none;
+  border-radius: 5px;
+
+  &::placeholder {
+    color: var(--color-text-minor);
+    opacity: 1;
+  }
+
+  &:focus {
+    color: var(--color-text-major);
+    background-color: var(--color-focus-input-bg-light);
+    outline: none;
+  }
+}
+
+.error-message {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: var(--fs-tooltip);
+  color: var(--color-danger);
+  text-align: center;
+}

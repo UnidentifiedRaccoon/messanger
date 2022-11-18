@@ -1,0 +1,11 @@
+{
+  "titleChangeInfo": "Редактирование профиля",
+  "userName": "ИмяПользователя",
+  "email": "Почта",
+  "login": "Логин",
+  "name": "Имя",
+  "surname": "Фамилия",
+  "displayName": "Имя в чате",
+  "phone": "Телефон",
+  "submitBtn": "Сохранить"
+}

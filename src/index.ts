@@ -1,71 +1,55 @@
-import ClientError from 'pages/ClientError';
-import ServerError from 'pages/ServerError';
-import Login from 'pages/Login';
-import SignIn from 'pages/SignIn';
-import Workspace from 'pages/Workspace';
-import Profile from 'pages/Profile';
-import ChangeInfo from 'pages/Profile/ChangeInfo';
-import ChangePassword from 'pages/Profile/ChangePassword';
-
-import registrar from './utils/registrar';
-import renderDOM from './utils/renderDOM';
-
-const PAGES_PATHNAME = {
-  CLIENT_ERROR: '/4xx',
-  SERVER_ERROR: '/5xx',
-  SIGN_IN: '/sign_in',
-  LOGIN: '/login',
-  PROFILE: '/profile',
-  CHANGE_INFO: '/change_info',
-  CHANGE_PASSWORD: '/change_password',
-  WORKSPACE: '/workspace',
-};
+import registrar from './utils/Core/registrar';
+import PathRouter from './utils/Router/PathRouter';
+import renderDOM from './utils/Core/renderDOM';
+import { Screens } from './utils/Router/Screens';
+import store, {
+  AppState, Selectors, Store, Thunks,
+} from './utils/Store/Store';
+import ClientError from './app/pages/ClientError';
+import { Routes } from './utils/Router/Routes';
+import xor from './utils/common/xor';
+import informer from './utils/Core/informer';
 
 const updatePage = (event: Event) => {
   if (event.target instanceof HTMLAnchorElement) {
     event.preventDefault();
-    window.history.pushState(null, '', event.target.href);
+    PathRouter.go(event.target.href);
   }
 };
 
-const loadPage = () => {
-  const { pathname } = window.location;
-  switch (pathname) {
-    case PAGES_PATHNAME.CLIENT_ERROR:
-      renderDOM('#core-app', new ClientError({}));
-      break;
-    case PAGES_PATHNAME.SERVER_ERROR:
-      renderDOM('#core-app', new ServerError({}));
-      break;
-    case PAGES_PATHNAME.LOGIN:
-      renderDOM('#core-app', new Login({}));
-      break;
-    case PAGES_PATHNAME.SIGN_IN:
-      renderDOM('#core-app', new SignIn({}));
-      break;
-    case PAGES_PATHNAME.WORKSPACE:
-      renderDOM('#core-app', new Workspace({}));
-      break;
-    case PAGES_PATHNAME.CHANGE_INFO:
-      renderDOM('#core-app', new ChangeInfo({}));
-      break;
-    case PAGES_PATHNAME.CHANGE_PASSWORD:
-      renderDOM('#core-app', new ChangePassword({}));
-      break;
-    case PAGES_PATHNAME.PROFILE:
-      renderDOM('#core-app', new Profile({}));
-      break;
-    default: break;
-  }
+const initRouter = () => {
+  Object.values(Screens).forEach((screen) => {
+    PathRouter.use(screen.path, () => {
+      const isAuthorized = Boolean(Selectors.authStatus());
+      if (xor(isAuthorized, !screen.shouldAuthorized)) {
+        renderDOM('#core-app', new screen.Block({}));
+      } else if (!isAuthorized && Object.values(Routes).map((x) => x.path).includes(screen.path)) {
+        // Здесь должен быть именно компонент с ссылкой на вход
+        // Так как приложение может ожидать загрузки данных и как только они загрузятся, автоматически
+        // обновит страницу -> в force redirect to login нет смысла
+        renderDOM('#core-app', new ClientError({}));
+      } else if (screen.path === Routes.Login.path || screen.path === Routes.SignUp.path) {
+        // when user logged in, pages like signup/login will return 404 notFound
+        // with move back to app
+        PathRouter.go(Routes.Workspace.path);
+      } else {
+        renderDOM('#core-app', new ClientError({}));
+      }
+    });
+  });
+  const currentPath = window.location.pathname;
+  PathRouter.go(currentPath);
+  store.on(Store.EVENTS.CHANGE, (oldProps: AppState, newProps: AppState) => {
+    if (oldProps.store.authStatus !== newProps.store.authStatus) {
+      PathRouter.reload();
+    }
+  });
 };
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   registrar();
+  Thunks.revalidateUser().then().catch((err) => informer(err.message));
+  initRouter();
   const links = [...document.querySelectorAll('.header__nav a[href]')];
   links.forEach((link) => { link.addEventListener('click', updatePage); });
-  loadPage();
-});
-
-window.addEventListener('locationchange', () => {
-  loadPage();
 });

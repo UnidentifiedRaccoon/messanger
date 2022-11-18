@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Parcel hbs precompile</title>
     <script>
-        // This temporary used for simple routing
+        // This permanently used for simple routing (addEventListener('locationchange', () => {}))
         (function() {
             var pushState = history.pushState;
             var replaceState = history.replaceState;
@@ -26,25 +26,16 @@
             });
         })();
     </script>
-<!--    <script type="module" src="indexWIthRouting.js"></script>-->
     <script type="module" src="index.ts"></script>
     <link rel="stylesheet" href="index.scss">
 </head>
 <body>
 <div>
-    <header>
-        <nav id="header-nav" class="header__nav">
-            <a href="./4xx">4xx</a>
-            <a href="./5xx">5xx</a>
-            <a href="./sign_in">sign_in</a>
-            <a href="./login">login</a>
-            <a href="./profile">profile</a>
-            <a href="./workspace">workspace</a>
-        </nav>
-    </header>
-<!--            <main id="app">-->
-<!--            </main>-->
-    <div id="core-app"></div>
+    <div id="informer"></div>
+    <div id="modal"></div>
+    <div id="core-app">
+
+    </div>
 
 </div>
 </body>

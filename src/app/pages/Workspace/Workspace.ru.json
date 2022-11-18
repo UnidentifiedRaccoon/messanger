@@ -1,0 +1,29 @@
+{
+  "title": "Рабочая область",
+  "chatList": {
+    "title": "Список чатов",
+    "addChatBtn": "Добавить чат",
+    "profileLink": "Профиль",
+    "searchPlaceholder": "Поиск",
+    "emptyChatTabs": "Список чатов пуст",
+    "addChat": {
+      "title": "Добавление чата",
+      "submitBtn": "Добавить",
+      "placeholder": "Название чата"
+    }
+  },
+  "chat": {
+    "title": "Чат",
+    "inputFormTitle": "Форма для создания и отправки сообщения",
+    "contentTitle": "Сообщения",
+    "messagePlaceholder": "Сообщение",
+    "submitBtn": "Отправить",
+    "emptyChat": "Выберите чат чтобы отправить сообщение",
+    "newSeparator": "Новые сообщения",
+    "addUserToChat": {
+      "title": "Добавление пользователей",
+      "submitBtn": "Добавить",
+      "placeholder": "ID пользователя"
+    }
+  }
+}
