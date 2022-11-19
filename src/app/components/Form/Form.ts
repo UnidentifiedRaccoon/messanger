@@ -5,7 +5,7 @@ import Block, { BaseProps } from '../../../utils/Core/Block';
 import { isEqual } from '../../../utils/common/objectHelpers';
 
 import formTmpl from './Form.tmpl';
-import * as styles from './Form.module.scss';
+import styles from './Form.module.scss';
 
 interface FormProps {
   formError: string

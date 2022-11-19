@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../utils/Core/Block';
 
 import toastTmpl from './Toast.tmpl';
-import * as styles from './Toast.module.scss';
+import styles from './Toast.module.scss';
 
 interface PopupProps {
   message: string

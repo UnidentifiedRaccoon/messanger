@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import searchTmpl from './Search.tmpl';
-import * as styles from './Search.module.scss';
+import styles from './Search.module.scss';
 
 interface SearchProps {
   placeholder: string

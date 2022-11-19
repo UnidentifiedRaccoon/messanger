@@ -5,4 +5,5 @@ export default interface IRouter {
   go(pathname: string): void;
   back(): void;
   forward(): void;
+  // eslint-disable-next-line
 }

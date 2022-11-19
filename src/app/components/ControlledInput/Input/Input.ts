@@ -1,4 +1,4 @@
-import Block, { BaseProps } from '../../../../utils/Core/Block';
+import Block, { BaseProps, Events } from '../../../../utils/Core/Block';
 
 import inputTmpl from './Input.tmpl';
 
@@ -19,14 +19,14 @@ export default class Input extends Block<BaseProps> {
   constructor({
     onInput, onFocus, onBlur, type, ...props
   }: InputProps) {
+    const events: Events = {};
+    if (onInput) events.input = onInput;
+    if (onFocus) events.focus = onFocus;
+    if (onBlur) events.blur = onBlur;
     super({
       ...props,
       type: type || 'text',
-      events: {
-        input: onInput,
-        focus: onFocus,
-        blur: onBlur,
-      },
+      events,
     });
   }
 

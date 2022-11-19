@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import messageTmpl from './Message.tmpl';
-import * as styles from './Message.module.scss';
+import styles from './Message.module.scss';
 
 interface MessageProps {
   context: {

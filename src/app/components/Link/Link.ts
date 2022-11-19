@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import linkTmpl from './Link.tmpl';
-import * as styles from './Link.module.scss';
+import styles from './Link.module.scss';
 
 type LinkProps = {
   path?: string

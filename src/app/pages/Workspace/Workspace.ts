@@ -7,7 +7,7 @@ import { ChatTab } from '../../../utils/Api/Chats/Types';
 
 import workspaceTmpl from './Workspace.tmpl';
 import staticData from './Workspace.ru.json';
-import * as styles from './Workspace.module.scss';
+import styles from './Workspace.module.scss';
 
 type WorkspaceProps = {
   chats: ChatTab[]

@@ -1,4 +1,4 @@
-import { Routes } from 'utils/Router/Routes';
+import { Routes } from '../../../utils/Router/Routes';
 
 import PathRouter from '../../../utils/Router/PathRouter';
 import AuthController from '../../../utils/Api/Auth/AuthController';
@@ -10,7 +10,7 @@ import informer from '../../../utils/Core/informer';
 
 import staticData from './SignUp.ru.json';
 import signUpTmpl from './SignUp.tmpl';
-import * as styles from './SignUp.module.scss';
+import styles from './SignUp.module.scss';
 
 class SignUp extends Block<BaseProps> {
   private errors: PreparedFormErrors;

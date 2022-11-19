@@ -4,7 +4,7 @@ import PathRouter from '../../../utils/Router/PathRouter';
 import { Routes } from '../../../utils/Router/Routes';
 
 import requestErrorTmpl from './RequestError.tmpl';
-import * as styles from './RequestError.module.scss';
+import styles from './RequestError.module.scss';
 
 interface RequestErrorProps {
   staticData: Record<string, any>;

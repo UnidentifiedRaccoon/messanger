@@ -1,3 +1,8 @@
+import './fonts.scss';
+import './variables.scss';
+import './common.scss';
+import './app.scss';
+
 import registrar from './utils/Core/registrar';
 import PathRouter from './utils/Router/PathRouter';
 import renderDOM from './utils/Core/renderDOM';

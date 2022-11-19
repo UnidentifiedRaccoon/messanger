@@ -13,7 +13,7 @@ import informer from '../../../utils/Core/informer';
 import { Selectors, Thunks } from '../../../utils/Store/Store';
 
 import tabTmpl from './Tab.tmpl';
-import * as styles from './Tab.module.scss';
+import styles from './Tab.module.scss';
 
 interface TabProps {
   data: ChatTab

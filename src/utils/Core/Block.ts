@@ -6,8 +6,10 @@ import { isEqual } from '../common/objectHelpers';
 
 import EventBus from './EventBus';
 
+export type Events = Record<string, (...args: any[]) => void>;
+
 export type BaseProps = {
-  events?: Record<string, (...args: any[]) => void>,
+  events?: Events,
   [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
 };
 

@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import FileLoaderTmpl from './FileLoader.tmpl';
-import * as styles from './FileLoader.module.scss';
+import styles from './FileLoader.module.scss';
 
 interface FileLoaderProps {
   accept: string

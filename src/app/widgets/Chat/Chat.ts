@@ -18,7 +18,7 @@ import { isEqual } from '../../../utils/common/objectHelpers';
 
 import { MessagePayload } from '../ChatMessageBar/ChatMessageBar';
 
-import * as styles from './Chat.module.scss';
+import styles from './Chat.module.scss';
 import chatTmpl from './Chat.tmpl';
 
 type ChatProps = {

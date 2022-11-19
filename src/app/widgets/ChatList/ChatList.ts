@@ -1,5 +1,3 @@
-import next from 'bundle-text:./next.svg';
-
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import PathRouter from '../../../utils/Router/PathRouter';
@@ -12,7 +10,9 @@ import AddChat from '../AddChat/AddChat';
 
 import { ChatTab } from '../../../utils/Api/Chats/Types';
 
-import * as styles from './ChatList.module.scss';
+import next from './next.inline.svg';
+
+import styles from './ChatList.module.scss';
 import chatListTmpl from './ChatList.tmpl';
 
 interface ChatListProps {
