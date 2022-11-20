@@ -67,7 +67,7 @@ export class Store<State extends Record<string, any>> extends EventBus<typeof St
   }
 }
 
-const defaultState: AppState = {
+export const defaultState: AppState = {
   store: {
     user: null,
     chats: null,
@@ -94,6 +94,14 @@ export const Selectors = {
 };
 
 // Actions
+const setStore = store.actionCreator((value) => {
+  const path = 'store';
+  return {
+    path,
+    updateStateWith: objectFromPath(path, value),
+  };
+});
+
 const setAuth = store.actionCreator((value) => {
   const path = 'store.authStatus';
   return {
@@ -146,6 +154,8 @@ const setMessagesSocket = store.actionCreator(({ token, unread }) => {
 });
 
 export const Actions = {
+  setStore,
+  setAuth,
   setUser,
   setChats,
   setActiveChat,

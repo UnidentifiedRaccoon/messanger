@@ -9,6 +9,8 @@
 - (Possibly you have to wait for a minute till to the moment application is run)
 - (You have to register new user, it's quite fast)
 
+Commit to `deploy branch` to publish
+
 ## Available Scripts
 
 In the project directory, you can run:
