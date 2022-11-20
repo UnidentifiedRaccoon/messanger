@@ -3,8 +3,8 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 // Функции
-const filename = (ext) => `[name].[hash].bundle.${ext}`;
-const chunkname = (ext) => `[id].[hash].bundle.${ext}`;
+const filename = (ext) => `[name].[contenthash].bundle.${ext}`;
+const chunkname = (ext) => `[id].[contenthash].bundle.${ext}`;
 
 module.exports = {
   mode: 'production',

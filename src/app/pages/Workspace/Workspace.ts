@@ -14,9 +14,8 @@ type WorkspaceProps = {
 };
 
 class Workspace extends Block<BaseProps> {
-  constructor({ chats, ...rawProps }: WorkspaceProps) {
+  constructor({ chats }: WorkspaceProps) {
     super({
-      ...rawProps,
       staticData,
       styles,
       chats,
