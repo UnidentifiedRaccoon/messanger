@@ -40,7 +40,7 @@ module.exports = {
             },
           },
         ],
-        exclude: /(node_modules)/,
+        exclude: [/(node_modules)/],
       },
 
       { test: /\.inline\.svg$/, type: 'asset/source' },

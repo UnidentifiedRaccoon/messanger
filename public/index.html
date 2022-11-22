@@ -3,29 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>U.message</title>
-    <script>
-        // This permanently used for simple routing (addEventListener('locationchange', () => {}))
-        (function() {
-            var pushState = history.pushState;
-            var replaceState = history.replaceState;
-
-            history.pushState = function() {
-                pushState.apply(history, arguments);
-                window.dispatchEvent(new Event('pushstate'));
-                window.dispatchEvent(new Event('locationchange'));
-            };
-
-            history.replaceState = function() {
-                replaceState.apply(history, arguments);
-                window.dispatchEvent(new Event('replacestate'));
-                window.dispatchEvent(new Event('locationchange'));
-            };
-
-            window.addEventListener('popstate', function() {
-                window.dispatchEvent(new Event('locationchange'))
-            });
-        })();
-    </script>
 </head>
 <body>
 <div>

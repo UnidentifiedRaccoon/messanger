@@ -15,7 +15,7 @@
     "build:dev": "npm run rm:dist && webpack --mode development",
     "build:prod": "npm run rm:dist && webpack --mode production",
     "start_local": "node -r dotenv/config scripts/open.js && node -r dotenv/config index.js",
-    "test": "mocha",
+    "test": "jest",
     "lint": "stylelint ./src/**/*.{css,scss,sass}",
     "eslint": "eslint ./src/**/*{.js,.ts}",
     "fix": "npm run eslint:fix && npm run lint:fix",
@@ -28,12 +28,14 @@
   "devDependencies": {
     "@babel/core": "7.20.2",
     "@babel/preset-env": "7.20.2",
-    "@types/chai": "4.3.3",
-    "@types/mocha": "10.0.0",
+    "@babel/preset-typescript": "7.18.6",
+    "@testing-library/dom": "8.19.0",
+    "@testing-library/jest-dom": "5.16.5",
+    "@types/jest": "27.5.2",
     "@typescript-eslint/eslint-plugin": "5.39.0",
     "@typescript-eslint/parser": "5.39.0",
+    "babel-jest": "29.3.1",
     "babel-loader": "9.1.0",
-    "chai": "4.3.6",
     "clean-webpack-plugin": "4.0.0",
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.2",
@@ -45,8 +47,13 @@
     "eslint-plugin-import": "2.26.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.1",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "27.5.1",
+    "jest-css-modules": "2.1.0",
+    "jest-transform-css": "6.0.0",
+    "jest-transform-stub": "2.0.0",
     "mini-css-extract-plugin": "2.7.0",
-    "mocha": "10.1.0",
+    "msw": "0.49.0",
     "node-sass": "8.0.0",
     "open": "8.4.0",
     "postcss-scss": "4.0.4",
@@ -60,7 +67,6 @@
     "stylelint-scss": "4.3.0",
     "terser-webpack-plugin": "5.3.6",
     "ts-loader": "9.4.1",
-    "ts-node": "10.9.1",
     "typescript": "4.8.4",
     "webpack": "5.75.0",
     "webpack-cli": "5.0.0",
@@ -68,12 +74,24 @@
     "webpack-merge": "5.8.0"
   },
   "dependencies": {
+    "@handlebars/allow-prototype-access": "1.0.5",
     "express": "4.18.1",
     "handlebars": "4.7.7",
-    "nanoid": "4.0.0",
-    "normalize.css": "8.0.1"
+    "nanoid": "3.3.3",
+    "normalize.css": "8.0.1",
+    "regenerator-runtime": "0.13.11"
   },
-  "staticFiles": {
-    "staticPath": "./src/assets/static"
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/test/setup.ts"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+    },
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest",
+      ".+\\.(png|jpg|svg|ttf|woff|woff2)$": "jest-transform-stub"
+    }
   }
 }

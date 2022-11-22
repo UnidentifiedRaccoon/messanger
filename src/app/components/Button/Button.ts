@@ -13,7 +13,7 @@ export default class Button extends Block<BaseProps> {
   static className = 'Button';
   constructor({ onClick, ...props }: ButtonProps) {
     const events: Events = {};
-    if (onClick) events.onClick = onClick;
+    if (onClick) events.click = onClick;
     super({
       ...props,
       styles,
