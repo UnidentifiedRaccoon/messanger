@@ -4,9 +4,6 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-let i = 0;
-i++;
-
 const { port } = require('../config');
 
 module.exports = {
