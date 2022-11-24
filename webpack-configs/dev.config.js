@@ -4,13 +4,16 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+let i = 0;
+i++;
+
 const { port } = require('../config');
 
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
-    static: path.resolve(__dirname, './dist'),
+    static: path.resolve(__dirname, '../dist'),
     hot: true,
     open: true,
     port,

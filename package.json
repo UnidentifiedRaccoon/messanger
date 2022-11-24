@@ -21,7 +21,9 @@
     "fix": "npm run eslint:fix && npm run lint:fix",
     "lint:fix": "stylelint ./src/**/*.{css,scss,sass} --fix",
     "eslint:fix": "eslint ./src/**/*{.js,.ts} --fix",
-    "rm:dist": "rimraf dist"
+    "rm:dist": "rimraf dist",
+
+    "staged": "lint-staged"
   },
   "author": "UnidentifiedRaccoon",
   "license": "ISC",
@@ -47,11 +49,10 @@
     "eslint-plugin-import": "2.26.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.1",
-    "identity-obj-proxy": "3.0.0",
     "jest": "27.5.1",
     "jest-css-modules": "2.1.0",
-    "jest-transform-css": "6.0.0",
     "jest-transform-stub": "2.0.0",
+    "lint-staged": "13.0.3",
     "mini-css-extract-plugin": "2.7.0",
     "msw": "0.49.0",
     "node-sass": "8.0.0",
