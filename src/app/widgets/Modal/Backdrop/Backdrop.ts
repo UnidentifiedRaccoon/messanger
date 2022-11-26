@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../../utils/Core/Block';
 
 import backdropTmpl from './Backdrop.tmpl';
-import * as styles from './Backdrop.module.scss';
+import styles from './Backdrop.module.scss';
 
 interface BackdropProps {
 }

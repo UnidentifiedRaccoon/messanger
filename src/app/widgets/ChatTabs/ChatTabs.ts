@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import chatTabsTmpl from './ChatTabs.tmpl';
-import * as styles from './ChatTabs.module.scss';
+import styles from './ChatTabs.module.scss';
 
 interface ChatTabsProps {
   data: ChatTabs[]

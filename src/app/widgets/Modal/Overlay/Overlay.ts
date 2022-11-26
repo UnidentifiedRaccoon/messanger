@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../../utils/Core/Block';
 
 import overlayTmpl from './Overlay.tmpl';
-import * as styles from './Overlay.module.scss';
+import styles from './Overlay.module.scss';
 
 interface OverlayProps {
   outerStyles?: Record<string, string>;

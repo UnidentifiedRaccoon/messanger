@@ -1,21 +1,12 @@
-import registrar from './utils/Core/registrar';
-import PathRouter from './utils/Router/PathRouter';
-import renderDOM from './utils/Core/renderDOM';
-import { Screens } from './utils/Router/Screens';
-import store, {
-  AppState, Selectors, Store, Thunks,
-} from './utils/Store/Store';
-import ClientError from './app/pages/ClientError';
-import { Routes } from './utils/Router/Routes';
-import xor from './utils/common/xor';
-import informer from './utils/Core/informer';
+import store, { AppState, Selectors, Store } from '../Store/Store';
+import xor from '../common/xor';
+import renderDOM from '../Core/renderDOM';
 
-const updatePage = (event: Event) => {
-  if (event.target instanceof HTMLAnchorElement) {
-    event.preventDefault();
-    PathRouter.go(event.target.href);
-  }
-};
+import ClientError from '../../app/pages/ClientError';
+
+import { Routes } from './Routes';
+import PathRouter from './PathRouter';
+import { Screens } from './Screens';
 
 const initRouter = () => {
   Object.values(Screens).forEach((screen) => {
@@ -46,10 +37,4 @@ const initRouter = () => {
   });
 };
 
-window.addEventListener('DOMContentLoaded', async () => {
-  registrar();
-  Thunks.revalidateUser().then().catch((err) => informer(err.message));
-  initRouter();
-  const links = [...document.querySelectorAll('.header__nav a[href]')];
-  links.forEach((link) => { link.addEventListener('click', updatePage); });
-});
+export default initRouter;

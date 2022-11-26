@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import messageInputTmpl from './MessageInput.tmpl';
-import * as styles from './MessageInput.module.scss';
+import styles from './MessageInput.module.scss';
 
 interface MessageInputProps {
   placeholder: string

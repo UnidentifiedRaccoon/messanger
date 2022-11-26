@@ -1,4 +1,4 @@
-import * as styles from '../Profile.module.scss';
+import styles from '../Profile.module.scss';
 import { PreparedFormErrors } from '../../../../typings/commonTypes';
 
 import Block, { BaseProps } from '../../../../utils/Core/Block';

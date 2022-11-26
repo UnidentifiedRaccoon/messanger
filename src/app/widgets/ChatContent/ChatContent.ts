@@ -9,7 +9,7 @@ import { Bubble } from '../../components';
 import { timeFormat } from '../../../utils/common/time';
 
 import chatContentTmpl from './ChatContent.tmpl';
-import * as styles from './ChatContent.module.scss';
+import styles from './ChatContent.module.scss';
 
 interface ChatContentProps {
   staticData: Record<string, any>

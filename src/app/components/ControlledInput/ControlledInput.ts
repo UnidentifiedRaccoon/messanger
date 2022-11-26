@@ -3,8 +3,8 @@ import Block, { BaseProps } from '../../../utils/Core/Block';
 import validate from '../../../utils/Form/validator';
 
 import controlledInputTmpl from './ControlledInput.tmpl';
-import * as defaultStyles from './Input.module.scss';
-import * as profileStyles from './InputProfile.module.scss';
+import defaultStyles from './Input.module.scss';
+import profileStyles from './InputProfile.module.scss';
 
 type ControlledInputProps = {
   name: string

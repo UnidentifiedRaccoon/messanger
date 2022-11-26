@@ -1,7 +1,7 @@
-import Block, { BaseProps } from '../../../utils/Core/Block';
+import Block, { BaseProps, Events } from '../../../utils/Core/Block';
 
 import buttonTmpl from './Button.tmpl';
-import * as styles from './Button.module.scss';
+import styles from './Button.module.scss';
 
 interface ButtonProps {
   label: string
@@ -11,13 +11,13 @@ interface ButtonProps {
 
 export default class Button extends Block<BaseProps> {
   static className = 'Button';
-  constructor(props: ButtonProps) {
+  constructor({ onClick, ...props }: ButtonProps) {
+    const events: Events = {};
+    if (onClick) events.click = onClick;
     super({
       ...props,
       styles,
-      events: {
-        click: props.onClick,
-      },
+      events,
     });
   }
 

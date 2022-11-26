@@ -58,6 +58,7 @@
         "newlines-between": "always-and-inside-groups"
       }
     ],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "@typescript-eslint/lines-between-class-members": [
       "error",
       "always",

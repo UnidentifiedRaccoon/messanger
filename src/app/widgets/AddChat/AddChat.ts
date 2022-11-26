@@ -7,7 +7,7 @@ import { Thunks } from '../../../utils/Store/Store';
 import informer from '../../../utils/Core/informer';
 
 import addChatTmpl from './AddChat.tmpl';
-import * as styles from './AddChat.module.scss';
+import styles from './AddChat.module.scss';
 
 interface AddChatProps {
   staticData: Record<string, any>

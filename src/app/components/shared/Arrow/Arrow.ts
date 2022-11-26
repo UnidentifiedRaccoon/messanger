@@ -1,9 +1,9 @@
-import arrow from 'bundle-text:./arrow.svg';
-
 import Block, { BaseProps } from '../../../../utils/Core/Block';
 
+import arrow from './arrow.inline.svg';
+
 import arrowTmpl from './Arrow.tmpl';
-import * as styles from './Arrow.module.scss';
+import styles from './Arrow.module.scss';
 
 interface ArrowProps {
   text?: string

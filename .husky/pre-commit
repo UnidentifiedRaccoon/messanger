@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run fix
-npm run lint
-npm run eslint
+npm run staged
+npm run test

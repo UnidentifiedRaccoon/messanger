@@ -1,9 +1,9 @@
-import error from 'bundle-text:./Error.svg';
-
 import Block, { BaseProps } from '../../../../utils/Core/Block';
 
+import error from './Error.inline.svg';
+
 import errorTmpl from './Error.tmpl';
-import * as styles from './Error.module.scss';
+import styles from './Error.module.scss';
 
 export default class Error extends Block<BaseProps> {
   static className = 'Error';

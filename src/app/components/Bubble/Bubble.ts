@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import bubbleTmpl from './Bubble.tmpl';
-import * as styles from './Bubble.module.scss';
+import styles from './Bubble.module.scss';
 
 type BubbleProps = {
   text?: string

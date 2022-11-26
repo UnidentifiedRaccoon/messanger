@@ -1,7 +1,7 @@
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
 import avatarLoaderTmpl from './AvatarLoader.tmpl';
-import * as styles from './AvatarLoader.module.scss';
+import styles from './AvatarLoader.module.scss';
 
 const loadImg = (refs: Record<string, any>, onClick: (formData: FormData) => void) => {
   const fileLoader = refs.fileLoader.getContent() as HTMLInputElement;

@@ -29,7 +29,7 @@ export type AppState = {
 
 type Action<State> = {
   path: string
-  updateStateWith: Partial<State>
+  payload: Partial<State>
 };
 
 export class Store<State extends Record<string, any>> extends EventBus<typeof Store.EVENTS> {
@@ -55,8 +55,8 @@ export class Store<State extends Record<string, any>> extends EventBus<typeof St
 
   dispatch(action: Action<State>): boolean | Promise<boolean> {
     // dispatch action
-    if (!exactEqual(this.state, action.updateStateWith, action.path)) {
-      this.set(action.updateStateWith);
+    if (!exactEqual(this.state, action.payload, action.path)) {
+      this.set(action.payload);
       return true;
     }
     return false;
@@ -67,7 +67,7 @@ export class Store<State extends Record<string, any>> extends EventBus<typeof St
   }
 }
 
-const defaultState: AppState = {
+export const defaultState: AppState = {
   store: {
     user: null,
     chats: null,
@@ -94,11 +94,19 @@ export const Selectors = {
 };
 
 // Actions
+const setStore = store.actionCreator((value) => {
+  const path = 'store';
+  return {
+    path,
+    payload: objectFromPath(path, value),
+  };
+});
+
 const setAuth = store.actionCreator((value) => {
   const path = 'store.authStatus';
   return {
     path,
-    updateStateWith: objectFromPath(path, value),
+    payload: objectFromPath(path, value),
   };
 });
 
@@ -113,7 +121,7 @@ const setUser = store.actionCreator((user) => {
   }
   return {
     path,
-    updateStateWith: objectFromPath(path, value),
+    payload: objectFromPath(path, value),
   };
 });
 
@@ -121,7 +129,7 @@ const setChats = store.actionCreator((chats) => {
   const path = 'store.chats';
   return {
     path,
-    updateStateWith: objectFromPath(path, chats),
+    payload: objectFromPath(path, chats),
   };
 });
 
@@ -129,7 +137,7 @@ const setActiveChat = store.actionCreator((activeChat) => {
   const path = 'store.activeChat';
   return {
     path,
-    updateStateWith: objectFromPath(path, activeChat),
+    payload: objectFromPath(path, activeChat),
   };
 });
 
@@ -139,13 +147,15 @@ const setMessagesSocket = store.actionCreator(({ token, unread }) => {
   const path = 'store.messagesSocket';
   return {
     path,
-    updateStateWith: objectFromPath(path, {
+    payload: objectFromPath(path, {
       token, unread, userId, chatId,
     }),
   };
 });
 
 export const Actions = {
+  setStore,
+  setAuth,
   setUser,
   setChats,
   setActiveChat,

@@ -6,8 +6,10 @@ import { isEqual } from '../common/objectHelpers';
 
 import EventBus from './EventBus';
 
+export type Events = Record<string, (...args: any[]) => void>;
+
 export type BaseProps = {
-  events?: Record<string, (...args: any[]) => void>,
+  events?: Events,
   [index: string]: any // Блок не знает о типах пропсов. Типы пропсов определяют наследники класс Block
 };
 
@@ -151,7 +153,9 @@ export default class Block<Props extends BaseProps> {
     // new ChildComponent, so before template run, need to remove old children
     // and set this.children with link to the new object {}
     this.children = { ...this.propChildren };
-    fragment.innerHTML = template({ ...this.props, children: this.children, refs: this.refs });
+    fragment.innerHTML = template({ ...this.props, children: this.children, refs: this.refs }, {
+      allowProtoPropertiesByDefault: true,
+    });
 
     // template inject stub in place where our "controlled child" should be
     // than we should stub.replaceWith(childElement)

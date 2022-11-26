@@ -14,7 +14,7 @@ import { Thunks } from '../../../utils/Store/Store';
 
 import staticData from './Login.ru.json';
 import loginTmpl from './Login.tmpl';
-import * as styles from './Login.module.scss';
+import styles from './Login.module.scss';
 
 export default class Login extends Block<BaseProps> {
   private errors: PreparedFormErrors;

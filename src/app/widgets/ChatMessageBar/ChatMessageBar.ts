@@ -1,9 +1,9 @@
-import attachment from 'bundle-text:./attachment.svg';
-
 import Block, { BaseProps } from '../../../utils/Core/Block';
 
+import attachment from './attachment.inline.svg';
+
 import chatMessageBarTmpl from './ChatMessageBar.tmpl';
-import * as styles from './ChatMessageBar.module.scss';
+import styles from './ChatMessageBar.module.scss';
 
 export type MessagePayload = {
   message: string

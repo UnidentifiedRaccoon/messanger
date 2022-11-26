@@ -1,9 +1,9 @@
-import cross from 'bundle-text:./cross.svg';
-
 import Block, { BaseProps } from '../../../../utils/Core/Block';
 
+import cross from './cross.inline.svg';
+
 import crossTmpl from './Cross.tmpl';
-import * as styles from './Cross.module.scss';
+import styles from './Cross.module.scss';
 
 interface CrossProps {
   text?: string
