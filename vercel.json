@@ -1,10 +1,10 @@
 {
   "redirects": [
-    { "source": "/workspace", "destination": "/index.html" },
-    { "source": "/profile", "destination": "/index.html" },
-    { "source": "/change_info", "destination": "/index.html" },
-    { "source": "/change_password", "destination": "/index.html" },
-    { "source": "/login", "destination": "/index.html" },
-    { "source": "/signup", "destination": "/index.html" }
+    { "source": "/workspace", "destination": "/workspace" },
+    { "source": "/profile", "destination": "/profile" },
+    { "source": "/change_info", "destination": "/change_info" },
+    { "source": "/change_password", "destination": "/change_password" },
+    { "source": "/login", "destination": "/login" },
+    { "source": "/signup", "destination": "/signup" }
   ]
 }

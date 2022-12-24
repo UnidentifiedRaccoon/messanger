@@ -3,6 +3,8 @@ import Block, { BaseProps } from '../../../utils/Core/Block';
 import PathRouter from '../../../utils/Router/PathRouter';
 import { Routes } from '../../../utils/Router/Routes';
 
+import { Selectors } from '../../../utils/Store/Store';
+
 import requestErrorTmpl from './RequestError.tmpl';
 import styles from './RequestError.module.scss';
 
@@ -16,6 +18,10 @@ export default class RequestError extends Block<BaseProps> {
     super({
       ...props,
       styles,
+      authStatus: Selectors.authStatus(),
+      onMoveToLogin: () => {
+        PathRouter.go(Routes.Login.path);
+      },
       onMoveToWorkspace: () => {
         PathRouter.go(Routes.Workspace.path);
       },

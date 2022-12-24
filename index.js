@@ -32,6 +32,10 @@ pages.forEach((page) => {
   });
 });
 
+app.get('/*', (req, res) => {
+  res.redirect('/4xx');
+});
+
 const resPort = port || DEFAULT_PORT;
 
 app.listen(resPort, () => {
