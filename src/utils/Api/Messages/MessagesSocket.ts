@@ -17,6 +17,7 @@ class MessagesSocket {
     this.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
     this.socket.addEventListener('open', () => {
+      // eslint-disable-next-line no-console
       console.log('Соединение установлено');
       this.getUnread();
     });
@@ -42,15 +43,18 @@ class MessagesSocket {
     this.socket.addEventListener('close', (event) => {
       clearInterval(this.interval);
       if (event.wasClean) {
+        // eslint-disable-next-line no-console
         console.log('Соединение закрыто чисто');
       } else {
+        // eslint-disable-next-line no-console
         console.log('Обрыв соединения');
       }
-
+      // eslint-disable-next-line no-console
       console.log(`Код: ${event.code} | Причина: ${event.reason}`);
     });
 
     this.socket.addEventListener('error', (event: any) => {
+      // eslint-disable-next-line no-console
       console.log('Ошибка', event.message);
     });
   }

@@ -29,6 +29,14 @@ class ChatsController {
     throw new Error(`Непредвиденная ошибка, код ошибки${data.status}. Обратитесь в службу поддержки`);
   }
 
+  async removeUserFromChat(chatId: number, userId: number) {
+    const data = await ChatsApi.removeUserFromChat(chatId, userId);
+    if (data.status >= 200 && data.status < 400) return;
+    const response = JSON.parse(data.response);
+    if (response.reason) throw new Error(response.reason);
+    throw new Error(`Непредвиденная ошибка, код ошибки${data.status}. Обратитесь в службу поддержки`);
+  }
+
   async deleteChat(id: number) {
     const data = await ChatsApi.deleteChat(id);
     if (data.status >= 200 && data.status < 400) return;

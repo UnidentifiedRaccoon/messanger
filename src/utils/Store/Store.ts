@@ -3,7 +3,7 @@ import {
   cloneDeep, exactEqual, merge, objectFromPath,
 } from '../common/objectHelpers';
 import UserController from '../Api/User/UserController';
-import { LoginForm } from '../Api/Auth/Types';
+import { LoginForm, SignupForm } from '../Api/Auth/Types';
 import AuthController from '../Api/Auth/AuthController';
 import { Passwords, User } from '../Api/User/Types';
 import ChatsController from '../Api/Chats/ChatsController';
@@ -163,6 +163,17 @@ export const Actions = {
 };
 
 // Thunks
+const signUpThunk = async (data: SignupForm) => {
+  try {
+    await AuthController.signup(data);
+    const user = await UserController.getUser();
+    localStorage.setItem('user', JSON.stringify(user));
+    store.dispatch(Actions.setUser(user));
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
 const loginThunk = async (data: LoginForm) => {
   try {
     await AuthController.login(data);
@@ -277,10 +288,26 @@ const addUserToChat = async (userId: number) => {
   }
 };
 
-const deleteChat = async (id: number) => {
+const removeUserFromChat = async (userId: number) => {
   try {
+    const activeChat = selectorActiveChat();
+    if (activeChat) {
+      await ChatsController.removeUserFromChat(activeChat.id, userId);
+      store.dispatch(Actions.setActiveChat(null));
+    }
+    getChats();
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+const deleteChat = async () => {
+  try {
+    const activeChat = selectorActiveChat();
+    if (activeChat) {
+      await ChatsController.deleteChat(activeChat.id);
+    }
     store.dispatch(Actions.setActiveChat(null));
-    await ChatsController.deleteChat(id);
     getChats();
   } catch (err: any) {
     throw new Error(err.message);
@@ -288,6 +315,7 @@ const deleteChat = async (id: number) => {
 };
 
 export const Thunks = {
+  signUp: signUpThunk,
   login: loginThunk,
   logout: logoutThunk,
   revalidateUser,
@@ -299,4 +327,5 @@ export const Thunks = {
   addChat,
   deleteChat,
   addUserToChat,
+  removeUserFromChat,
 };

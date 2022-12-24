@@ -14,7 +14,18 @@ app.get('/', (req, res) => {
 
 // ToDo remove after routing appears
 // need only to properly show pages while we have no routing in app
-const pages = ['/workspace', '/profile', '/login', '/4xx', '/5xx', '/sign_in', '/change_password', '/change_info'];
+app.get('/workspace/:id', (req, res) => {
+  res.redirect('/workspace');
+});
+
+const pages = ['/workspace',
+  '/profile', '/login',
+  '/4xx', '/5xx',
+  '/signup',
+  '/change_password',
+  '/change_info',
+];
+
 pages.forEach((page) => {
   app.get(page, (req, res) => {
     res.sendFile(`${__dirname}/dist/index.html`);
@@ -24,5 +35,6 @@ pages.forEach((page) => {
 const resPort = port || DEFAULT_PORT;
 
 app.listen(resPort, () => {
+  // eslint-disable-next-line no-console
   console.log(`Application listening on port ${resPort}!`);
 });

@@ -8,9 +8,11 @@ const profileTmpl = () => `
             {{{ Arrow text=staticData.goBackText }}}
         {{/Link}}
         <div class={{styles.content}}>
-            {{#AvatarLoader outerStyles=styles.icon onClick=onLoadAvatar}}
-                {{{ IconProfile alt=staticData.userName icon=user.avatar}}}
-            {{/AvatarLoader}}
+            <div class={{styles.icon-wrapper}}>
+              {{#AvatarLoader outerStyles=styles.icon onClick=onLoadAvatar}}
+                  {{{ IconProfile alt=staticData.userName icon=user.avatar}}}
+              {{/AvatarLoader}}
+            </div>
             <h2 class="title {{styles.title}}">
                 {{user.name}} {{user.surname}}
             </h2>
@@ -81,6 +83,17 @@ const profileTmpl = () => `
                             onInput=onInput
                             onFocus=onFocus
                             validateType="phone"
+                            readonly="true"
+                        }}}
+                        {{{ ControlledInput
+                            name="id"
+                            styleMode='profile'
+                            outerStyles=styles.field
+                            tooltip=staticData.userId
+                            defaultValue=user.id
+                            onInput=onInput
+                            onFocus=onFocus
+                            validateType="id"
                             readonly="true"
                         }}}
                     </div>

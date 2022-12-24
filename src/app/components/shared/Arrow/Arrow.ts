@@ -1,6 +1,6 @@
 import Block, { BaseProps } from '../../../../utils/Core/Block';
 
-import arrow from './arrow.inline.svg';
+import arrow from './Arrow.inline.svg';
 
 import arrowTmpl from './Arrow.tmpl';
 import styles from './Arrow.module.scss';

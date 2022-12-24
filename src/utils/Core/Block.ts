@@ -114,7 +114,7 @@ export default class Block<Props extends BaseProps> {
 
   protected componentWillUnmount(): void {}
   dispatchComponentWillUnmount() {
-    this.#eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.#eventBus().emit(Block.EVENTS.FLOW_CWU);
   }
 
   /** <code style="color: #952dd2">FLOW_RENDER</code> -

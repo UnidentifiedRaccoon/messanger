@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130px;
-  height: 130px;
+  width: var(--profile-icon-size);
+  height: var(--profile-icon-size);
   overflow: hidden;
   text-decoration: none;
   background-color: var(--color-icon-bg-light);

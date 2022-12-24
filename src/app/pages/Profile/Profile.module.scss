@@ -36,23 +36,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 12vh;
-  margin: auto;
+  padding-top: 12vh;
+  margin-inline: auto;
+}
+
+.icon-wrapper {
+  max-width: var(--profile-icon-size);
+  max-height: var(--profile-icon-size);
 }
 
 .form {
   margin-bottom: 40px;
-}
-
-.change-password,
-.change-info {
-  & .icon {
-    margin-bottom: 65px;
-  }
-
-  & .form {
-    min-height: 300px;
-  }
 }
 
 .form-wrapper {

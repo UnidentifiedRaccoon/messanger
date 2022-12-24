@@ -16,3 +16,4 @@ export { default as FileLoader } from './FileLoader';
 export { default as Arrow } from './shared/Arrow';
 export { default as Cross } from './shared/Cross';
 export { default as Error } from './shared/Error';
+export { default as Exit } from './shared/Exit';
