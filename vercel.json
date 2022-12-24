@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/workspace", "destination": "/index.html" },
+    { "source": "/profile", "destination": "/index.html" },
+    { "source": "/change_info", "destination": "/index.html" },
+    { "source": "/change_password", "destination": "/index.html" },
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/signup", "destination": "/index.html" }
+  ]
+}
