@@ -7,7 +7,6 @@
     { "source": "/login", "destination": "/" },
     { "source": "/signup", "destination": "/" },
     { "source": "/5xx", "destination": "/" },
-    { "source": "/4xx", "destination": "/" },
-    { "source": "*", "destination": "/" }
+    { "source": "/4xx", "destination": "/" }
   ]
 }
