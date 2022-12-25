@@ -25,9 +25,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.email
                             defaultValue=user.email
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="email"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -36,9 +33,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.login
                             defaultValue=user.login
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="login"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -47,9 +41,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.name
                             defaultValue=user.name
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="name"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -58,9 +49,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.surname
                             defaultValue=user.surname
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="name"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -69,9 +57,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.displayName
                             defaultValue=user.displayName
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="name"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -80,9 +65,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.phone
                             defaultValue=user.phone
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="phone"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -91,9 +73,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.userId
                             defaultValue=user.id
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="id"
                             readonly="true"
                         }}}
                     </div>

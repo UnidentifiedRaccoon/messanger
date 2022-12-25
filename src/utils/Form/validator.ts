@@ -135,7 +135,7 @@ const validatePassword = (str: string): string => {
 
 const validatePhone = (str: string): string => {
   const validator = new Validator(str)
-    .pattern(/^[+]??[0-9]+$/, 'Номер должен состоять из чисел может начитаться с "+"')
+    .pattern(/^[+]??[0-9]+$/, 'Номер должен состоять из чисел и может начитаться с "+"')
     .min(10)
     .max(15);
   return validator.error;
