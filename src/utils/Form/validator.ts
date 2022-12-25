@@ -102,41 +102,42 @@ class Validator {
 
 const validateName = (str: string): string => {
   const validator = new Validator(str)
-    .pattern(/^[a-zа-я-]+$/i, 'Только буквы и "-"')
-    .firstCapital();
+    .firstCapital()
+    .pattern(/^[a-zа-я-]+$/i, 'Только буквы и "-"');
   return validator.error;
 };
 
 const validateLogin = (str: string): string => {
   const validator = new Validator(str)
-    .min(3)
-    .max(20)
     .notPattern(/^[0-9]+$/, 'Значение не может состоять только из цифр')
-    .pattern(/^[a-z-_0-9]+$/i, 'Только латиница, цифры, "-" и "_"');
+    .pattern(/^[a-z-_0-9]+$/i, 'Только латиница, цифры, "-" и "_"')
+    .min(3)
+    .max(20);
   return validator.error;
 };
 
 const validateEmail = (str: string): string => {
   const validator = new Validator(str)
-    .pattern(/^[a-z0-9$@_.-]+$/i, 'Только латиница, цифры и "$"/"@"/"-"/"_"/"."')
-    .commonEmail();
+    .commonEmail()
+    .pattern(/^[a-z0-9$@_.-]+$/i, 'Только латиница, цифры и "$"/"@"/"-"/"_"/"."');
   return validator.error;
 };
 
 const validatePassword = (str: string): string => {
   const validator = new Validator(str)
-    .min(8)
-    .max(40)
     .hasCapital()
-    .hasNumber();
+    .hasNumber()
+    .min(8)
+    .max(40);
+
   return validator.error;
 };
 
 const validatePhone = (str: string): string => {
   const validator = new Validator(str)
+    .pattern(/^[+]??[0-9]+$/, 'Номер должен состоять из чисел может начитаться с "+"')
     .min(10)
-    .max(15)
-    .pattern(/^[+]??[0-9]+$/, 'Номер должен состоять из чисел может начитаться с "+"');
+    .max(15);
   return validator.error;
 };
 
