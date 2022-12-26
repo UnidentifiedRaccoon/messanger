@@ -108,6 +108,9 @@ export default class Block<Props extends BaseProps> {
   }
 
   #componentWillUnmount() {
+    Object.values(this.children).forEach((child) => {
+      child.dispatchComponentWillUnmount();
+    });
     this.#eventBus().destroy();
     this.componentWillUnmount();
   }

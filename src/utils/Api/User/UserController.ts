@@ -4,12 +4,24 @@ import UserToUserDTO from './Transformers/UserToUserDTO';
 import UserDTOToUser from './Transformers/UserDTOToUser';
 
 class UserController {
-  async getUser(): Promise<User> {
-    const data = await UserApi.getUser();
+  async getCurrentUser(): Promise<User> {
+    const data = await UserApi.getCurrentUser();
     const response = JSON.parse(data.response);
     if (response.reason) throw new Error(response.reason);
     if (data.status >= 200 && data.status < 400) {
       return UserDTOToUser(response);
+    }
+    throw new Error(`Непредвиденная ошибка, код ошибки${data.status}. Обратитесь в службу поддержки`);
+  }
+
+  async getUser(id: number): Promise<User> {
+    const data = await UserApi.getUser(id);
+    const response = JSON.parse(data.response);
+    if (data.status >= 200 && data.status < 400) {
+      return UserDTOToUser(response);
+    }
+    if (data.status >= 400 && data.status < 500) {
+      throw new Error('Запрашиваемый пользователь отсутствует');
     }
     throw new Error(`Непредвиденная ошибка, код ошибки${data.status}. Обратитесь в службу поддержки`);
   }

@@ -8,6 +8,10 @@ import { Bubble } from '../../components';
 
 import { timeFormat } from '../../../utils/common/time';
 
+import { Selectors } from '../../../utils/Store/Store';
+
+import UserController from '../../../utils/Api/User/UserController';
+
 import chatContentTmpl from './ChatContent.tmpl';
 import styles from './ChatContent.module.scss';
 
@@ -40,8 +44,12 @@ export default class ChatContent extends Block<BaseProps> {
       }
 
       // Данные для передачи в new Message()
+      const isOwner = message.userId === Selectors.user()?.id;
+      const isSameAuthor = oldProps.message.userId === newProps.message.userId;
       const messageProps = {
         context: {
+          isOwner,
+          isSameAuthor,
           text: message.content,
           time: {
             datetime: message.time.toISOString(),
@@ -49,7 +57,8 @@ export default class ChatContent extends Block<BaseProps> {
           },
         },
       };
-      const messageHTML = new Message(messageProps).getContent();
+      const messageBlock = new Message(messageProps);
+      const messageHTML = messageBlock.getContent();
       const data = message.time.toLocaleDateString('en').split('/').join('-');
       // Если в чате есть div для вставки дня, то будем вставлять сообщение в него
       let dayContainer = this.getContent().querySelector(`#day-wrapper-${data}`);
@@ -88,6 +97,17 @@ export default class ChatContent extends Block<BaseProps> {
       }
       dayContainer.append(messageHTML);
       this.getContent().scrollTop = messageHTML.offsetTop;
+
+      if (!isOwner && !isSameAuthor) {
+        UserController.getUser(message.userId).then((author) => {
+          messageBlock.setProps({
+            author: {
+              displayName: author.displayName || `${author.name} ${author.surname}`,
+              avatarUrl: author.avatar || '',
+            },
+          });
+        });
+      }
       return false;
     }
     return super.componentDidUpdate(oldProps, newProps);

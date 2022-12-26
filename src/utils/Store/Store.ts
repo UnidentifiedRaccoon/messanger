@@ -166,7 +166,7 @@ export const Actions = {
 const signUpThunk = async (data: SignupForm) => {
   try {
     await AuthController.signup(data);
-    const user = await UserController.getUser();
+    const user = await UserController.getCurrentUser();
     localStorage.setItem('user', JSON.stringify(user));
     store.dispatch(Actions.setUser(user));
   } catch (err: any) {
@@ -177,7 +177,7 @@ const signUpThunk = async (data: SignupForm) => {
 const loginThunk = async (data: LoginForm) => {
   try {
     await AuthController.login(data);
-    const user = await UserController.getUser();
+    const user = await UserController.getCurrentUser();
     localStorage.setItem('user', JSON.stringify(user));
     store.dispatch(Actions.setUser(user));
   } catch (err: any) {
@@ -189,10 +189,12 @@ const revalidateUser = async () => {
   try {
     let user = JSON.parse(localStorage.getItem('user')!);
     store.dispatch(Actions.setUser(user));
-    user = await UserController.getUser();
+    user = await UserController.getCurrentUser();
     localStorage.setItem('user', JSON.stringify(user));
     store.dispatch(Actions.setUser(user));
   } catch (err: any) {
+    localStorage.removeItem('user');
+    store.dispatch(Actions.setUser(null));
     throw new Error(err.message);
   }
 };
