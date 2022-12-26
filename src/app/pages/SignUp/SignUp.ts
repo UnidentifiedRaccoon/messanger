@@ -26,8 +26,12 @@ class SignUp extends Block<BaseProps> {
           this.errors.set(name, errorMessage);
         }
       },
-      onInput: (name: string) => {
-        this.errors.delete(name);
+      onInput: (name: string, _: string, errorMessage: string) => {
+        if (errorMessage) {
+          this.errors.set(name, errorMessage);
+        } else {
+          this.errors.delete(name);
+        }
       },
       onSubmit: async (data: SignupForm) => {
         if (this.errors.size === 0) {
