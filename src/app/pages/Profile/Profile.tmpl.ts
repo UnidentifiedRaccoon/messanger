@@ -8,9 +8,11 @@ const profileTmpl = () => `
             {{{ Arrow text=staticData.goBackText }}}
         {{/Link}}
         <div class={{styles.content}}>
-            {{#AvatarLoader outerStyles=styles.icon onClick=onLoadAvatar}}
-                {{{ IconProfile alt=staticData.userName icon=user.avatar}}}
-            {{/AvatarLoader}}
+            <div class={{styles.icon-wrapper}}>
+              {{#AvatarLoader outerStyles=styles.icon onClick=onLoadAvatar}}
+                  {{{ IconProfile alt=staticData.userName icon=user.avatar}}}
+              {{/AvatarLoader}}
+            </div>
             <h2 class="title {{styles.title}}">
                 {{user.name}} {{user.surname}}
             </h2>
@@ -23,9 +25,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.email
                             defaultValue=user.email
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="email"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -34,9 +33,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.login
                             defaultValue=user.login
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="login"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -45,9 +41,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.name
                             defaultValue=user.name
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="name"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -56,9 +49,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.surname
                             defaultValue=user.surname
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="name"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -67,9 +57,6 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.displayName
                             defaultValue=user.displayName
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="name"
                             readonly="true"
                         }}}
                         {{{ ControlledInput
@@ -78,9 +65,14 @@ const profileTmpl = () => `
                             outerStyles=styles.field
                             tooltip=staticData.phone
                             defaultValue=user.phone
-                            onInput=onInput
-                            onFocus=onFocus
-                            validateType="phone"
+                            readonly="true"
+                        }}}
+                        {{{ ControlledInput
+                            name="id"
+                            styleMode='profile'
+                            outerStyles=styles.field
+                            tooltip=staticData.userId
+                            defaultValue=user.id
                             readonly="true"
                         }}}
                     </div>

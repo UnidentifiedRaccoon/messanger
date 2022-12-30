@@ -11,6 +11,8 @@ const chatTmpl = (isChatOwner: boolean) => `
                 {{{ Cross typeMode="add" outerStyles=styles.delete-btn onClick=onAddUserToChat }}}
                 {{#if ${isChatOwner}}}
                     {{{ Cross typeMode="delete" outerStyles=styles.delete-btn onClick=onChatDelete }}}
+                    {{else}}
+                    {{{ Exit outerStyles=styles.exit-btn onClick=onLeaveUser }}}
                 {{/if}}
             </header>
             {{{ ChatContent ref="content" staticData=staticData }}}

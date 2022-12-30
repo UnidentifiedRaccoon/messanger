@@ -8,8 +8,12 @@ const transportAuth = new YandexTransport('/auth');
 const transportChange = new YandexTransport('/user');
 
 class UserApi {
-  getUser() {
+  getCurrentUser() {
     return transportAuth.get('/user', {});
+  }
+
+  getUser(id: number) {
+    return transportChange.get(`/${id}`, {});
   }
 
   changeInfo(data: UserDTO) {

@@ -16,8 +16,8 @@ const tabTmpl = () => `
                     <time class={{styles.time}} datetime={{data.lastMessage.time.datetime}}>
                         {{data.lastMessage.time.formatted}}
                     </time>
-                    {{#if data.unread-count}}
-                      <span class={{styles.unreadCount}}>
+                    {{#if data.unreadCount}}
+                      <span class={{styles.unread-count}}>
                         <span>
                             {{data.unreadCount}}
                         </span>

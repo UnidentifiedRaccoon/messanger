@@ -17,7 +17,7 @@ type ControlledInputProps = {
   type?: 'text' | 'password' | 'email' | 'phone' | 'search'
   styleMode?: 'profile'
   outerStyles?: Record<string, string>
-  onInput?: (name: string, value: string) => void
+  onInput?: (name: string, value: string, errorMessage: string) => void
   onFocus?: (name: string, value: string, errorMessage: string) => void
 };
 
@@ -50,13 +50,18 @@ export default class ControlledInput extends Block<BaseProps> {
         }
       },
       onInput: (e: Event) => {
-        const field = this.refs.input.getContent() as HTMLInputElement;
         e.preventDefault();
+        const field = this.refs.input.getContent() as HTMLInputElement;
+        const fieldType = this.props.validateType;
+        const errorMessage = validate({
+          type: fieldType,
+          value: field.value,
+        });
         this.setProps({
-          errorMessage: '',
+          errorMessage,
         });
         if (onInput) {
-          onInput(this.props.name, field.value);
+          onInput(this.props.name, field.value, errorMessage);
         }
       },
       onBlur: (e: Event) => {

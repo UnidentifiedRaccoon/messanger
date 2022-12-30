@@ -8,9 +8,12 @@ const changeInfoTmpl = () => `
             {{{ Arrow text=staticData.goBackText }}}
         {{/Link}}
         <div class={{styles.content}}>
-            <div class={{styles.icon_wrapper}}>
+            <div class={{styles.icon-wrapper}}>
                 {{{ IconProfile alt=staticData.userName  icon=user.avatar }}}
             </div>
+            <h2 class="title {{styles.title}}">
+                {{user.name}} {{user.surname}}
+            </h2>
             <div class={{styles.form-wrapper}}>
                 {{# Form outerStyles=styles.form
                          onSubmit=onSubmit

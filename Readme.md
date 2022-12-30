@@ -2,12 +2,14 @@
 
 ## Deployments
 
-#### Netlify (not updated)
+#### Netlify (not supported now)
 [index.html](https://deploy--musical-elf-1deda8.netlify.app/)
-#### Heroku (LTS deployed)
+#### Heroku (not supported now)
 [index.html](https://protected-mountain-85261.herokuapp.com/)
 - (Possibly you have to wait for a minute till to the moment application is run)
 - (You have to register new user, it's quite fast)
+#### Vercel (LTS)
+[index.html](https://messanger-eight.vercel.app/)
 
 Commit to `deploy branch` to publish
 

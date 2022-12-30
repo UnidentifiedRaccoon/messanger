@@ -1,6 +1,6 @@
 import Block, { BaseProps } from '../../../../utils/Core/Block';
 
-import cross from './cross.inline.svg';
+import cross from './Cross.inline.svg';
 
 import crossTmpl from './Cross.tmpl';
 import styles from './Cross.module.scss';

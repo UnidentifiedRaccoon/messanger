@@ -7,6 +7,7 @@
   "surname": "Фамилия",
   "displayName": "Имя в чате",
   "phone": "Телефон",
+  "userId": "ID пользователя",
   "password": "Пароль",
   "passwordRepeat": "Пароль (ещё раз)",
   "infoChange": "Изменить данные",

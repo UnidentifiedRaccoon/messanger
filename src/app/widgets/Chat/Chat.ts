@@ -41,7 +41,8 @@ class Chat extends Block<BaseProps> {
       styles,
       onChatDelete: async () => {
         try {
-          await Thunks.deleteChat(this.props.activeChat.id);
+          this.messagesSocket?.close();
+          await Thunks.deleteChat();
           PathRouter.go(Routes.Workspace.path);
         } catch (err: any) {
           informer(err.message);
@@ -50,10 +51,22 @@ class Chat extends Block<BaseProps> {
       onAddUserToChat: async () => {
         portal(AddUserToChat, { staticData: props.staticData.addUserToChat });
       },
-      onMessageSend: (chatMessage: MessagePayload) => {
-        if (this.messagesSocket) {
-          this.messagesSocket.sendMessage(chatMessage.message);
+
+      onLeaveUser: async () => {
+        const user = Selectors.user();
+        if (user) {
+          try {
+            await Thunks.removeUserFromChat(user.id);
+            PathRouter.go(Routes.Workspace.path);
+          } catch (err: any) {
+            informer(err.message);
+          }
         }
+      },
+      onExcludeUser: async () => {
+      },
+      onMessageSend: (chatMessage: MessagePayload) => {
+        this.messagesSocket?.sendMessage(chatMessage.message);
       },
     });
   }

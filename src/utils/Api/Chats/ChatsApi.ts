@@ -34,6 +34,18 @@ class ChatsApi {
     });
   }
 
+  removeUserFromChat(chatId: number, userId: number) {
+    return transport.delete('/users', {
+      data: JSON.stringify({
+        users: [
+          userId,
+        ],
+        chatId,
+      }),
+      headers: { ...Headers.json },
+    });
+  }
+
   deleteChat(id: number) {
     return transport.delete('', {
       data: JSON.stringify({ chatId: id }),

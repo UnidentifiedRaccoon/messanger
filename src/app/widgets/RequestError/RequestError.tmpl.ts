@@ -9,9 +9,15 @@ const requestErrorTmpl = () => `
             {{this}}<br>
         {{/each}}
     </h2>
-      {{# Link onClick=onMoveToWorkspace outerStyles=styles.link }}
-          {{staticData.backLink}}
-      {{/Link}}
+      {{#if authStatus}}
+        {{# Link onClick=onMoveToWorkspace outerStyles=styles.link }}
+            {{staticData.toChats}}
+        {{/Link}}
+      {{else}}
+          {{# Link onClick=onMoveToLogin outerStyles=styles.link }}
+              {{staticData.toLogin}}
+          {{/Link}}
+      {{/if}}
 </div>
 `;
 
